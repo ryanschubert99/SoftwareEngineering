@@ -202,5 +202,12 @@
       <property name="lineWrappingIndentation" value="4"/>
       <property name="arrayInitIndent" value="2"/>      
     </module>
+	</module>
+    <module name="NoWhitespaceBefore">
+      <property name="tokens"
+               value="COMMA, SEMI, POST_INC, POST_DEC, DOT,
+                    LABELED_STAT, METHOD_REF"/>
+      <property name="allowLineBreaks" value="true"/>
+    </module>
   </module>
 </module>
