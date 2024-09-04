@@ -4,8 +4,8 @@ public class Main {
         System.out.println("Hello world!");
         int x = 0;
         for(int i = 0; i<5; i++){
-            x;
+            x + i;
         }
-        System.out.println(x)
+        System.out.println(x);
     }
 }
