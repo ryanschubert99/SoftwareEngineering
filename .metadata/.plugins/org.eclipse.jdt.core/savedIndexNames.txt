@@ -1,0 +1,3 @@
+INDEX VERSION 1.134+C:\Users\rhino\Documents\GitHub\SoftwareEngineering\.metadata\.plugins\org.eclipse.jdt.core
+2987565542.index
+3006656609.index
