@@ -1,0 +1,10 @@
+
+public class UserPrototype {
+	public void sendValue(int inputValue) {
+		
+	}
+	public int receiveValue() {
+		
+		return request.
+	}
+}
