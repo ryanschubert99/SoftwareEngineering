@@ -1,54 +1,41 @@
 package src;
-public class UserComputePrototype implements UserComputeEngine
-{
-    private String inputSource;
-    private String outputSource;
-    private String delimiter;
-    private static final String DEFAULT_DELIMITER = ",";
-
-    public UserComputePrototype(String inputSource, String outputSource, String delimiter)
-    {
-        this.inputSource = inputSource;
-        this.outputSource = outputSource;
-        this.delimiter = delimiter;
-    }
-
-    @Override
-    public String getInputSource()
-    {
-        return inputSource;
-    }
-
-    @Override
-    public String getOutputSource()
-    {
-        return outputSource;
-    }
-
-    @Override
-    public String getDelimiter()
-    {
-        return delimiter;
-    }
-
-	@Override
+public class UserComputePrototype implements UserComputeEngine{
+  private String inputSource;
+  private String outputSource;
+  private String delimiter;
+  private static final String DEFAULT_DELIMITER = ",";
+  public UserComputePrototype(String inputSource, String outputSource, String delimiter){
+    this.inputSource = inputSource;
+    this.outputSource = outputSource;
+    this.delimiter = delimiter;
+  }
+  @Override
+  public String getInputSource(){
+    return inputSource;
+  }
+  @Override
+    public String getOutputSource(){
+    return outputSource;
+  }
+  @Override
+    public String getDelimiter(){
+    return delimiter;
+  }
+  @Override
 	public String inputSource() {
 		// TODO Auto-generated method stub
-		return null;
-	}
+    return null;
+  }
 
-	@Override
+  @Override
 	public String outputSource() {
 		// TODO Auto-generated method stub
-		return null;
-	}
+    return null;
+  }
 
-	@Override
+  @Override
 	public String delimiter() {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
+    return null;
+  }
 }
