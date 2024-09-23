@@ -7,7 +7,7 @@ import src.ComputeEnginePrototype;
 import src.DataStorageCompute;
 import src.MatrixAPIInterface;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
 
 public class ComputeEngineTest {
   @Test
