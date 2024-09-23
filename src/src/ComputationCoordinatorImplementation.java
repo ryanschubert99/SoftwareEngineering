@@ -1,10 +1,10 @@
 package src;
 
-public class ComputationCoordinatorImplemenation implements ComputationCoordinator{
+public class ComputationCoordinatorImplementation implements ComputationCoordinator{
   private DataStorageCompute dataStore;
   private ComputeEngine computeEngine;
  
-  public void ComputationCoordinator(DataStorageCompute dataStore, ComputeEngine computeEngine){
+  public ComputationCoordinatorImplementation(DataStorageCompute dataStore, ComputeEngine computeEngine){
     this.dataStore = dataStore;
     this.computeEngine = computeEngine;
   }
