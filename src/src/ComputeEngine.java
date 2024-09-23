@@ -6,4 +6,6 @@ public interface ComputeEngine  {
   int[][] performComputation(int[][] matrix1, int[][] matrix2);
   
   void finalizeAction(int[][] resultMatrix, String outputSource, String delimiter);
+
+  int[][] generateMatrix(int row, int col);
 }
