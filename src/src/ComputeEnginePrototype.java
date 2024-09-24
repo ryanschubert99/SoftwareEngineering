@@ -10,9 +10,9 @@ public class ComputeEnginePrototype extends MatrixImplementation implements Comp
     public void initializeAction(String inputSource, String outputSource, String delimiter){
     System.out.println("Initializing Compute Engine");
     //read input from the input source
-    int[][] matrix1 = dataStorage.readInput(inputSource);
+    int[][] matrix1 = dataStorage.readInputArr(inputSource);
     
-    int[][] matrix2 = dataStorage.readInput(inputSource);
+    int[][] matrix2 = dataStorage.readInputArr(inputSource);
     //computation
     int[][] resultantMatrix = performComputation(matrix1, matrix2);
     //write result to output file

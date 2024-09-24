@@ -40,7 +40,7 @@ public class ComputationCoordinatorSmokeTest {
         
     verify(computeEngineMock).initializeAction(anyString(), anyString(), anyString());
     
-    verify(dataStoreMock).readInput(anyString());
-        // Add more verifications as needed
+    verify(dataStoreMock).readInput(null);
+
   }
 }

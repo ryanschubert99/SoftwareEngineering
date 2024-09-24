@@ -2,7 +2,6 @@ package src;
 import java.util.Random;
 
 public class MatrixImplementation implements MatrixAPIInterface{
-  @Override
   public int[][] generateMatrix(int rows, int cols){
     Random random = new Random();
     int[][] matrix = new int[rows][cols];
@@ -32,5 +31,14 @@ public class MatrixImplementation implements MatrixAPIInterface{
     }
     return resultantMatrix;
   }
-
+  public void printMatrix(int[][] m, int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+	// Start a new line for each row
+      System.out.println();
+      for (int j = 0; j < cols; j++) {
+        System.out.print(m[i][j] + " ");
+      }
+    }
+    System.out.println();
+  }
 }

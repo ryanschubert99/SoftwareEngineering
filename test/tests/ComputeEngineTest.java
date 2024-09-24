@@ -18,6 +18,5 @@ public class ComputeEngineTest {
     ComputeEnginePrototype computeEngine = new ComputeEnginePrototype(mockDataStorage, mockMatrixAPI);
     computeEngine.initializeAction("input.txt", "output.txt", ",");
     
-    // Add assertions as needed
   }
 }
