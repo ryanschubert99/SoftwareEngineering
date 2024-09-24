@@ -9,8 +9,8 @@ import java.util.List;
 public class DataStoragePrototype implements DataStorageCompute		{
   @Override
 	public List<int[][]> readInputArrs(String inputSource)	{
-	  List<int[][]> matrix = null;
-      try (BufferedReader reader = new BufferedReader(new FileReader(inputSource))){
+    List<int[][]> matrix = null;
+    try (BufferedReader reader = new BufferedReader(new FileReader(inputSource))){
       // add in the matrix creation, read the dimensions in and create the matrix
     }catch (IOException e){
       e.printStackTrace();

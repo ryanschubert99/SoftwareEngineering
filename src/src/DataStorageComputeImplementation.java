@@ -10,19 +10,19 @@ public class DataStorageComputeImplementation implements DataStorageCompute {
   }
   @Override
   public List<int[][]> readInputArrs(String inputSource) {
-	return new ArrayList<int[][]>(); // Return an empty matrix
+    return new ArrayList<int[][]>(); // Return an empty matrix
   }
   @Override
   public List<Integer> readInputInts(String inputSource) {
-	return new ArrayList<Integer>();
-}
-@Override
-public int readInput(String inputSource) {
-	return 0;
-}
-@Override
-public int[][] readInputArr(String inputSource) {
-	return null;
-}
+    return new ArrayList<Integer>();
+  }
+  @Override
+  public int readInput(String inputSource) {
+    return 0;
+  }
+  @Override
+  public int[][] readInputArr(String inputSource) {
+    return null;
+  }
 }
 
