@@ -16,7 +16,7 @@ public class DataStorageTestOnly implements DataStorageCompute{
 
   public DataStorageTestOnly() {
     this.inputConfig = inputConfig;
-	this.outputConfig = outputConfig;
+    this.outputConfig = outputConfig;
     arrays = new ArrayList<>();
   }
   public void addMatrix(int[][] arr) {
