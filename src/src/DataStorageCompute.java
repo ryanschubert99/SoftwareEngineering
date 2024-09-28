@@ -1,5 +1,6 @@
 package src;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface DataStorageCompute{
@@ -13,5 +14,9 @@ public interface DataStorageCompute{
   public List<Integer> readInputInts(String inputSource);
   
   public void writeOutput(int[][] matrix, String outputSource, String delimiter);
+
+List<int[][]> readInputArrs(List<int[][]> a);
+
+List<int[][]> readInputFile() throws IOException;
 
 }

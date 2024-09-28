@@ -4,9 +4,46 @@ import java.util.Scanner;
 
 public class InputConfigImplementation implements InputConfig {
 
-	
 	private int inputType = 0; //0 is User Input, and 1 is File Input
 	private String inputFileName;
+	private int numberOfMatrices;
+	private int rows;
+	
+	public String getInputFileName() {
+		return inputFileName;
+	}
+
+	public void setInputFileName(String inputFileName) {
+		this.inputFileName = inputFileName;
+	}
+
+	public int getNumberOfMatrices() {
+		return numberOfMatrices;
+	}
+
+	public void setNumberOfMatrices(int numberOfMatrices) {
+		this.numberOfMatrices = numberOfMatrices;
+	}
+
+	public int getRows() {
+		return this.rows;
+	}
+
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+
+	public int getColumns() {
+		return columns;
+	}
+	
+
+	
+	public void setColumns(int columns) {
+		this.columns = columns;
+	}
+	
+	private int columns;
 	
 	public InputConfigImplementation(){
 	}
@@ -22,7 +59,18 @@ public class InputConfigImplementation implements InputConfig {
 	    this.inputType = scanner.nextInt();
 	    if(this.inputType == 1) {
 	      System.out.println("Enter the input file Name: ");
-	      scanner.nextLine();
+	      this.inputFileName = scanner.nextLine();
+	      	System.out.println("Enter Number of Rows in each Matrix ");
+	    	this.rows = scanner.nextInt();
+	    	System.out.println("Enter Number of Columns in each Matrix ");
+	    	this.columns = scanner.nextInt();
+	    } else {
+	    	System.out.println("Input the number of matrices you want to generate ");
+	    	this.numberOfMatrices = scanner.nextInt();
+	    	System.out.println("Enter Number of Rows ");
+	    	this.rows = scanner.nextInt();
+	    	System.out.println("Enter Number of Columns ");
+	    	this.columns = scanner.nextInt();
 	    }
 	}
 
@@ -30,8 +78,12 @@ public class InputConfigImplementation implements InputConfig {
 	public String getInputType() {
 		if(this.inputType == 0) {
 			return "User Input Integers";
-		} else {return "File Input";
+		} else {return "File Input";}
+	}
+		
+	public int getInputTypeValue() {
+		return this.inputType;
 	  }	
 	}
 
-}
+

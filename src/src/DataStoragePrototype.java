@@ -48,4 +48,10 @@ public class DataStoragePrototype implements DataStorageCompute		{
   public int[][] readInputArr(String inputSource) {
     return null;
   }
+
+@Override
+public List<int[][]> readInputArrs(List<int[][]> a) {
+	// TODO Auto-generated method stub
+	return null;
+}
 }

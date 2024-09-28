@@ -35,3 +35,4 @@ public class OutputConfigImplementation implements OutputConfig{
 	}
 	
 }
+}

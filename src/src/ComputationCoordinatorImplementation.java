@@ -4,7 +4,7 @@ public class ComputationCoordinatorImplementation implements ComputationCoordina
   private DataStorageComputeImplementation dataStore;
   private ComputeEngineImplementation computeEngine;
  
-  public ComputationCoordinatorImplementation(DataStorageCompute dataStore, ComputeEngine computeEngine){
+  public ComputationCoordinatorImplementation(DataStorageComputeImplementation dataStore, ComputeEngineImplementation computeEngine){
     this.dataStore = dataStore;
     this.computeEngine = computeEngine;
   }
@@ -13,7 +13,11 @@ public class ComputationCoordinatorImplementation implements ComputationCoordina
 }
 public ComputeResult beginComputation() {
 	ComputeRequest compute = new ComputeRequest();
-    dataStore
     return  null;
   }
+@Override
+public ComputeResult beginComputation(ComputeRequest request) {
+	// TODO Auto-generated method stub
+	return null;
+}
 }

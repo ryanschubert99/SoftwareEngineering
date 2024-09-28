@@ -4,8 +4,8 @@ public class ComputeRequest {
 	
   private static final char DEFAULT_DELIMITER = ';';
 
-  private final InputConfig inputConfig;
-  private final OutputConfig outputConfig;
+  private final InputConfigImplementation inputConfig;
+  private final OutputConfigImplementation outputConfig;
   private final char delimiter;
 	
   public ComputeRequest(InputConfigImplementation inputConfig, OutputConfigImplementation  outputConfig) {
@@ -36,11 +36,11 @@ public class ComputeRequest {
     return delimiter;
   }
 
-  public InputConfig getInputConfig() {
+  public InputConfigImplementation getInputConfig() {
     return inputConfig;
   }
 
-  public OutputConfig getOutputConfig() {
+  public OutputConfigImplementation getOutputConfig() {
     return outputConfig;
   }
   
