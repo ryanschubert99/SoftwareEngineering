@@ -19,4 +19,6 @@ List<int[][]> readInputArrs(List<int[][]> a);
 
 List<int[][]> readInputFile() throws IOException;
 
+void writeOutput(String outputFileName, String delimiter);
+
 }

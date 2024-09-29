@@ -11,28 +11,58 @@ public class OutputConfigImplementation implements OutputConfig{
 	}
 	
 	@Override
-	public void setInputType(int input) {
+	public void setOutputTypeValue(int input) {
 		this.outputType = input;
 	}
 
+	public int getOutputTypeValue() {
+		return this.outputType;
+	}
 	@Override
-	public String getInputType() {
+	public String getOutputType() {
 		if(this.outputType == 0) {
 			return "Outputs Matrices to User";
 		} else {return "Outputs Matrices to txt File";
 	  }	
 	}
 
+	public String getOutputFileName() {
+		return outputFileName;
+	}
+
+	public void setOutputFileName(String outputFileName) {
+		this.outputFileName = outputFileName;
+	}
+
 	public void setUserOutputType() {
-		Scanner scanner = new Scanner(System.in);
-	    //Ask User output type
-	    System.out.println("Input 0 for Console Output, or 1 for File Ouput");
+	    Scanner scanner = new Scanner(System.in);
+	    
+	    // Ask user for output type
+	    System.out.println("Input 0 for Console Output, or 1 for File Output");
 	    this.outputType = scanner.nextInt();
-	    if(this.outputType == 1) {
-		  System.out.println("Enter the output file Name: ");
-		  scanner.nextLine();
+	    
+	    // Consume the leftover newline after nextInt()
+	    scanner.nextLine();
+	    
+	    if (this.outputType == 1) {
+	        // File output mode
+	        System.out.println("Enter the output file Name: ");
+	        this.outputFileName = scanner.nextLine();  // Wait for user to input file name
+	    }
+	}
+
+	@Override
+	public void setInputType(int input) {
+		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public String getInputType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }
-}
+

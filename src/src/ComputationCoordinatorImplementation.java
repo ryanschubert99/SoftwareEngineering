@@ -1,5 +1,7 @@
 package src;
 
+import java.io.IOException;
+
 public class ComputationCoordinatorImplementation implements ComputationCoordinator{
   private DataStorageComputeImplementation dataStore;
   private ComputeEngineImplementation computeEngine;
@@ -11,8 +13,9 @@ public class ComputationCoordinatorImplementation implements ComputationCoordina
   public ComputationCoordinatorImplementation() {
 	// TODO Auto-generated constructor stub
 }
-public ComputeResult beginComputation() {
+public ComputeResult beginComputation() throws IOException {
 	ComputeRequest compute = new ComputeRequest();
+	DataStorageComputeImplementation dataStorage = new DataStorageComputeImplementation(compute);
     return  null;
   }
 @Override

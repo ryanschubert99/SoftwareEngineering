@@ -53,24 +53,35 @@ public class InputConfigImplementation implements InputConfig {
 		this.inputType = input;
 	}
 	public void setUserInputType() {
-		Scanner scanner = new Scanner(System.in);
-	    //Ask User input and output type
+	    Scanner scanner = new Scanner(System.in);
+	    
+	    // Ask user input and output type
 	    System.out.println("Input 0 for User input, or 1 for File Input");
 	    this.inputType = scanner.nextInt();
-	    if(this.inputType == 1) {
-	      System.out.println("Enter the input file Name: ");
-	      this.inputFileName = scanner.nextLine();
-	      	System.out.println("Enter Number of Rows in each Matrix ");
-	    	this.rows = scanner.nextInt();
-	    	System.out.println("Enter Number of Columns in each Matrix ");
-	    	this.columns = scanner.nextInt();
+	    
+	    // Consume the leftover newline after nextInt()
+	    scanner.nextLine();
+	    
+	    if (this.inputType == 1) {
+	        // File input mode
+	        System.out.println("Enter the input file name: ");
+	        this.inputFileName = scanner.nextLine();  // Read file name
+	        
+	        System.out.println("Enter Number of Rows in each Matrix: ");
+	        this.rows = scanner.nextInt();
+	        
+	        System.out.println("Enter Number of Columns in each Matrix: ");
+	        this.columns = scanner.nextInt();
 	    } else {
-	    	System.out.println("Input the number of matrices you want to generate ");
-	    	this.numberOfMatrices = scanner.nextInt();
-	    	System.out.println("Enter Number of Rows ");
-	    	this.rows = scanner.nextInt();
-	    	System.out.println("Enter Number of Columns ");
-	    	this.columns = scanner.nextInt();
+	        // User input mode
+	        System.out.println("Input the number of matrices you want to generate: ");
+	        this.numberOfMatrices = scanner.nextInt();
+	        
+	        System.out.println("Enter Number of Rows: ");
+	        this.rows = scanner.nextInt();
+	        
+	        System.out.println("Enter Number of Columns: ");
+	        this.columns = scanner.nextInt();
 	    }
 	}
 

@@ -6,4 +6,8 @@ public interface OutputConfig {
 
 	String getInputType();
 
+	void setOutputTypeValue(int input);
+
+	String getOutputType();
+
 }
