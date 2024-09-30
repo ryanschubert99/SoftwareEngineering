@@ -1,30 +1,42 @@
-
 package tests;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
+
+import java.io.IOException;
+
+import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import src.ComputeEngineImplementation;
+import src.ComputationCoordinatorImp;
+import src.ComputeEngineImp;
+import src.DataStorageImp;
+import src.ComputeRequest;
+import src.ComputeResult;
 
 public class ComputeEngineIntegrationTest {
 
+  private ComputationCoordinatorImp computationCoordinator;
+  private DataStorageImp dataStore;
+  private ComputeEngineImp computeEngine;
+
+  @Before
+  public void setUp() throws IOException {
+    ComputeRequest computeRequest = new ComputeRequest();
+    dataStore = new DataStorageImp(computeRequest);
+    computeEngine = new ComputeEngineImp(dataStore);
+    computationCoordinator = new ComputationCoordinatorImp(dataStore, computeEngine);
+  }
+
   @Test
-  public void testComputeEngineMatrixGeneration() {
-  
-    ComputeEngineImplementation compute = new ComputeEngineImplementation();
-    DataStorageTestOnly data = new DataStorageTestOnly();
+  public void testFullComputationProcess() throws Exception {
+    ComputeRequest request = new ComputeRequest();
 
-    
-    int[][] arrays = compute.generateMatrix(1, 10);
-        
-    assertNotNull(arrays);
-    assertEquals(10, arrays.length); 
-    assertEquals(10, arrays[0].length); 
-        
-    assertEquals(1, arrays[0][0]); 
+    ComputeResult result = computationCoordinator.beginComputation(request);
 
-    data.addMatrix(arrays);
+    assertNotNull(result);
+    assertEquals("Expected result status", "SUCCESS", result.getStatus());
+    assertNotNull(dataStore.getMatrices());
+    assertEquals(2, dataStore.getMatrices().size());
   }
 }

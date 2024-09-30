@@ -1,4 +1,5 @@
 package tests;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +44,23 @@ public class DataStorageTestOnly implements DataStorageCompute{
   @Override
   public int[][] readInputArr(String inputSource) {
     return null;
+  }
+
+  @Override
+  public List<int[][]> readInputArrs(List<int[][]> a) {
+	// TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public List<int[][]> readInputFile() throws IOException {
+	// TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public void writeOutput(String outputFileName, String delimiter) {
+	// TODO Auto-generated method stub	
   }
 }
 
