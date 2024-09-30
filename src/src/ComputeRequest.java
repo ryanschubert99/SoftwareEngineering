@@ -14,21 +14,21 @@ public class ComputeRequest {
 	
   public ComputeRequest(InputConfigImplementation inputConfig, OutputConfigImplementation  outputConfig, char delimiter) {
     inputConfig.setUserInputType();
-	outputConfig.setUserOutputType();
+    outputConfig.setUserOutputType();
 	
-	this.inputConfig = inputConfig;
+    this.inputConfig = inputConfig;
     this.outputConfig = outputConfig;
     this.delimiter = delimiter;
   }
   public ComputeRequest() {
-	InputConfigImplementation inputConfig = new InputConfigImplementation();
-	OutputConfigImplementation  outputConfig = new OutputConfigImplementation();
+    InputConfigImplementation inputConfig = new InputConfigImplementation();
+    OutputConfigImplementation  outputConfig = new OutputConfigImplementation();
     inputConfig.setUserInputType();
     outputConfig.setUserOutputType();
 		
-	this.inputConfig = inputConfig;
-	this.outputConfig = outputConfig;
-	this.delimiter = DEFAULT_DELIMITER;
+    this.inputConfig = inputConfig;
+    this.outputConfig = outputConfig;
+    this.delimiter = DEFAULT_DELIMITER;
   }
   
 	

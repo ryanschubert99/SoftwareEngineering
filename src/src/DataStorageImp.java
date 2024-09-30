@@ -14,7 +14,7 @@ public class DataStorageImp implements DataStorageCompute {
   private String inputFileName;
   private String outputFileName;
   private int amountToGenerate;
-  private List<int[][]> Matrices;
+  private List<int[][]> matrices;
   private DataStorageImp data;
 
   public DataStorageImp(ComputeRequest compute) throws IOException {
@@ -29,28 +29,28 @@ public class DataStorageImp implements DataStorageCompute {
       if (scanner.nextInt() == 1) {
         writeOutput(this.outputFileName, ";");
       } else {
-        computeEng.MultiplyMatrix(Matrices);
+        computeEng.multiplyMatrix(matrices);
         writeOutput(this.outputFileName, ";");
       }
     } else {
-      this.Matrices = readInputFile();
+      this.matrices = readInputFile();
       System.out.println("Type 1 to Output Matrices or Type 0 to do Computations");
       if (scanner.nextInt() == 1) {
         writeOutput(this.outputFileName, ";");
       } else {
         ComputeEngineImp computeEng = new ComputeEngineImp(this);
-        computeEng.MultiplyMatrix(Matrices);
+        computeEng.multiplyMatrix(matrices);
         writeOutput(this.outputFileName, ";");
       }
     }
   }
 
   public List<int[][]> getMatrices() {
-    return Matrices;
+    return matrices;
   }
 
   public void setMatrices(List<int[][]> matrices) {
-    Matrices = matrices;
+    matrices = matrices;
   }
 
   @Override
@@ -63,13 +63,13 @@ public class DataStorageImp implements DataStorageCompute {
 
     if (outputTypeValue == 0) {
       System.out.println("Outputting matrices to console:");
-      for (int[][] matrix : Matrices) {
+      for (int[][] matrix : matrices) {
         printMatrixToConsole(matrix, delimiter);
       }
     } else if (outputTypeValue == 1) {
       System.out.println("Writing matrices to file: " + outputFileName);
       try (FileWriter fileWriter = new FileWriter(outputFileName)) {
-        for (int[][] matrix : Matrices) {
+        for (int[][] matrix : matrices) {
           writeMatrixToFile(fileWriter, matrix, delimiter);
         }
         fileWriter.flush();

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ComputeEngineImp implements ComputeEngine {
 
-  public ComputeEngineImp(List<int[][]> Matrices, DataStorageImp data) {
+  public ComputeEngineImp(List<int[][]> matrices, DataStorageImp data) {
     MatrixImplementation matrixCalc = new MatrixImplementation();
     List<int[][]> generatedMatrices = new ArrayList<>();
 
@@ -57,7 +57,12 @@ public class ComputeEngineImp implements ComputeEngine {
     // TODO Auto-generated method stub
   }
 
-  public void MultiplyMatrix(List<int[][]> matrices) {
+  public void multiplyMatrix(List<int[][]> matrices) {
     // TODO Auto-generated method stub
+  }
+
+  public Object performComputation(Object any, Object any2) {
+	// TODO Auto-generated method stub
+    return null;
   }
 }

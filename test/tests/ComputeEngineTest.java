@@ -15,7 +15,7 @@ public class ComputeEngineTest {
     DataStorageCompute mockDataStorage = Mockito.mock(DataStorageCompute.class);
     MatrixAPIInterface mockMatrixAPI = Mockito.mock(MatrixAPIInterface.class);
     
-    ComputeEngineImp computeEngine = new ComputeEngineImp();
+    ComputeEngineImp computeEngine = new ComputeEngineImp(null);
     computeEngine.initializeAction("input.txt", "output.txt", ",");
     
   }

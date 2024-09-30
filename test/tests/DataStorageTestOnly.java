@@ -46,23 +46,22 @@ public class DataStorageTestOnly implements DataStorageCompute{
     return null;
   }
 
-@Override
-public List<int[][]> readInputArrs(List<int[][]> a) {
+  @Override
+  public List<int[][]> readInputArrs(List<int[][]> a) {
 	// TODO Auto-generated method stub
-	return null;
-}
+    return null;
+  }
 
-@Override
-public List<int[][]> readInputFile() throws IOException {
+  @Override
+  public List<int[][]> readInputFile() throws IOException {
 	// TODO Auto-generated method stub
-	return null;
-}
+    return null;
+  }
 
-@Override
-public void writeOutput(String outputFileName, String delimiter) {
-	// TODO Auto-generated method stub
-	
-}
+  @Override
+  public void writeOutput(String outputFileName, String delimiter) {
+	// TODO Auto-generated method stub	
+  }
 }
 
 
