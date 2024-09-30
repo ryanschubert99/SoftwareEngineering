@@ -20,6 +20,7 @@ public class ComputeRequest {
     this.outputConfig = outputConfig;
     this.delimiter = delimiter;
   }
+
   public ComputeRequest() {
     InputConfigImplementation inputConfig = new InputConfigImplementation();
     OutputConfigImplementation  outputConfig = new OutputConfigImplementation();
