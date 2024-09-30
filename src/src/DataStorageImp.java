@@ -8,29 +8,54 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class DataStorageComputeImplementation implements DataStorageCompute {
+public class DataStorageImp implements DataStorageCompute {
+	
 	
 	private ComputeRequest computeE;
 	private String inputFileName;
 	private String outputFileName;
 	private int amountToGenerate;
 	private List<int[][]> Matrices;
+	private DataStorageImp data;
 	
-	public DataStorageComputeImplementation(ComputeRequest compute) throws IOException {
+	public DataStorageImp(ComputeRequest compute) throws IOException {
 		this.computeE = compute;
 		this.inputFileName = computeE.getInputConfig().getInputFileName();
 		this.outputFileName = computeE.getOutputConfig().getOutputFileName();
 		Scanner scanner = new Scanner(System.in);
 		if(compute.getInputConfig().getInputTypeValue() == 0) {
 		  this.amountToGenerate  = compute.getInputConfig().getNumberOfMatrices();
+		  
+		  ComputeEngineImp computeEng = new ComputeEngineImp(this);
+		  
+		  System.out.println("Type 1 to Output Matrices or Type 0 to do Computations");
+		  if(scanner.nextInt() == 1) {
+			  writeOutput(this.outputFileName,";");
+		  } else {
+			  computeEng.MultiplyMatrix(Matrices);
+			  writeOutput(this.outputFileName,";");
+		  }
 			}
 		 else {
 			this.Matrices = readInputFile();
+			System.out.println("Type 1 to Output Matrices or Type 0 to do Computations");
+			if(scanner.nextInt() == 1) {
 			writeOutput(this.outputFileName,";");
+		} else {
+			ComputeEngineImp computeEng = new ComputeEngineImp(this);
+			 computeEng.MultiplyMatrix(Matrices);
+			  writeOutput(this.outputFileName,";");
 		}
 		
 	}
-  @Override
+}
+  public List<int[][]> getMatrices() {
+		return Matrices;
+	}
+	public void setMatrices(List<int[][]> matrices) {
+		Matrices = matrices;
+	}
+@Override
   public void writeOutput(String outputFileName, String delimiter) {
 	    // Check if the output file name is null
 	    
@@ -162,6 +187,18 @@ public List<int[][]> readInputArrs(List<int[][]> a) {
 public void writeOutput(int[][] matrix, String outputSource, String delimiter) {
 	// TODO Auto-generated method stub
 	
+}
+public ComputeRequest getComputeE() {
+	return computeE;
+}
+public void setComputeE(ComputeRequest computeE) {
+	this.computeE = computeE;
+}
+public int getAmountToGenerate() {
+	return amountToGenerate;
+}
+public void setAmountToGenerate(int amountToGenerate) {
+	this.amountToGenerate = amountToGenerate;
 }
 }
 

@@ -4,15 +4,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import src.DataStoragePrototype;
+import src.DataStorageImp;
 
 import static org.mockito.Mockito.verify;
 
+import java.io.IOException;
+
 class DataStorageTest {
-  private DataStoragePrototype dataStorage;
+  private DataStorageImp dataStorage;
   @BeforeEach
-    void setUp() {
-    dataStorage = new DataStoragePrototype();
+    void setUp() throws IOException {
+    dataStorage = new DataStorageImp(null);
   }
   @Test
     void testWriteOutput() {

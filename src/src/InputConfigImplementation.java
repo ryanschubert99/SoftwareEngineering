@@ -8,6 +8,7 @@ public class InputConfigImplementation implements InputConfig {
 	private String inputFileName;
 	private int numberOfMatrices;
 	private int rows;
+	private int multiply;
 	
 	public String getInputFileName() {
 		return inputFileName;
@@ -82,6 +83,8 @@ public class InputConfigImplementation implements InputConfig {
 	        
 	        System.out.println("Enter Number of Columns: ");
 	        this.columns = scanner.nextInt();
+	        System.out.println("Do you want to Multiply the Matrices, If yes type 1, if No type 0");
+	        this.multiply = scanner.nextInt();
 	    }
 	}
 
@@ -94,7 +97,15 @@ public class InputConfigImplementation implements InputConfig {
 		
 	public int getInputTypeValue() {
 		return this.inputType;
-	  }	
+	  }
+
+	public int getMultiply() {
+		return multiply;
+	}
+
+	public void setMultiply(int multiply) {
+		this.multiply = multiply;
+	}	
 	}
 
 

@@ -6,14 +6,14 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import src.ComputeEngineImplementation;
+import src.ComputeEngineImp;
 
 public class ComputeEngineIntegrationTest {
 
   @Test
   public void testComputeEngineMatrixGeneration() {
   
-    ComputeEngineImplementation compute = new ComputeEngineImplementation();
+    ComputeEngineImp compute = new ComputeEngineImp(null, null);
     DataStorageTestOnly data = new DataStorageTestOnly();
 
     

@@ -9,22 +9,24 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 
-import src.ComputationCoordinatorImplementation;  // Correct spelling
+import src.ComputationCoordinatorImp;  // Correct spelling
 import src.ComputeEngine;
+import src.ComputeEngineImp;
 import src.DataStorageCompute;
+import src.DataStorageImp;
 import src.ComputeRequest;
 import src.ComputeResult;
 
 public class ComputationCoordinatorSmokeTest {
-  private ComputationCoordinatorImplementation computationCoordinator;
-  private DataStorageCompute dataStoreMock;
-  private ComputeEngine computeEngineMock;
+  private ComputationCoordinatorImp computationCoordinator;
+  private DataStorageImp dataStore;
+  private ComputeEngineImp computeEngine;
 
   @Before
   public void setUp() {
-    dataStoreMock = mock(DataStorageCompute.class);
-    computeEngineMock = mock(ComputeEngine.class);
-    computationCoordinator = new ComputationCoordinatorImplementation(dataStoreMock, computeEngineMock);
+    dataStore = mock(DataStorageImp.class);
+    computeEngine = mock(ComputeEngineImp.class);
+    computationCoordinator = new ComputationCoordinatorImp();
   }
 
   @Test
@@ -32,15 +34,15 @@ public class ComputationCoordinatorSmokeTest {
     // Arrange
     ComputeRequest request = new ComputeRequest(null, null); 
     
-    when(computeEngineMock.performComputation(any(), any())).thenReturn(new int[][]{{1, 2}, {3, 4}});
+    when(computeEngine.performComputation(any(), any())).thenReturn(new int[][]{{1, 2}, {3, 4}});
     
-    ComputeResult result = computationCoordinator.compute(request);
+    ComputeResult result = computationCoordinator.beginComputation(request);
   
     assertNotNull(result);
         
-    verify(computeEngineMock).initializeAction(anyString(), anyString(), anyString());
+    verify(computeEngine).initializeAction(anyString(), anyString(), anyString());
     
-    verify(dataStoreMock).readInput(null);
+    verify(dataStore).readInput(null);
 
   }
 }
