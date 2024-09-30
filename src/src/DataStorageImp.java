@@ -49,8 +49,8 @@ public class DataStorageImp implements DataStorageCompute {
     return matrices;
   }
 
-  public void setMatrices(List<int[][]> matrices) {
-    matrices = matrices;
+  public void setMatrices(List<int[][]> genMatrix) {
+    this.matrices = genMatrix;
   }
 
   @Override
