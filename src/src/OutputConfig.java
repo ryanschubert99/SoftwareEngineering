@@ -2,12 +2,12 @@ package src;
 
 public interface OutputConfig {
 
-	void setInputType(int input);
+  void setInputType(int input);
 
-	String getInputType();
+  String getInputType();
 
-	void setOutputTypeValue(int input);
+  void setOutputTypeValue(int input);
 
-	String getOutputType();
+  String getOutputType();
 
 }

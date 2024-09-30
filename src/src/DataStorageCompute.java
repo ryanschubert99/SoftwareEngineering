@@ -15,10 +15,10 @@ public interface DataStorageCompute{
   
   public void writeOutput(int[][] matrix, String outputSource, String delimiter);
 
-List<int[][]> readInputArrs(List<int[][]> a);
+  List<int[][]> readInputArrs(List<int[][]> a);
 
-List<int[][]> readInputFile() throws IOException;
+  List<int[][]> readInputFile() throws IOException;
 
-void writeOutput(String outputFileName, String delimiter);
+  void writeOutput(String outputFileName, String delimiter);
 
 }

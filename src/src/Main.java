@@ -8,11 +8,10 @@ import java.util.Scanner;
 
 public class Main {
   public static void main(String[] args) throws IOException {
-    int i = 2 ;
-  while(i == 2) {
-	ComputationCoordinatorImp compC = new ComputationCoordinatorImp();
-	compC.beginComputation();
+    int i = 2;
+    while (i == 2) {
+      ComputationCoordinatorImp compC = new ComputationCoordinatorImp();
+      compC.beginComputation();
+    }
   }
-  }
-
 }
