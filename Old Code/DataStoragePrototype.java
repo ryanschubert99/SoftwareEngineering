@@ -49,9 +49,9 @@ public class DataStoragePrototype implements DataStorageCompute		{
     return null;
   }
 
-@Override
-public List<int[][]> readInputArrs(List<int[][]> a) {
+  @Override
+  public List<int[][]> readInputArrs(List<int[][]> a) {
 	// TODO Auto-generated method stub
-	return null;
-}
+    return null;
+  }
 }
