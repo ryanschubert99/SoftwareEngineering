@@ -42,9 +42,11 @@ public class ComputeEngineImp implements ComputeEngine {
 
         // Add the generated matrix to the ArrayList
         generatedMatrices.add(matrix);
-        data.setMatrices(generatedMatrices);
+        
       }
+      data.setMatrices(generatedMatrices);
     }
+    
   }
 
   @Override

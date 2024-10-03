@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class DataStorageImp implements DataStorageCompute {
+public class DataStorageImp implements DataStorage{
 
   private ComputeRequest computeE;
   private String inputFileName;
@@ -49,8 +49,8 @@ public class DataStorageImp implements DataStorageCompute {
     return matrices;
   }
 
-  public void setMatrices(List<int[][]> matrices) {
-    matrices = matrices;
+  public void setMatrices(List<int[][]> genMatrix) {
+    this.matrices = genMatrix;
   }
 
   @Override
@@ -145,33 +145,6 @@ public class DataStorageImp implements DataStorageCompute {
     }
   }
 
-  @Override
-  public List<Integer> readInputInts(String inputSource) {
-    return new ArrayList<Integer>();
-  }
-
-  @Override
-  public int readInput(String inputSource) {
-    return 0;
-  }
-
-  @Override
-  public int[][] readInputArr(String inputSource) {
-    return null;
-  }
-
-  @Override
-  public List<int[][]> readInputArrs(String inputSource) {
-    return null;
-  }
-
-  @Override
-  public List<int[][]> readInputArrs(List<int[][]> a) {
-    return null;
-  }
-
-  @Override
-  public void writeOutput(int[][] matrix, String outputSource, String delimiter) {}
 
   public ComputeRequest getComputeE() {
     return computeE;
