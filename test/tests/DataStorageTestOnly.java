@@ -3,8 +3,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import src.DataStorageCompute;
-public class DataStorageTestOnly implements DataStorageCompute{
+import src.DataStorage;
+public class DataStorageTestOnly implements DataStorage{
 
   private InputConfigTest inputConfig;
   private OutputConfigTest outputConfig;
@@ -27,30 +27,11 @@ public class DataStorageTestOnly implements DataStorageCompute{
   public ArrayList<int[][]> getArrays() {
     return arrays;
   }
-  public List<int[][]> readInputArrs(String inputSource) {
-  // Convert input to an array of integers
-    return inputConfig.getInputArray();
-  }
+
   public void writeOutput(int[][] matrix, String outputSource, String delimiter) {
     outputConfig.addOutput(delimiter);
   }
-  public List<Integer> readInputInts(String inputSource) {
-    return null;
-  }
-  @Override
-  public int readInput(String inputSource) {
-    return 0; 
-  }
-  @Override
-  public int[][] readInputArr(String inputSource) {
-    return null;
-  }
 
-  @Override
-  public List<int[][]> readInputArrs(List<int[][]> a) {
-	// TODO Auto-generated method stub
-    return null;
-  }
 
   @Override
   public List<int[][]> readInputFile() throws IOException {
