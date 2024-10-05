@@ -19,6 +19,7 @@ public class ComputeRequest {
     this.inputConfig = inputConfig;
     this.outputConfig = outputConfig;
     this.delimiter = delimiter;
+    // excepiton for null input
   }
 
   public ComputeRequest() {

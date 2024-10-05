@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ComputeEngineImp implements ComputeEngine {
 
-  public ComputeEngineImp(List<int[][]> matrices, DataStorageImp data) {
+  public ComputeEngineImp (List<int[][]> matrices, DataStorageImp data) {
     MatrixImplementation matrixCalc = new MatrixImplementation();
     List<int[][]> generatedMatrices = new ArrayList<>();
 

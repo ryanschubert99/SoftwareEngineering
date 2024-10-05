@@ -2,7 +2,7 @@ package src;
 
 import java.util.Scanner;
 
-public class InputConfigImplementation implements InputConfig {
+public class InputConfigImplementation implements InputConfig  {
 
   private int inputType = 0; // 0 is User Input, and 1 is File Input
   private String inputFileName;
@@ -63,11 +63,26 @@ public class InputConfigImplementation implements InputConfig {
 
     if (this.inputType == 1) {
       // File input mode
-      System.out.println("Enter the input file name: ");
-      this.inputFileName = scanner.nextLine();  // Read file name
+      try{
+    	  System.out.println("Enter the input file name: ");
+    	  this.inputFileName = scanner.nextLine();  // Read file name
+      }
+      catch(Exception inputFileName) {
+    	  inputFileName = null;
+    	  inputFileName.printStackTrace();    
+      }
+     
 
+      try {
       System.out.println("Enter Number of Rows in each Matrix: ");
       this.rows = scanner.nextInt();
+      if(this.rows==0) {
+    	  throw new Exception();
+      }
+      }
+      catch(Exception e) {
+    	  e.printStackTrace(); 
+      }
 
       System.out.println("Enter Number of Columns in each Matrix: ");
       this.columns = scanner.nextInt();

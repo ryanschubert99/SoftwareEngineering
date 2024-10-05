@@ -103,7 +103,8 @@ public class DataStorageImp implements DataStorageCompute {
 
   @Override
   public List<int[][]> readInputFile() throws IOException {
-    int rows = computeE.getInputConfig().getRows(); // Get predefined number of rows
+  //try {  
+	 int rows = computeE.getInputConfig().getRows(); // Get predefined number of rows
     int columns = computeE.getInputConfig().getColumns(); // Get predefined number of columns
 
     List<int[][]> matrices = new ArrayList<>(); // List to store the matrices
@@ -143,7 +144,14 @@ public class DataStorageImp implements DataStorageCompute {
         matrices.add(matrix);
       }
     }
+ // }
+  //catch{
+	  // catch expetion 
+	  // return some failur code 
+	  //set null value or error code 
+  //}
   }
+}
 
   @Override
   public List<Integer> readInputInts(String inputSource) {
