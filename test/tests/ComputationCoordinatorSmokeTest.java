@@ -38,12 +38,12 @@ public class ComputationCoordinatorSmokeTest {
 
   @Test
   public void testBeginComputationWithRequest() throws IOException {
-	  ComputeRequest request = new ComputeRequest();
-	  computationCoordinator.beginComputation(request);
+    ComputeRequest request = new ComputeRequest();
+    computationCoordinator.beginComputation(request);
 	 
 
     assertNotNull(request);
-   //verify(computeEngine).initializeAction(anyString(), anyString(), anyString());
+    //verify(computeEngine).initializeAction(anyString(), anyString(), anyString());
     //verify(dataStore).readInputFile();
   }
 }
