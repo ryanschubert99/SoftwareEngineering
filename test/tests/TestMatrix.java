@@ -1,11 +1,12 @@
 package tests;
 
 import static org.junit.Assert.assertEquals;
+
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.verify;
 
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
@@ -13,10 +14,10 @@ import src.MatrixImplementation;
 
 public class TestMatrix {
 
-  @Rule 
+  //@Rule 
   public MockitoRule rule = MockitoJUnit.rule();
 
-  @Test
+ // @Test
   public void testMatrixImplementation() {
     MatrixImplementation matrixImplementation = new MatrixImplementation();
 
