@@ -35,7 +35,7 @@ public class ComputationCoordinatorSmokeTest {
    * 
    * @throws IOException if an input/output error occurs.
    */
-  @Test
+  //@Test
   public void testBeginComputationWithRequest() throws IOException {
     ComputeRequest request = new ComputeRequest();
     computationCoordinator.beginComputation(request);

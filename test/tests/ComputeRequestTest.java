@@ -17,11 +17,10 @@ public class ComputeRequestTest {
   private InputConfigImplementation inputConfig;
   private OutputConfigImplementation outputConfig;
 
-  @BeforeAll
+
   public void setUp() {
     inputConfig = new InputConfigImplementation();
     outputConfig = new OutputConfigImplementation();
-  }
 
   @Test
   public void testDefaultConstructor() {
