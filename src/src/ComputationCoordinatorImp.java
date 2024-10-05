@@ -15,15 +15,22 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
   }
 
   public ComputeResult beginComputation() throws IOException {
-    ComputeRequest compute = new ComputeRequest();
-    DataStorageImp dataStorage = new DataStorageImp(compute);
-    ComputeEngineImp computeEng = new ComputeEngineImp(dataStorage);
-    return null;
+    try {
+      ComputeRequest compute = new ComputeRequest();
+      DataStorageImp dataStorage = new DataStorageImp(compute);
+      ComputeEngineImp computeEng = new ComputeEngineImp(dataStorage);
+      return null; // Placeholder, return actual ComputeResult here
+    } catch (Exception e) {
+      //Exception, if anything throws anything
+      // Exception handling for any computation errors
+      e.printStackTrace();
+      throw new IOException("An error occurred during computation.", e);
+    }
   }
 
   @Override
   public ComputeResult beginComputation(ComputeRequest request) {
-    // TODO Auto-generated method stub
+    // TODO: Implement this method
     return null;
   }
 }
