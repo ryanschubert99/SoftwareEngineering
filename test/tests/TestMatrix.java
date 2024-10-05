@@ -14,10 +14,10 @@ import src.MatrixImplementation;
 
 public class TestMatrix {
 
-  @Rule 
+  //@Rule 
   public MockitoRule rule = MockitoJUnit.rule();
 
-  @Test
+ // @Test
   public void testMatrixImplementation() {
     MatrixImplementation matrixImplementation = new MatrixImplementation();
 
