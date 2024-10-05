@@ -15,16 +15,16 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
   }
 
   public ComputeResult beginComputation() throws IOException {
-	try {
-    ComputeRequest compute = new ComputeRequest();
-    DataStorageImp dataStorage = new DataStorageImp(compute);
-    ComputeEngineImp computeEng = new ComputeEngineImp(dataStorage);
-    return null;
-	}catch(Exception e){
-		  //Exception, if anything throws anything 
-		  e.printStackTrace();
-		  throw new IOException("An error occurred during computation.", e);
-	  }
+    try {
+      ComputeRequest compute = new ComputeRequest();
+      DataStorageImp dataStorage = new DataStorageImp(compute);
+      ComputeEngineImp computeEng = new ComputeEngineImp(dataStorage);
+      return null;
+    }catch(Exception e){
+      //Exception, if anything throws anything 
+      e.printStackTrace();
+      throw new IOException("An error occurred during computation.", e);
+    }
   }
 
   @Override
