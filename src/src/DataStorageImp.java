@@ -5,17 +5,19 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class DataStorageImp implements DataStorage{
+public class DataStorageImp implements DataStorage {
 
   private ComputeRequest computeE;
   private String inputFileName;
   private String outputFileName;
   private int amountToGenerate;
   private List<int[][]> matrices;
-  private DataStorageImp data;
+  private boolean valid = false;
+  private int input;
 
   public DataStorageImp(ComputeRequest compute) throws IOException {
     this.computeE = compute;
@@ -25,8 +27,26 @@ public class DataStorageImp implements DataStorage{
     if (compute.getInputConfig().getInputTypeValue() == 0) {
       this.amountToGenerate = compute.getInputConfig().getNumberOfMatrices();
       ComputeEngineImp computeEng = new ComputeEngineImp(this);
-      System.out.println("Type 1 to Output Matrices or Type 0 to do Computations");
-      if (scanner.nextInt() == 1) {
+
+      while (!this.valid) {
+        try {
+          System.out.println("Type 1 to Output Matrices or Type 0 to do Computations");
+          this.input = scanner.nextInt();
+          if (input != 0 && input != 1) {
+            throw new InputMismatchException();
+          }
+          valid = true;
+        } catch (InputMismatchException e) {
+          System.out.println("Invalid Input: Please enter 0 or 1.");
+          scanner.nextLine();
+        } catch (Exception e) {
+          System.out.println("Invalid Input.");
+          scanner.nextLine();
+        }
+      }
+      scanner.nextLine();
+      this.valid = false; // Reset flag for next input
+      if (input == 1) {
         writeOutput(this.outputFileName, ";");
       } else {
         computeEng.multiplyMatrix(matrices);
@@ -34,7 +54,22 @@ public class DataStorageImp implements DataStorage{
       }
     } else {
       this.matrices = readInputFile();
-      System.out.println("Type 1 to Output Matrices or Type 0 to do Computations");
+      while (!this.valid) {
+        try {
+          System.out.println("Type 1 to Output Matrices or Type 0 to do Computations");
+          this.input = scanner.nextInt();
+          if (input != 0 && input != 1) {
+            throw new InputMismatchException();
+          }
+          valid = true;
+        } catch (InputMismatchException e) {
+          System.out.println("Invalid Input: Please enter 0 or 1.");
+          scanner.nextLine();
+        } catch (Exception e) {
+          System.out.println("Invalid Input.");
+          scanner.nextLine();
+        }
+      }
       if (scanner.nextInt() == 1) {
         writeOutput(this.outputFileName, ";");
       } else {
@@ -103,6 +138,7 @@ public class DataStorageImp implements DataStorage{
 
   @Override
   public List<int[][]> readInputFile() throws IOException {
+    String[] splitLine = null;
     int rows = computeE.getInputConfig().getRows(); // Get predefined number of rows
     int columns = computeE.getInputConfig().getColumns(); // Get predefined number of columns
 
@@ -126,12 +162,15 @@ public class DataStorageImp implements DataStorage{
           }
 
           System.out.println("Reading line: \"" + line + "\"");
-
-          String[] splitLine = line.trim().split("[;,\\s]+"); // Split by ;, space, or comma
-          if (splitLine.length != columns) {
-            throw new IOException(
-              "Incorrect number of columns in row " + (currentRow + 1) + ": Expected " + columns + ", but found " + splitLine.length
-            );
+          try {
+            splitLine = line.trim().split("[;,\\s]+"); // Split by ;, space, or comma
+            if (splitLine.length != columns) {
+              throw new IOException(
+                "Incorrect number of columns in row " + (currentRow + 1) + ": Expected " + columns + ", but found " + splitLine.length
+              );
+            }
+          } catch (IOException e) {
+            System.out.println("Invalid Input: " + e.getMessage());
           }
 
           for (int j = 0; j < columns; j++) {
@@ -144,7 +183,6 @@ public class DataStorageImp implements DataStorage{
       }
     }
   }
-
 
   public ComputeRequest getComputeE() {
     return computeE;
