@@ -1,5 +1,6 @@
 package src;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputConfigImplementation implements InputConfig {
@@ -10,6 +11,7 @@ public class InputConfigImplementation implements InputConfig {
   private int rows;
   private int multiply;
   private int columns;
+  private boolean valid = false;
 
   public InputConfigImplementation() {
   }
@@ -54,36 +56,166 @@ public class InputConfigImplementation implements InputConfig {
   public void setUserInputType() {
     Scanner scanner = new Scanner(System.in);
 
-    // Ask user input and output type
-    System.out.println("Input 0 for User input, or 1 for File Input");
-    this.inputType = scanner.nextInt();
-
-    // Consume the leftover newline after nextInt()
+    // Input Type (User or File Input)
+    while (!this.valid) {
+      try {
+        System.out.println("Input 0 for User input, or 1 for File Input");
+        this.inputType = scanner.nextInt();
+        if (this.inputType != 0 && this.inputType != 1) {
+          throw new InputMismatchException();
+        }
+        this.valid = true;
+      } catch (InputMismatchException e) {
+        System.out.println("Invalid Input: Please enter 0 or 1.");
+        scanner.next(); // Clear invalid input
+      } catch (Exception e) {
+        System.out.println("Invalid Input.");
+        scanner.next();
+      }
+    }
     scanner.nextLine();
+    this.valid = false; // Reset flag for next input
 
+    // Input mode: File input or user input
     if (this.inputType == 1) {
-      // File input mode
-      System.out.println("Enter the input file name: ");
-      this.inputFileName = scanner.nextLine();  // Read file name
+      // File Input Mode
+      // Consume the leftover newline from previous nextInt()
 
-      System.out.println("Enter Number of Rows in each Matrix: ");
-      this.rows = scanner.nextInt();
+      // Input File Name (Validate that it ends with .txt)
+      while (!this.valid) {
+        try {
+          System.out.println("Enter the input file name (must end with .txt): ");
+          this.inputFileName = scanner.nextLine(); // Read file name
 
-      System.out.println("Enter Number of Columns in each Matrix: ");
-      this.columns = scanner.nextInt();
+          // Check if the file name ends with .txt
+          if (!this.inputFileName.endsWith(".txt")) {
+            throw new InputMismatchException("File name must end with .txt");
+          }
+
+          this.valid = true; // If file name is valid
+        } catch (InputMismatchException e) {
+          System.out.println("Invalid Input: " + e.getMessage());
+        } catch (Exception e) {
+          System.out.println("Invalid Input.");
+        }
+      }
+
+      this.valid = false; // Reset flag for next input
+      scanner.nextLine();
+
+      // Number of Rows
+      while (!this.valid) {
+        try {
+          System.out.println("Enter Number of Rows in each Matrix: ");
+          this.rows = scanner.nextInt();
+          this.valid = true;
+        } catch (InputMismatchException e) {
+          System.out.println("Invalid Input: Please enter a valid number.");
+          scanner.nextLine();
+        } catch (Exception e) {
+          System.out.println("Invalid Input.");
+          scanner.nextLine();
+        }
+      }
+
+      this.valid = false; // Reset flag for next input
+      scanner.nextLine();
+
+      // Number of Columns
+      while (!this.valid) {
+        try {
+          System.out.println("Enter Number of Columns in each Matrix: ");
+          this.columns = scanner.nextInt();
+          this.valid = true;
+        } catch (InputMismatchException e) {
+          System.out.println("Invalid Input: Please enter a valid number.");
+          scanner.nextLine();
+        } catch (Exception e) {
+          System.out.println("Invalid Input.");
+          scanner.nextLine();
+        }
+      }
+
     } else {
-      // User input mode
-      System.out.println("Input the number of matrices you want to generate: ");
-      this.numberOfMatrices = scanner.nextInt();
+      // User Input Mode
 
-      System.out.println("Enter Number of Rows: ");
-      this.rows = scanner.nextInt();
+      // Number of Matrices
+      while (!this.valid) {
+        try {
+          System.out.println("Input the number of matrices you want to generate: ");
+          this.numberOfMatrices = scanner.nextInt();
+          this.valid = true;
+        } catch (InputMismatchException e) {
+          System.out.println("Invalid Input: Please enter a valid number.");
+          scanner.nextLine();
+        } catch (Exception e) {
+          System.out.println("Invalid Input.");
+          scanner.nextLine();
+        }
+      }
 
-      System.out.println("Enter Number of Columns: ");
-      this.columns = scanner.nextInt();
-      
-      System.out.println("Do you want to Multiply the Matrices? If yes, type 1; if no, type 0");
-      this.multiply = scanner.nextInt();
+      this.valid = false; // Reset flag for next input
+      scanner.nextLine();
+
+      // Number of Rows
+      while (!this.valid) {
+        try {
+          System.out.println("Enter Number of Rows: ");
+          this.rows = scanner.nextInt();
+          if (this.rows < 1) {
+            throw new InputMismatchException();
+          }
+          this.valid = true;
+        } catch (InputMismatchException e) {
+          System.out.println("Invalid Input: Please enter a valid Positive Integer.");
+          scanner.nextLine();
+        } catch (Exception e) {
+          System.out.println("Invalid Input.");
+          scanner.nextLine();
+        }
+      }
+
+      this.valid = false; // Reset flag for next input
+      scanner.nextLine();
+
+      // Number of Columns
+      while (!this.valid) {
+        try {
+          System.out.println("Enter Number of Columns: ");
+          this.columns = scanner.nextInt();
+          if (this.columns < 1) {
+            throw new InputMismatchException();
+          }
+          this.valid = true;
+        } catch (InputMismatchException e) {
+          System.out.println("Invalid Input: Please enter a valid Positive Integer.");
+          scanner.nextLine();
+        } catch (Exception e) {
+          System.out.println("Invalid Input.");
+          scanner.nextLine();
+        }
+      }
+
+      this.valid = false; // Reset flag for next input
+      scanner.nextLine();
+
+      // Multiply Matrices (Yes or No)
+      while (!this.valid) {
+        try {
+          System.out.println("Do you want to Multiply the Matrices? If yes, type 1; if no, type 0");
+          this.multiply = scanner.nextInt();
+          if (this.multiply != 0 && this.multiply != 1) {
+            throw new InputMismatchException();
+          }
+          this.valid = true;
+        } catch (InputMismatchException e) {
+          System.out.println("Invalid Input: Please enter 0 or 1.");
+          scanner.nextLine();
+        } catch (Exception e) {
+          System.out.println("Invalid Input.");
+          scanner.nextLine();
+        }
+      }
     }
   }
 
