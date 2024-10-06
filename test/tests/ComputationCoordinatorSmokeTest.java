@@ -11,10 +11,8 @@ import src.ComputeRequest;
 
 import java.io.IOException;
 
-/**
- * Unit test for the ComputationCoordinatorImp class.
- */
 public class ComputationCoordinatorSmokeTest {
+
 
   private ComputationCoordinatorImp computationCoordinator;
   private DataStorageImp dataStore;

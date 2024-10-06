@@ -32,6 +32,10 @@ public class MatrixImplementation implements MatrixAPIInterface{
     return resultantMatrix;
   }
   public void printMatrix(int[][] m, int rows, int cols) {
+	try {
+		if (m.length != rows || m[0].length != cols) {
+			throw new IllegalArgumentException("The provided dimensions do not match the actual matrix size.");
+		}		
     for (int i = 0; i < rows; i++) {
 	// Start a new line for each row
       System.out.println();
@@ -40,5 +44,11 @@ public class MatrixImplementation implements MatrixAPIInterface{
       }
     }
     System.out.println();
+  }catch (IllegalArgumentException e){
+	System.out.println("Error: " + e.getMessage());
+  } catch (ArrayIndexOutOfBoundsException e) {
+    System.out.println("Error: Invalid matrix index access.");
   }
-}
+  }
+  }
+
