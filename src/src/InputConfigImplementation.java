@@ -67,10 +67,10 @@ public class InputConfigImplementation implements InputConfig {
         this.valid = true;
       } catch (InputMismatchException e) {
         System.out.println("Invalid Input: Please enter 0 or 1.");
-        scanner.next(); // Clear invalid input
+        scanner.nextLine();
       } catch (Exception e) {
         System.out.println("Invalid Input.");
-        scanner.next();
+        scanner.nextLine();
       }
     }
     scanner.nextLine();
