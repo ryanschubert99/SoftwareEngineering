@@ -170,7 +170,7 @@ public class DataStorageImp implements DataStorage {
               );
             }
           } catch (IOException e) {
-        	  
+            System.out.println("Invalid Input: " + e.getMessage());
           }
 
           for (int j = 0; j < columns; j++) {
