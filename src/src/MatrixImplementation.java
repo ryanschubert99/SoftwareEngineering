@@ -22,7 +22,7 @@ public class MatrixImplementation implements MatrixAPIInterface {
       int cols1 = matrix1[0].length;
       int cols2 = matrix2[0].length;
       if (cols1 != matrix2.length) {
-        throw new IllegalArgumentException("Matrix multiplication is not possible due to incompatible dimensions");
+        throw new IllegalArgumentException("Matrix multiplication is not possible due to incompatible dimensions ");
       }
       int[][] resultantMatrix = new int[rows1][cols2];
       for (int i = 0; i < rows1; i++) {
@@ -35,7 +35,6 @@ public class MatrixImplementation implements MatrixAPIInterface {
       return resultantMatrix;
     } catch (IllegalArgumentException e) {
       System.out.print("Error: " + e.getMessage());
-      e.printStackTrace();
       // would this errors pass process boundaries?
       throw e;
     }
@@ -55,9 +54,13 @@ public class MatrixImplementation implements MatrixAPIInterface {
       }
       System.out.println();
     } catch (IllegalArgumentException e) {
-      System.out.println("Error: " + e.getMessage());
+      System.out.print("Error: " + e.getMessage());
+      e.printStackTrace();
+      throw e;
     } catch (ArrayIndexOutOfBoundsException e) {
-      System.out.println("Error: Invalid matrix index access.");
-    }
+      System.out.print("Error Out of bounds: " + e.getMessage());
+      e.printStackTrace();
+      throw e;
+   }
   }
 }
