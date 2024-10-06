@@ -73,14 +73,13 @@ public class InputConfigImplementation implements InputConfig {
         scanner.nextLine();
       }
     }
-    scanner.nextLine();
+
+    scanner.nextLine(); // Clear the buffer
     this.valid = false; // Reset flag for next input
 
     // Input mode: File input or user input
     if (this.inputType == 1) {
       // File Input Mode
-      // Consume the leftover newline from previous nextInt()
-
       // Input File Name (Validate that it ends with .txt)
       while (!this.valid) {
         try {
@@ -214,6 +213,150 @@ public class InputConfigImplementation implements InputConfig {
         } catch (Exception e) {
           System.out.println("Invalid Input.");
           scanner.nextLine();
+        }
+      }
+    }
+  }
+
+  // For testing purposes
+  public void setUserInputType(int inputType, String fileName, int numberOfMatrices, int rows, int columns, int multiply) {
+    this.inputType = inputType;
+
+    // Input Type (User or File Input)
+    while (!this.valid) {
+      try {
+        if (this.inputType != 0 && this.inputType != 1) {
+          throw new InputMismatchException("Invalid Input: Please enter 0 for User input or 1 for File Input.");
+        }
+        this.valid = true;
+      } catch (InputMismatchException e) {
+        System.out.println(e.getMessage());
+      } catch (Exception e) {
+        System.out.println("Invalid Input.");
+      }
+    }
+
+    this.valid = false; // Reset flag for next input
+
+    // Input mode: File input or user input
+    if (this.inputType == 1) {
+      // File Input Mode
+
+      // Input File Name (Validate that it ends with .txt)
+      while (!this.valid) {
+        try {
+          if (fileName == null || !fileName.endsWith(".txt")) {
+            throw new InputMismatchException("Invalid Input: File name must end with .txt");
+          }
+          this.inputFileName = fileName; // Read file name
+          this.valid = true; // If file name is valid
+        } catch (InputMismatchException e) {
+          System.out.println(e.getMessage());
+        } catch (Exception e) {
+          System.out.println("Invalid Input.");
+        }
+      }
+
+      this.valid = false; // Reset flag for next input
+
+      // Number of Rows
+      while (!this.valid) {
+        try {
+          if (rows <= 0) {
+            throw new InputMismatchException("Invalid Input: Please enter a valid number of rows.");
+          }
+          this.rows = rows;
+          this.valid = true;
+        } catch (InputMismatchException e) {
+          System.out.println(e.getMessage());
+        } catch (Exception e) {
+          System.out.println("Invalid Input.");
+        }
+      }
+
+      this.valid = false; // Reset flag for next input
+
+      // Number of Columns
+      while (!this.valid) {
+        try {
+          if (columns <= 0) {
+            throw new InputMismatchException("Invalid Input: Please enter a valid number of columns.");
+          }
+          this.columns = columns;
+          this.valid = true;
+        } catch (InputMismatchException e) {
+          System.out.println(e.getMessage());
+        } catch (Exception e) {
+          System.out.println("Invalid Input.");
+        }
+      }
+
+    } else {
+      // User Input Mode
+
+      // Number of Matrices
+      while (!this.valid) {
+        try {
+          if (numberOfMatrices <= 0) {
+            throw new InputMismatchException("Invalid Input: Please enter a valid number of matrices.");
+          }
+          this.numberOfMatrices = numberOfMatrices;
+          this.valid = true;
+        } catch (InputMismatchException e) {
+          System.out.println(e.getMessage());
+        } catch (Exception e) {
+          System.out.println("Invalid Input.");
+        }
+      }
+
+      this.valid = false; // Reset flag for next input
+
+      // Number of Rows
+      while (!this.valid) {
+        try {
+          if (rows <= 0) {
+            throw new InputMismatchException("Invalid Input: Please enter a valid number of rows.");
+          }
+          this.rows = rows;
+          this.valid = true;
+        } catch (InputMismatchException e) {
+          System.out.println(e.getMessage());
+        } catch (Exception e) {
+          System.out.println("Invalid Input.");
+        }
+      }
+
+      this.valid = false; // Reset flag for next input
+
+      // Number of Columns
+      while (!this.valid) {
+        try {
+          if (columns <= 0) {
+            throw new InputMismatchException("Invalid Input: Please enter a valid number of columns.");
+          }
+          this.columns = columns;
+          this.valid = true;
+        } catch (InputMismatchException e) {
+          System.out.println(e.getMessage());
+        } catch (Exception e) {
+          System.out.println("Invalid Input.");
+        }
+      }
+
+      this.valid = false; // Reset flag for next input
+
+      // Multiply Matrices (Yes or No)
+      while (!this.valid) {
+        try {
+          if (multiply != 0 && multiply != 1) {
+            throw new InputMismatchException("Invalid Input: Please enter 0 or 1.");
+          }
+          this.multiply = multiply;
+          this.valid = true;
+        } catch (InputMismatchException e) {
+          System.out.println(e.getMessage());
+        } catch (Exception e) {
+          System.out.println("Invalid Input.");
         }
       }
     }
