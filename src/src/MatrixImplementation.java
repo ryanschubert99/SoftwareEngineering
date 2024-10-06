@@ -15,6 +15,7 @@ public class MatrixImplementation implements MatrixAPIInterface{
 
   @Override
     public int[][] multiplyMatrices(int[][] matrix1, int[][] matrix2){
+	try {
     int rows1 = matrix1.length;
     int cols1 = matrix1[0].length;
     int cols2 = matrix2[0].length;
@@ -30,7 +31,14 @@ public class MatrixImplementation implements MatrixAPIInterface{
       }
     }
     return resultantMatrix;
-  }
+  }catch(IllegalArgumentException e){
+	  System.out.print("Error: " + e.getMessage());
+	  e.printStackTrace();
+	  // would this errors pass process boundaries? 
+	  throw e;
+  }	
+}
+  
   public void printMatrix(int[][] m, int rows, int cols) {
 	try {
 		if (m.length != rows || m[0].length != cols) {
