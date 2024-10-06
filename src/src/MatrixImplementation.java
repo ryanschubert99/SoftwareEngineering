@@ -16,7 +16,8 @@ public class MatrixImplementation implements MatrixAPIInterface {
   }
 
   @Override
-  public int[][] multiplyMatrices(int[][] matrix1, int[][] matrix2) {
+    public int[][] multiplyMatrices(int[][] matrix1, int[][] matrix2){
+	try {
     int rows1 = matrix1.length;
     int cols1 = matrix1[0].length;
     int cols2 = matrix2[0].length;
@@ -32,6 +33,33 @@ public class MatrixImplementation implements MatrixAPIInterface {
       }
     }
     return resultantMatrix;
+  }catch(IllegalArgumentException e){
+	  System.out.print("Error: " + e.getMessage());
+	  e.printStackTrace();
+	  // would this errors pass process boundaries? 
+	  throw e;
+  }	
+}
+  
+  public void printMatrix(int[][] m, int rows, int cols) {
+	try {
+		if (m.length != rows || m[0].length != cols) {
+			throw new IllegalArgumentException("The provided dimensions do not match the actual matrix size.");
+		}		
+    for (int i = 0; i < rows; i++) {
+	// Start a new line for each row
+      System.out.println();
+      for (int j = 0; j < cols; j++) {
+        System.out.print(m[i][j] + " ");
+      }
+    }
+    System.out.println();
+  }catch (IllegalArgumentException e){
+	System.out.println("Error: " + e.getMessage());
+  } catch (ArrayIndexOutOfBoundsException e) {
+    System.out.println("Error: Invalid matrix index access.");
+  }
+  }
   }
 
   public void printMatrix(int[][] m, int rows, int cols) {
