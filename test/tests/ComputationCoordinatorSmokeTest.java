@@ -30,6 +30,7 @@ public class ComputationCoordinatorSmokeTest {
         computationCoordinator = new ComputationCoordinatorImp(dataStore, computeEngine);
     }
 
+    
     //@Test
     public void testBeginComputationWithRequest() throws IOException {
         ComputeRequest request = new ComputeRequest();
