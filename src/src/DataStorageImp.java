@@ -101,6 +101,7 @@ public class DataStorageImp implements DataStorage {
       for (int[][] matrix : matrices) {
         printMatrixToConsole(matrix, delimiter);
       }
+      
     } else if (outputTypeValue == 1) {
       System.out.println("Writing matrices to file: " + outputFileName);
       try (FileWriter fileWriter = new FileWriter(outputFileName)) {
@@ -114,6 +115,7 @@ public class DataStorageImp implements DataStorage {
     } else {
       System.out.println("Invalid output type value: " + outputTypeValue);
     }
+    ComputeResultImp result = new ComputeResultImp(true);
   }
 
   private void printMatrixToConsole(int[][] matrix, String delimiter) {
@@ -124,6 +126,7 @@ public class DataStorageImp implements DataStorage {
       System.out.println(); // New line after each row
     }
     System.out.println(); // Blank line between matrices
+    ComputeResultImp result = new ComputeResultImp(false);
   }
 
   private void writeMatrixToFile(FileWriter fileWriter, int[][] matrix, String delimiter) throws IOException {
@@ -134,6 +137,7 @@ public class DataStorageImp implements DataStorage {
       fileWriter.write("\n"); // New line after each row
     }
     fileWriter.write("\n"); // Blank line between matrices
+    ComputeResultImp result = new ComputeResultImp(true);
   }
 
   @Override

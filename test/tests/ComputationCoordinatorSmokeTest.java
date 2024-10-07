@@ -18,9 +18,8 @@ public class ComputationCoordinatorSmokeTest {
   private DataStorageImp dataStore;
   private ComputeEngineImp computeEngine;
 
-  /**
-   * Sets up the mock objects before each test.
-   */
+  
+  //Sets up the mock objects before each test.
   @BeforeEach
   public void setUp() {
     dataStore = mock(DataStorageImp.class);
@@ -28,18 +27,13 @@ public class ComputationCoordinatorSmokeTest {
     computationCoordinator = new ComputationCoordinatorImp(dataStore, computeEngine);
   }
 
-  /**
-   * Tests the beginComputation method with a ComputeRequest.
-   * 
-   * @throws IOException if an input/output error occurs.
-   */
-  //@Test
+
+  //Tests the beginComputation method with a ComputeRequest.
+  @Test
   public void testBeginComputationWithRequest() throws IOException {
     ComputeRequest request = new ComputeRequest();
     computationCoordinator.beginComputation(request);
 
     assertNotNull(request);
-    // verify(computeEngine).initializeAction(anyString(), anyString(), anyString());
-    // verify(dataStore).readInputFile();
   }
 }
