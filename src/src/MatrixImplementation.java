@@ -61,6 +61,6 @@ public class MatrixImplementation implements MatrixAPIInterface {
       System.out.print("Error Out of bounds: " + e.getMessage());
       e.printStackTrace();
       throw e;
-   }
+    }
   }
 }
