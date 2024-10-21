@@ -19,13 +19,13 @@ public class ComputeRequestTest {
 
 
   public void setUp() {
-    inputConfig = new InputConfigImplementation();
-    outputConfig = new OutputConfigImplementation();
+    inputConfig = new InputConfigImplementation(0, null, 0, 0, 0);
+    outputConfig = new OutputConfigImplementation(0, null);
   }
   //@Test
   public void testDefaultConstructor() {
 
-    ComputeRequest request = new ComputeRequest();
+    ComputeRequest request = new ComputeRequest(inputConfig, outputConfig);
 
     assertNotNull("InputConfig should not be null", request.getInputConfig());
     assertNotNull("OutputConfig should not be null", request.getOutputConfig());

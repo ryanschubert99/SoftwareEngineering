@@ -21,11 +21,11 @@ public class ComputationCoordinatorSmokeTest {
   /**
    * Sets up the mock objects before each test.
    */
-  @BeforeEach
+  //@BeforeEach
   public void setUp() {
     dataStore = mock(DataStorageImp.class);
     computeEngine = mock(ComputeEngineImp.class);
-    computationCoordinator = new ComputationCoordinatorImp(dataStore, computeEngine);
+    computationCoordinator = new ComputationCoordinatorImp(dataStore, computeEngine, 0, null, 0, 0, 0, false);
   }
 
   /**
@@ -35,7 +35,7 @@ public class ComputationCoordinatorSmokeTest {
    */
   //@Test
   public void testBeginComputationWithRequest() throws IOException {
-    ComputeRequest request = new ComputeRequest();
+    ComputeRequest request = new ComputeRequest(null, null);
     computationCoordinator.beginComputation(request);
 
     assertNotNull(request);

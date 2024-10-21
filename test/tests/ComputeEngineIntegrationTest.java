@@ -26,15 +26,15 @@ public class ComputeEngineIntegrationTest {
 
   
   public void setUp() throws Exception {
-    ComputeRequest computeRequest = new ComputeRequest();
+    ComputeRequest computeRequest = new ComputeRequest(null, null);
     dataStore = new DataStorageImp(computeRequest);
     computeEngine = new ComputeEngineImp(dataStore);
-    computationCoordinator = new ComputationCoordinatorImp(dataStore, computeEngine);
+    computationCoordinator = new ComputationCoordinatorImp(dataStore, computeEngine, 0, null, 0, 0, 0, false);
   }
 
   //@Test
   public void testFullComputationProcess() throws Exception {
-    ComputeRequest request = new ComputeRequest();
+    ComputeRequest request = new ComputeRequest(null, null);
 
     ComputeResult result = computationCoordinator.beginComputation(request);
 

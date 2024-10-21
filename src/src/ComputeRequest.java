@@ -21,11 +21,11 @@ public class ComputeRequest {
     this.delimiter = delimiter;
   }
 
-  public ComputeRequest() {
-    InputConfigImplementation inputConfig = new InputConfigImplementation();
-    OutputConfigImplementation  outputConfig = new OutputConfigImplementation();
-    inputConfig.setUserInputType();
-    outputConfig.setUserOutputType();
+  public ComputeRequest(int inputType, String inputFileName, int numberOfMatrices,int rows, int columns, int outputFileType, String outputFileName) {
+    InputConfigImplementation inputConfig = new InputConfigImplementation(inputType,inputFileName,numberOfMatrices, rows, columns);
+    OutputConfigImplementation  outputConfig = new OutputConfigImplementation(outputFileType,outputFileName);
+    //inputConfig.setUserInputType();
+    //outputConfig.setUserOutputType();
 		
     this.inputConfig = inputConfig;
     this.outputConfig = outputConfig;
