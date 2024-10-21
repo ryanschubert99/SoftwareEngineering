@@ -27,7 +27,7 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
       // Exception handling for any computation errors
       e.printStackTrace();
       //throw new IOException("An error occurred during computation.", e);
-      ComputeResultStatus.isFailure();
+      return new ComputeResultImpl(ComputeResultStatus.FAILURE, "An error occurred during computation.");
     }
   }
 

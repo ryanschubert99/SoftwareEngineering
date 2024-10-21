@@ -1,34 +1,35 @@
 package src;
 
 public interface ComputeResult {
-  static ComputeResult SUCCESS = () -> ComputeResultStatus.SUCCESS;
-  static ComputeResult FAILURE = () -> ComputeResultStatus.FAILURE;
+	static ComputeResult SUCCESS = new ComputeResult() {
+        
+        @Override
+        public ComputeResultStatus getStatus() {
+            return ComputeResultStatus.SUCCESS;
+        }
+        
+        @Override
+        public String getFailureMessage() {
+            return "";
+        }
+    };
+
+	ComputeResultStatus getStatus();
+	String getFailureMessage();
 	
-  public static enum ComputeResultStatus {
+	public static enum ComputeResultStatus {
 		SUCCESS(true),
+		INVALID_REQUEST(false),
 		FAILURE(false);
 		
-    private final boolean success;
-    private final boolean failure;
+		private final boolean success;
 		
-    private ComputeResultStatus(boolean success) {
-      this.success = success;
-	  this.failure = failure;
-    }
-    
-    void ComputeResultStatus(boolean failure) {
-		this.failure= failure;
-    }
+		private ComputeResultStatus(boolean success) {
+			this.success = success;
+		}
 		
-    public boolean isSuccess() {
-    	return success;
-    }
-	
-    public boolean isFailure() {
-    	return failure;
-    }
-		
-	
-  }
-  ComputeResultStatus getStatus();
+		public boolean isSuccess() {
+			return success;
+		}
+	}
 }
