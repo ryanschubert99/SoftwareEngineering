@@ -9,13 +9,26 @@ public interface ComputeResult {
 		FAILURE(false);
 		
     private final boolean success;
+    private final boolean failure;
 		
     private ComputeResultStatus(boolean success) {
       this.success = success;
+	  this.failure = failure;
     }
+    
+    void ComputeResultStatus(boolean failure) {
+		this.failure= failure;
+    }
+		
     public boolean isSuccess() {
-      return success;
+    	return success;
     }
+	
+    public boolean isFailure() {
+    	return failure;
+    }
+		
+	
   }
   ComputeResultStatus getStatus();
 }

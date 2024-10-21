@@ -1,5 +1,7 @@
 package src;
 
+
+
 public class ComputeRequest {
 	
   private static final char DEFAULT_DELIMITER = ';';
@@ -7,6 +9,8 @@ public class ComputeRequest {
   private final InputConfigImplementation inputConfig;
   private final OutputConfigImplementation outputConfig;
   private final char delimiter;
+  
+
 	
   public ComputeRequest(InputConfigImplementation inputConfig, OutputConfigImplementation  outputConfig) {
     this(inputConfig, outputConfig, DEFAULT_DELIMITER); // default delimiter: ;
@@ -44,5 +48,10 @@ public class ComputeRequest {
   public OutputConfigImplementation getOutputConfig() {
     return outputConfig;
   }
+
+
+
+
+
   
 }

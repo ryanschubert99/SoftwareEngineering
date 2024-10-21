@@ -2,6 +2,8 @@ package src;
 
 import java.io.IOException;
 
+import src.ComputeResult.ComputeResultStatus;
+
 public class ComputationCoordinatorImp implements ComputationCoordinator {
   private DataStorageImp dataStore;
   private ComputeEngineImp computeEngine;
@@ -24,7 +26,8 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
       //Exception, if anything throws anything
       // Exception handling for any computation errors
       e.printStackTrace();
-      throw new IOException("An error occurred during computation.", e);
+      //throw new IOException("An error occurred during computation.", e);
+      ComputeResultStatus.isFailure();
     }
   }
 
