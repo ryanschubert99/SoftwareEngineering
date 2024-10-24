@@ -25,7 +25,7 @@ public class ComputationCoordinatorSmokeTest {
   public void setUp() {
     dataStore = mock(DataStorageImp.class);
     computeEngine = mock(ComputeEngineImp.class);
-    computationCoordinator = new ComputationCoordinatorImp(dataStore, computeEngine, 0, null, 0, 0, 0, false);
+    //computationCoordinator = new ComputationCoordinatorImp(dataStore, computeEngine, 0, null, 0, 0, 0, false);
   }
 
   /**

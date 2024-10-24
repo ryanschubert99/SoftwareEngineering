@@ -27,9 +27,9 @@ public class ComputeEngineIntegrationTest {
   
   public void setUp() throws Exception {
     ComputeRequest computeRequest = new ComputeRequest(null, null);
-    dataStore = new DataStorageImp(computeRequest);
+    dataStore = new DataStorageImp(computeRequest, 0);
     computeEngine = new ComputeEngineImp(dataStore);
-    computationCoordinator = new ComputationCoordinatorImp(dataStore, computeEngine, 0, null, 0, 0, 0, false);
+    computationCoordinator = new ComputationCoordinatorImp();
   }
 
   //@Test

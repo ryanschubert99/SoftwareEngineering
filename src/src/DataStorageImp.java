@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Scanner;
+
 
 public class DataStorageImp implements DataStorage {
 
@@ -18,35 +18,19 @@ public class DataStorageImp implements DataStorage {
   private List<int[][]> matrices;
   private boolean valid = false;
   private int input;
+  private int outputOrCompute;
 
-  public DataStorageImp(ComputeRequest compute) throws IOException {
+  public DataStorageImp(ComputeRequest compute, int outputOrComp) throws IOException {
     this.computeE = compute;
+    this.outputOrCompute = outputOrComp;
     this.inputFileName = computeE.getInputConfig().getInputFileName();
     this.outputFileName = computeE.getOutputConfig().getOutputFileName();
-    Scanner scanner = new Scanner(System.in);
+ 
     if (compute.getInputConfig().getInputTypeValue() == 0) {
       this.amountToGenerate = compute.getInputConfig().getNumberOfMatrices();
       ComputeEngineImp computeEng = new ComputeEngineImp(this);
 
-      while (!this.valid) {
-        try {
-          System.out.println("Type 1 to Output Matrices or Type 0 to do Computations");
-          this.input = scanner.nextInt();
-          if (input != 0 && input != 1) {
-            throw new InputMismatchException();
-          }
-          valid = true;
-        } catch (InputMismatchException e) {
-          System.out.println("Invalid Input: Please enter 0 or 1.");
-          scanner.nextLine();
-        } catch (Exception e) {
-          System.out.println("Invalid Input.");
-          scanner.nextLine();
-        }
-      }
-      scanner.nextLine();
-      this.valid = false; // Reset flag for next input
-      if (input == 1) {
+      if (outputOrCompute == 1) {
         writeOutput(this.outputFileName, ";");
       } else {
         computeEng.multiplyMatrix(matrices);
@@ -54,23 +38,8 @@ public class DataStorageImp implements DataStorage {
       }
     } else {
       this.matrices = readInputFile();
-      while (!this.valid) {
-        try {
-          System.out.println("Type 1 to Output Matrices or Type 0 to do Computations");
-          this.input = scanner.nextInt();
-          if (input != 0 && input != 1) {
-            throw new InputMismatchException();
-          }
-          valid = true;
-        } catch (InputMismatchException e) {
-          System.out.println("Invalid Input: Please enter 0 or 1.");
-          scanner.nextLine();
-        } catch (Exception e) {
-          System.out.println("Invalid Input.");
-          scanner.nextLine();
-        }
-      }
-      if (scanner.nextInt() == 1) {
+      
+      if (outputOrCompute == 1) {
         writeOutput(this.outputFileName, ";");
       } else {
         ComputeEngineImp computeEng = new ComputeEngineImp(this);

@@ -21,7 +21,7 @@ public class DataStorageSmokeTest {
 
   @Before
   public void setUp() throws IOException {
-    dataStore = new DataStorageImp(new ComputeRequest(null, null));
+    dataStore = new DataStorageImp(new ComputeRequest(null, null), 0);
   }
 
   @Test
