@@ -14,11 +14,11 @@ public class InputConfigImplementation implements InputConfig {
   private boolean valid = false;
 
   public InputConfigImplementation(int inputType, String inputFileName, int numberOfMatrices,int rows, int columns) {
-	  this.inputType = inputType;
-	  this.inputFileName = inputFileName;
-	  this.numberOfMatrices = numberOfMatrices;
-	  this.rows = rows;
-	  this.columns = columns;
+    this.inputType = inputType;
+    this.inputFileName = inputFileName;
+    this.numberOfMatrices = numberOfMatrices;
+    this.rows = rows;
+    this.columns = columns;
   }
 
   public String getInputFileName() {

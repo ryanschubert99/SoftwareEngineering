@@ -10,8 +10,8 @@ public class OutputConfigImplementation implements OutputConfig {
   private boolean valid = false;
 
   public OutputConfigImplementation(int outputFileType, String outputFileName) {
-	  this.outputType = outputFileType;
-	  this.outputFileName = outputFileName;
+    this.outputType = outputFileType;
+    this.outputFileName = outputFileName;
   }
 
   @Override
