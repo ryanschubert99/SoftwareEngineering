@@ -8,23 +8,37 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
   private DataStorageImp dataStore;
   private ComputeEngineImp computeEngine;
 
-  public ComputationCoordinatorImp(DataStorageImp dataStore, ComputeEngineImp compute) {
+  private int inputType = 0; // 0 is User Input, and 1 is File Input
+  private String inputFileName;
+  private int numberOfMatrices;
+  private int rows;
+  private int multiply;
+  private int columns;
+  private boolean valid = false;
+  private int outputOrCompute;
+
+  public ComputationCoordinatorImp(DataStorageImp dataStore, ComputeEngineImp compute, int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, int outputType, String outputFileName, int outputOrComp) {
     this.dataStore = dataStore;
     this.computeEngine = compute;
+    this.inputType = inputType;
+    this.inputFileName = inputFileName;
+    this.numberOfMatrices = numberOfMatrices;
+    this.rows = rows;
+    this.columns = columns;
+    this.outputOrCompute = outputOrComp;
   }
 
-  public ComputationCoordinatorImp() {
-  }
+  public ComputationCoordinatorImp() {}
 
-  public ComputeResult beginComputation() throws IOException {
+  public ComputeResult beginComputation(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, int outputType, String outputFileName, int outputOrComp) throws IOException {
     try {
-      ComputeRequest compute = new ComputeRequest();
-      DataStorageImp dataStorage = new DataStorageImp(compute);
+      this.outputOrCompute = outputOrComp;
+      ComputeRequest compute = new ComputeRequest(inputType, inputFileName, numberOfMatrices, rows, columns, outputType, outputFileName);
+      DataStorageImp dataStorage = new DataStorageImp(compute, this.outputOrCompute);
       ComputeEngineImp computeEng = new ComputeEngineImp(dataStorage);
-      return null; // Placeholder, return actual ComputeResult here
+
+      return ComputeResult.SUCCESS;
     } catch (Exception e) {
-      //Exception, if anything throws anything
-      // Exception handling for any computation errors
       e.printStackTrace();
       //throw new IOException("An error occurred during computation.", e);
       return new ComputeResultImpl(ComputeResultStatus.FAILURE, "An error occurred during computation.");
@@ -33,7 +47,6 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
 
   @Override
   public ComputeResult beginComputation(ComputeRequest request) {
-    // TODO: Implement this method
     return null;
   }
 }
