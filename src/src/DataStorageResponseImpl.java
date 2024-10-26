@@ -6,29 +6,29 @@ import java.util.List;
 
 public class DataStorageResponseImpl implements DataStorageResponse {
 
-	private final ResponseStatus status;
-	private String failureMessage;
-	private List<int[][]> matrix;
-		
-	public DataStorageResponseImpl(ResponseStatus status, String failureMessage,List<int[][]> matrix) {
-	  this.status = status;
-	  this.failureMessage = failureMessage;
-	  this.matrix= matrix;
-			
-		}
-	@Override
-	public ResponseStatus getStatus() {
-		 return status;
-	}
+  private final ResponseStatus status;
+  private String failureMessage;
+  private List<int[][]> matrix;
 
-	@Override
-	public String getFailureMessage() {
-		return failureMessage;
-	}
+  public DataStorageResponseImpl(ResponseStatus status, String failureMessage, List<int[][]> matrix) {
+    this.status = status;
+    this.failureMessage = failureMessage;
+    this.matrix = matrix;
+  }
 
-	@Override
-	public List<int[][]> getMatrix() {
-		return matrix;
-	}
+  @Override
+  public ResponseStatus getStatus() {
+    return status;
+  }
+
+  @Override
+  public String getFailureMessage() {
+    return failureMessage;
+  }
+
+  @Override
+  public List<int[][]> getMatrix() {
+    return matrix;
+  }
 
 }
