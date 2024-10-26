@@ -5,9 +5,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 
+import src.ComputeResult;
+import src.ComputeResult.ComputeResultStatus;
 
 public class DataStorageImp implements DataStorage {
 
@@ -25,7 +26,7 @@ public class DataStorageImp implements DataStorage {
     this.outputOrCompute = outputOrComp;
     this.inputFileName = computeE.getInputConfig().getInputFileName();
     this.outputFileName = computeE.getOutputConfig().getOutputFileName();
- 
+
     if (compute.getInputConfig().getInputTypeValue() == 0) {
       this.amountToGenerate = compute.getInputConfig().getNumberOfMatrices();
       ComputeEngineImp computeEng = new ComputeEngineImp(this);
@@ -47,6 +48,13 @@ public class DataStorageImp implements DataStorage {
         writeOutput(this.outputFileName, ";");
       }
     }
+
+    // Signal that computation succeeded
+    signalComputationSuccess();
+  }
+
+  private void signalComputationSuccess() {
+    System.out.println("Computation completed successfully");
   }
 
   public List<int[][]> getMatrices() {

@@ -11,10 +11,12 @@ public class Main {
   public static void main(String[] args) throws IOException {
    
       
-    setUserInputAndOutputType();
+    setUserInputAndOutputType(0,"matrixout.txt",50, 3,3,1,"matrixprint.txt",1);
   }
 
-  public static void setUserInputAndOutputType(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, int outputType, String outputFileName) throws IOException {
+  public static void setUserInputAndOutputType(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, int outputType, String outputFileName, int outputOrCompute) throws IOException {
+    ComputationCoordinatorImp compC = new ComputationCoordinatorImp();
+    compC.beginComputation(inputType,inputFileName,numberOfMatrices, rows, columns, outputType,outputFileName, outputOrCompute);
   }
 
   public static void setUserInputAndOutputType() throws IOException {

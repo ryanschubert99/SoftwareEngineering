@@ -20,12 +20,13 @@ public class TestMultiUser {
 
   @BeforeEach
   public void initializeComputeEngine() {
-    ComputationCoordinatorImp coordinator = new ComputationCoordinatorImp();
+    this.coordinator = new ComputationCoordinatorImp();
+    
   }
 
   //@Test
   public void compareMultiAndSingleThreaded() throws Exception {
-    int numThreads = 4;
+    int numThreads = 20;
     List<TestUser> testUsers = new ArrayList<>();
     for (int i = 0; i < numThreads; i++) {
       testUsers.add(new TestUser(coordinator));

@@ -20,7 +20,7 @@ public class ComputeRequestTest {
 
   public void setUp() {
     inputConfig = new InputConfigImplementation(0, null, 0, 0, 0);
-    outputConfig = new OutputConfigImplementation(0, null);
+    outputConfig = new OutputConfigImplementation(0, null, 0);
   }
   //@Test
   public void testDefaultConstructor() {

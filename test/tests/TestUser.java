@@ -15,6 +15,6 @@ public class TestUser {
     String inputPath = "test" + File.separatorChar + "testInputFile.test";
 
     // Call the appropriate method on the coordinator to run the computation
-    coordinator.beginComputation(delimiter, inputPath, delimiter, delimiter, delimiter, delimiter, inputPath, delimiter);
+    coordinator.beginComputation(1,"matrixout.txt",50, 3,3,1,"matrixprint.txt",1);
   }
 }
