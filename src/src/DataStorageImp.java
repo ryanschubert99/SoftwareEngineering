@@ -9,7 +9,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 
 
-public class DataStorageImp implements DataStorage {
+public class DataStorageImp implements DataStorage{
 
   private ComputeRequest computeE;
   private String inputFileName;
@@ -60,7 +60,7 @@ public class DataStorageImp implements DataStorage {
   @Override
   public void writeOutput(String outputFileName, String delimiter) {
     int outputTypeValue = computeE.getOutputConfig().getOutputTypeValue();
-
+// add return type of other enum 
     if ((outputTypeValue == 1) && (this.outputFileName == null)) {
       throw new IllegalArgumentException("Output file name cannot be null");
     }
@@ -106,7 +106,9 @@ public class DataStorageImp implements DataStorage {
   }
 
   @Override
-  public List<int[][]> readInputFile() throws IOException {
+  //std::pair<Value, error_code>
+  // either return to throw the result or an error code 
+  public List<int[][]>readInputFile() throws IOException {
     String[] splitLine = null;
     int rows = computeE.getInputConfig().getRows(); // Get predefined number of rows
     int columns = computeE.getInputConfig().getColumns(); // Get predefined number of columns
