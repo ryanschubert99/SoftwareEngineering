@@ -16,7 +16,7 @@ public class TestUser {
 
   public void run(String outputPath) throws Exception {
     // Correct the path to match where your CSV file is located
-    String configPath = "C:\\Users\\rhino\\Documents\\GitHub\\SoftwareEngineering\\test\\tests\\testInputFile.csv"; // Updated path
+    String configPath = "test\\tests\\testInputFile.csv"; // Updated path
     char delimiter = ';';
 
     // Read configuration values from the CSV file
