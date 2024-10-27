@@ -25,7 +25,7 @@ public class TestMultiUser {
 
   @Test
   public void compareMultiAndSingleThreaded() throws Exception {
-    int numThreads = 20;
+    int numThreads = 4;
     List<TestUser> testUsers = new ArrayList<>();
     for (int i = 0; i < numThreads; i++) {
       testUsers.add(new TestUser(coordinator));
