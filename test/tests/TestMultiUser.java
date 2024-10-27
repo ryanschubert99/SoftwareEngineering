@@ -21,10 +21,9 @@ public class TestMultiUser {
   @BeforeEach
   public void initializeComputeEngine() {
     this.coordinator = new ComputationCoordinatorImp();
-    
   }
 
-  //@Test
+  @Test
   public void compareMultiAndSingleThreaded() throws Exception {
     int numThreads = 20;
     List<TestUser> testUsers = new ArrayList<>();
@@ -32,12 +31,23 @@ public class TestMultiUser {
       testUsers.add(new TestUser(coordinator));
     }
 
+    // Output current working directory
+    System.out.println("Current Working Directory: " + new File(".").getAbsolutePath());
+
     // Run single threaded
     String singleThreadFilePrefix = "testMultiUser.compareMultiAndSingleThreaded.test.singleThreadOut.tmp";
     for (int i = 0; i < numThreads; i++) {
       File singleThreadedOut = new File(singleThreadFilePrefix + i);
+      // Run the test user
       singleThreadedOut.deleteOnExit();
       testUsers.get(i).run(singleThreadedOut.getCanonicalPath());
+
+      // Check if the file exists
+      if (singleThreadedOut.exists()) {
+        System.out.println("Single-threaded temp file created: " + singleThreadedOut.getAbsolutePath());
+      } else {
+        System.out.println("Single-threaded temp file not found: " + singleThreadedOut.getAbsolutePath());
+      }
     }
 
     // Run multi-threaded
@@ -56,6 +66,13 @@ public class TestMultiUser {
           e.printStackTrace();
         }
       }));
+
+      // Check if the file exists
+      if (multiThreadedOut.exists()) {
+        System.out.println("Multi-threaded temp file created: " + multiThreadedOut.getAbsolutePath());
+      } else {
+        System.out.println("Multi-threaded temp file not found: " + multiThreadedOut.getAbsolutePath());
+      }
     }
 
     results.forEach(future -> {
@@ -75,8 +92,8 @@ public class TestMultiUser {
   private List<String> loadAllOutput(String prefix, int numThreads) throws IOException {
     List<String> result = new ArrayList<>();
     for (int i = 0; i < numThreads; i++) {
-      File multiThreadedOut = new File(prefix + i);
-      result.addAll(Files.readAllLines(multiThreadedOut.toPath()));
+      File outputFile = new File(prefix + i);
+      result.addAll(Files.readAllLines(outputFile.toPath()));
     }
     return result;
   }

@@ -16,7 +16,7 @@ public class Main {
 
   public static void setUserInputAndOutputType(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, int outputType, String outputFileName, int outputOrCompute) throws IOException {
     ComputationCoordinatorImp compC = new ComputationCoordinatorImp();
-    compC.beginComputation(inputType,inputFileName,numberOfMatrices, rows, columns, outputType,outputFileName, outputOrCompute);
+    compC.beginComputationSingle(inputType,inputFileName,numberOfMatrices, rows, columns, outputType,outputFileName, outputOrCompute);
   }
 
   public static void setUserInputAndOutputType() throws IOException {
@@ -262,7 +262,7 @@ public class Main {
       }
     }
     ComputationCoordinatorImp compC = new ComputationCoordinatorImp();
-    compC.beginComputation(inputType,inputFileName,numberOfMatrices, rows, columns, outputType,outputFileName, outputOrCompute);
+    compC.beginComputationSingle(inputType,inputFileName,numberOfMatrices, rows, columns, outputType,outputFileName, outputOrCompute);
    
   }
 }

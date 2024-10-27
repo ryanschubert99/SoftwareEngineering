@@ -11,7 +11,20 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
 
   public ComputationCoordinatorImp() {}
 
-  public ComputeResult beginComputation(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, int outputType, String outputFileName, int outputOrComp) throws IOException {
+  public ComputeResult beginComputationSingle(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, int outputType, String outputFileName, int outputOrComp) throws IOException {
+    try {
+      // Create a new ComputeRequest for this thread
+      ComputeRequest compute = new ComputeRequest(inputType, inputFileName, numberOfMatrices, rows, columns, outputType, outputFileName, outputOrComp);
+      DataStorageImp dataStorage = new DataStorageImp(compute, outputOrComp);
+      ComputeEngineImp computeEng = new ComputeEngineImp(dataStorage);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return ComputeResult.SUCCESS;
+  }
+
+  public ComputeResult beginComputationMulti(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, int outputType, String outputFileName, int outputOrComp) throws IOException {
     // Submit fixed number of tasks to the thread pool
     for (int i = 0; i < THREAD_POOL_SIZE; i++) { // Create THREAD_POOL_SIZE threads
       final int threadIndex = i; // Capture the current index for use inside the lambda
@@ -44,14 +57,14 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
 
   @Override
   public ComputeResult beginComputation(ComputeRequest request) throws IOException {
-    return beginComputation(request.getInputConfig().getInputTypeValue(),
-                            request.getInputConfig().getInputFileName(),
-                            request.getInputConfig().getNumberOfMatrices(),
-                            request.getInputConfig().getRows(),
-                            request.getInputConfig().getColumns(),
-                            request.getOutputConfig().getOutputTypeValue(),
-                            request.getOutputConfig().getOutputFileName(),
-                            request.getOutputConfig().getOutputOrCompute());
+    return beginComputationMulti(request.getInputConfig().getInputTypeValue(),
+                                 request.getInputConfig().getInputFileName(),
+                                 request.getInputConfig().getNumberOfMatrices(),
+                                 request.getInputConfig().getRows(),
+                                 request.getInputConfig().getColumns(),
+                                 request.getOutputConfig().getOutputTypeValue(),
+                                 request.getOutputConfig().getOutputFileName(),
+                                 request.getOutputConfig().getOutputOrCompute());
   }
 
   // Helper method to generate a unique output file name

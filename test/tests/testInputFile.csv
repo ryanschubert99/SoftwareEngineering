@@ -1,0 +1,2 @@
+﻿inputType,inputFile,numGenerate,numRows,numCols,outputType,outputFileName,outOrCompute
+1,matrix.txt,50,3,3,1,matrixprint.txt,1
