@@ -8,10 +8,12 @@ public class OutputConfigImplementation implements OutputConfig {
   private int outputType; // 0 = Output to User Console, 1 = Output to File
   private String outputFileName;
   private boolean valid = false;
+  private int outputOrCompute;
 
-  public OutputConfigImplementation(int outputFileType, String outputFileName) {
+  public OutputConfigImplementation(int outputFileType, String outputFileName,int outputOrComp) {
     this.outputType = outputFileType;
     this.outputFileName = outputFileName;
+    this.outputOrCompute = outputOrComp;
   }
 
   @Override
@@ -81,6 +83,18 @@ public class OutputConfigImplementation implements OutputConfig {
         valid = false; // Reset valid to false to continue prompting
       }
     }
+  }
+
+  public int getOutputOrCompute() {
+    return outputOrCompute;
+  }
+
+  public void setOutputOrCompute(int outputOrCompute) {
+    this.outputOrCompute = outputOrCompute;
+  }
+
+  public void setOutputType(int outputType) {
+    this.outputType = outputType;
   }
 
   @Override

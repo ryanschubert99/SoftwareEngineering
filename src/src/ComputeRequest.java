@@ -25,9 +25,9 @@ public class ComputeRequest {
     this.delimiter = delimiter;
   }
 
-  public ComputeRequest(int inputType, String inputFileName, int numberOfMatrices,int rows, int columns, int outputFileType, String outputFileName) {
+  public ComputeRequest(int inputType, String inputFileName, int numberOfMatrices,int rows, int columns, int outputFileType, String outputFileName,int outputOrComp) {
     InputConfigImplementation inputConfig = new InputConfigImplementation(inputType,inputFileName,numberOfMatrices, rows, columns);
-    OutputConfigImplementation  outputConfig = new OutputConfigImplementation(outputFileType,outputFileName);
+    OutputConfigImplementation  outputConfig = new OutputConfigImplementation(outputFileType,outputFileName,outputOrComp);
     //inputConfig.setUserInputType();
     //outputConfig.setUserOutputType();
 		
