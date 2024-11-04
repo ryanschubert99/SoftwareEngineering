@@ -1,4 +1,5 @@
 package src;
+
 import java.util.concurrent.TimeUnit;
 
 import io.grpc.Channel;
@@ -11,50 +12,72 @@ import userinput.UserInput.ComputationResponse;
 import userinput.UserInputServiceGrpc;
 import userinput.UserInputServiceGrpc.UserInputServiceBlockingStub;
 
-public class UserRequestClient { // Boilerplate TODO: change to <servicename>Client
-    private final UserInputServiceBlockingStub blockingStub; // Boilerplate TODO: update to appropriate blocking stub
+/**
+ * The UserRequestClient class handles sending requests to the user input service
+ * and processing responses from the server.
+ */
+public class UserRequestClient {
 
-    public UserRequestClient(Channel channel) {
-        blockingStub = UserInputServiceGrpc.newBlockingStub(channel);  // Boilerplate TODO: update to appropriate blocking stub
+  /**
+   * Blocking stub for making remote procedure calls.
+   */
+  private final UserInputServiceBlockingStub blockingStub;
+
+  /**
+   * Constructor to initialize the blocking stub using the given channel.
+   *
+   * @param channel the gRPC channel to connect to the service
+   */
+  public UserRequestClient(Channel channel) {
+    this.blockingStub = UserInputServiceGrpc.newBlockingStub(channel);
+  }
+
+  /**
+   * Sends a user input request and handles the response.
+   */
+  public void sendUserInputRequest() {
+    UserInputRequest request = UserInputRequest.newBuilder()
+        .setInputType(0)
+        .setInputFileName("input.txt")
+        .setNumberOfMatrices(0)
+        .setRows(0)
+        .setColumns(0)
+        .setOutputType(0)
+        .setOutputFileName("output.txt")
+        .setOutputOrCompute(0)
+        .build();
+
+    ComputationResponse response;
+    try {
+      response = blockingStub.createUserInput(request);
+    } catch (StatusRuntimeException e) {
+      e.printStackTrace();
+      return;
     }
 
-    // Boilerplate TODO: replace this method with actual client call/response logic
-    public void order() {        
-    	UserInputRequest request = UserInputRequest.newBuilder()
-    		.setInputType(0)
-    		.setInputFileName("input.txt")
-    		.setNumberOfMatrices(0)
-    		.setRows(0)
-    		.setColumns(0)
-    		.setOutputType(0)
-    		.setOutputFileName("output.txt")
-    		.setOutputOrCompute(0)
-    		.build();
-    		
-    	ComputationResponse response;
-        try {
-            response = blockingStub.createUserInput(request);
-        } catch (StatusRuntimeException e) {
-            e.printStackTrace();
-            return;
-        }
-        if (response.hasErrorMessage()) {
-            System.err.println("Error: " + response.getErrorMessage());
-        } else {
-            System.out.println("Order number: " + response.getMatrix());
-        }
+    if (response.hasErrorMessage()) {
+      System.err.println("Error: " + response.getErrorMessage());
+    } else {
+      System.out.println("Matrix: " + response.getMatrix());
     }
+  }
 
-    public static void main(String[] args) throws Exception {
-        String target = "localhost:50051";  // Boilerplate TODO: make sure the server/port match the server/port you want to connect to
+  /**
+   * The main method to run the client.
+   *
+   * @param args the command line arguments
+   * @throws Exception if an error occurs during the client operation
+   */
+  public static void main(String[] args) throws Exception {
+    String target = "localhost:50051"; // Ensure this matches the server/port
 
-        ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
-                .build();
-        try {
-            UserRequestClient client = new UserRequestClient(channel); // Boilerplate TODO: update to this class name
-            client.order();
-        } finally {
-            channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
-        }
+    ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
+        .build();
+    try {
+      UserRequestClient client = new UserRequestClient(channel);
+      client.sendUserInputRequest();
+    } finally {
+      channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
     }
+  }
 }
