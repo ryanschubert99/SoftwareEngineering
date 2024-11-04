@@ -7,10 +7,12 @@ import io.grpc.Grpc;
 import io.grpc.InsecureChannelCredentials;
 import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
-import userinput.UserInput.UserInputRequest;
 import userinput.UserInput.ComputationResponse;
+import userinput.UserInput.UserInputRequest;
 import userinput.UserInputServiceGrpc;
 import userinput.UserInputServiceGrpc.UserInputServiceBlockingStub;
+
+
 
 /**
  * The UserRequestClient class handles sending requests to the user input service
