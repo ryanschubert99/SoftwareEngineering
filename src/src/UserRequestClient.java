@@ -8,11 +8,9 @@ import io.grpc.Channel;
 import io.grpc.Grpc;
 import io.grpc.InsecureChannelCredentials;
 import io.grpc.ManagedChannel;
-import userinput.UserInput;
 import io.grpc.StatusRuntimeException;
 import userinput.UserInput.ComputationResponse;
 import userinput.UserInput.UserInputRequest;
-
 import userinput.UserInputServiceGrpc;
 import userinput.UserInputServiceGrpc.UserInputServiceBlockingStub;
 
