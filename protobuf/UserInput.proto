@@ -19,7 +19,15 @@ message UserInputRequest{
 }
 
 message ComputationResponse{
-	optional int32 matrix=1;
+	optional ComputeResultStatus result=1;
 	optional string error_message=2;
 
 }
+
+
+ enum ComputeResultStatus {
+    SUCCESS=1;
+    INVALID_REQUEST=2;
+    FAILURE=3;
+    }
+

@@ -7,7 +7,6 @@ import io.grpc.Grpc;
 import io.grpc.InsecureServerCredentials;
 import io.grpc.Server;
 import io.grpc.protobuf.services.ProtoReflectionService;
-import userinputgrpc.UserInputServiceGrpc.UserInputServiceImplBase;
 
 
 
@@ -33,7 +32,7 @@ public class UserRequestServer {
     int port = 50051; 
 
     server = Grpc.newServerBuilderForPort(port, InsecureServerCredentials.create())
-        .addService(new UserInputServiceImplBase()) // Add the implementation service
+        .addService(new UserInputServiceImpl()) // Add the implementation service
         .addService(ProtoReflectionService.newInstance()) // Add reflection service
         .build()
         .start();
