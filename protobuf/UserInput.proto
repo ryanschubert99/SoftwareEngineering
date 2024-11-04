@@ -19,15 +19,15 @@ message UserInputRequest{
 }
 
 message ComputationResponse{
-	optional ComputeResultStatus result=1;
-	optional string error_message=2;
+	optional ComputeResultStatus result=9;
+	optional string error_message=10;
 
 }
 
 
  enum ComputeResultStatus {
-    SUCCESS=1;
-    INVALID_REQUEST=2;
-    FAILURE=3;
+    SUCCESS=11;
+    INVALID_REQUEST=12;
+    FAILURE=13;
     }
 
