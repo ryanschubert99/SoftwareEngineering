@@ -12,15 +12,11 @@ import userinput.UserInput;
 import io.grpc.StatusRuntimeException;
 import userinput.UserInput.ComputationResponse;
 import userinput.UserInput.UserInputRequest;
-<<<<<<< Updated upstream
-import userinputgrpc.UserInputServiceGrpc;
-import userinputgrpc.UserInputServiceGrpc.UserInputServiceBlockingStub;
 
-//
 import userinput.UserInputServiceGrpc;
 import userinput.UserInputServiceGrpc.UserInputServiceBlockingStub;
 
->>>>>>> Stashed changes
+
 
 
 /**
