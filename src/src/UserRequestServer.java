@@ -7,7 +7,7 @@ import io.grpc.Grpc;
 import io.grpc.InsecureServerCredentials;
 import io.grpc.Server;
 import io.grpc.protobuf.services.ProtoReflectionService;
-import userinput.UserInputServiceGrpc.UserInputServiceImplBase;
+import userinputgrpc.UserInputServiceGrpc.UserInputServiceImplBase;
 
 
 

@@ -9,8 +9,8 @@ import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
 import userinput.UserInput.ComputationResponse;
 import userinput.UserInput.UserInputRequest;
-import userinput.UserInputServiceGrpc;
-import userinput.UserInputServiceGrpc.UserInputServiceBlockingStub;
+import userinputgrpc.UserInputServiceGrpc;
+import userinputgrpc.UserInputServiceGrpc.UserInputServiceBlockingStub;
 
 
 
