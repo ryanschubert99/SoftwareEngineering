@@ -1,0 +1,33 @@
+package userinput;
+
+option java_outer_classname="UserInput";
+
+
+service UserInputService {
+    rpc CreateUserInput (UserInputRequest) returns (ComputationResponse);
+}
+message UserInputRequest{
+	optional int32 inputType=1;
+	optional string inputFileName=2;
+	optional int32 numberOfMatrices=3;
+	optional int32 rows=4;
+	optional int32 columns=5;
+	optional int32 outputType=6;
+	optional string outputFileName=7;
+	optional int32 outputOrCompute=8;
+	
+}
+
+message ComputationResponse{
+	optional ComputeResultStatus result=9;
+	optional string error_message=10;
+
+}
+
+
+ enum ComputeResultStatus {
+    SUCCESS=11;
+    INVALID_REQUEST=12;
+    FAILURE=13;
+    }
+

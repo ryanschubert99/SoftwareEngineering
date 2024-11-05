@@ -8,3 +8,8 @@ build
 .settings/org.eclipse.jdt.core.prefs
 gradlew
 
+.classpath
+.DS_Store
+.project
+.settings/org.eclipse.jdt.core.prefs
+matrixprint.txt
