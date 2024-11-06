@@ -14,17 +14,14 @@ import userinput.UserInput.UserInputRequest;
 import userinput.UserInputServiceGrpc;
 import userinput.UserInputServiceGrpc.UserInputServiceBlockingStub;
 
-
 public class UserRequestClient {
 
   private final UserInputServiceBlockingStub blockingStub;
 
-  
   public UserRequestClient(Channel channel) {
     this.blockingStub = UserInputServiceGrpc.newBlockingStub(channel);
   }
 
-  
   public void sendUserInputRequest() {
     UserInputRequest request = UserInputRequest.newBuilder()
         .setInputType(0)
@@ -52,9 +49,8 @@ public class UserRequestClient {
     }
   }
 
-  
   public static void main(String[] args) throws Exception {
-    String target = "localhost:50051"; 
+    String target = "localhost:50051";
 
     ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
         .build();
@@ -107,7 +103,6 @@ public class UserRequestClient {
             if (!inputFileName.endsWith(".txt")) {
               throw new InputMismatchException("File name must end with .txt");
             } else {
-
               valid = true; // If file name is valid
             }
           } catch (InputMismatchException e) {
@@ -206,7 +201,6 @@ public class UserRequestClient {
           }
         }
 
-
         valid = false;
         scanner.nextLine();
         while (!valid) {
@@ -226,7 +220,6 @@ public class UserRequestClient {
           }
         }
 
-    
         valid = false;
         scanner.nextLine();
         while (!valid) {
@@ -301,9 +294,8 @@ public class UserRequestClient {
           scanner.nextLine();
         }
       }
-    } 
-    finally {
-    channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
+    } finally {
+      channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
     }
   }
 }
