@@ -14,32 +14,14 @@ import userinput.UserInput.UserInputRequest;
 import userinput.UserInputServiceGrpc;
 import userinput.UserInputServiceGrpc.UserInputServiceBlockingStub;
 
-
-
-
-/**
- * The UserRequestClient class handles sending requests to the user input service
- * and processing responses from the server.
- */
 public class UserRequestClient {
 
-  /**
-   * Blocking stub for making remote procedure calls.
-   */
   private final UserInputServiceBlockingStub blockingStub;
 
-  /**
-   * Constructor to initialize the blocking stub using the given channel.
-   *
-   * @param channel the gRPC channel to connect to the service
-   */
   public UserRequestClient(Channel channel) {
     this.blockingStub = UserInputServiceGrpc.newBlockingStub(channel);
   }
 
-  /**
-   * Sends a user input request and handles the response.
-   */
   public void sendUserInputRequest() {
     UserInputRequest request = UserInputRequest.newBuilder()
         .setInputType(0)
@@ -67,14 +49,8 @@ public class UserRequestClient {
     }
   }
 
-  /**
-   * The main method to run the client.
-   *
-   * @param args the command line arguments
-   * @throws Exception if an error occurs during the client operation
-   */
   public static void main(String[] args) throws Exception {
-    String target = "localhost:50051"; // Ensure this matches the server/port
+    String target = "localhost:50051";
 
     ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
         .build();
@@ -127,7 +103,6 @@ public class UserRequestClient {
             if (!inputFileName.endsWith(".txt")) {
               throw new InputMismatchException("File name must end with .txt");
             } else {
-
               valid = true; // If file name is valid
             }
           } catch (InputMismatchException e) {
@@ -226,7 +201,6 @@ public class UserRequestClient {
           }
         }
 
-
         valid = false;
         scanner.nextLine();
         while (!valid) {
@@ -246,7 +220,6 @@ public class UserRequestClient {
           }
         }
 
-    
         valid = false;
         scanner.nextLine();
         while (!valid) {
@@ -321,9 +294,8 @@ public class UserRequestClient {
           scanner.nextLine();
         }
       }
-    } 
-    finally {
-    channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
+    } finally {
+      channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
     }
   }
 }
