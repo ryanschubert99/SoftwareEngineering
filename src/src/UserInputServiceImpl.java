@@ -1,10 +1,7 @@
 package src;
 
 import io.grpc.stub.StreamObserver;
-import src.ComputationCoordinatorImp; 
-import src.ComputeRequest;
-import src.ComputationCoordinator; 
-import src.ComputeResult;
+
 import src.ComputeResult.ComputeResultStatus;
 import userinput.UserInput.ComputationResponse;
 import userinput.UserInput.UserInputRequest;

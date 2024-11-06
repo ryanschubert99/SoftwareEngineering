@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package dataprocessing;
+
+option java_outer_classname="DataProcessing";
+
+// Enum to define the status of the computation result.
+enum ComputeResultStatus {
+    SUCCESS = 0;             // Computation succeeded
+    FAILURE = 1;             // Computation failed
+}
+
+// Service for computation coordination.
+service DataProcessingService {
+    rpc BeginComputation(ComputeRequest) returns (ComputeResult);
+}
+
+// Service for data storage operations.
+service DataStorageService {
+    rpc WriteOutput(WriteOutputRequest) returns (WriteOutputResponse);
+    rpc ReadInputFile(ReadInputFileRequest) returns (ReadInputFileResponse);
+}
+
+message ComputeRequest {
+    optional InputConfig input_config = 1;       // Input configuration settings.
+    optional OutputConfig output_config = 2;     // Output configuration settings.
+    optional int32 amount_to_generate = 3;       // Number of matrices to generate if needed.
+    optional string delimiter = 4;               // Optional delimiter for file parsing.
+}
+// Input configuration message.
+message InputConfig {
+    optional int32 input_type = 1;               // Type of input, such as CSV, JSON, etc.
+    optional string input_file_name = 2;         // Name of the input file.
+    optional int32 number_of_matrices = 3;       // Number of matrices for computation.
+    optional int32 rows = 4;                     // Number of rows in each matrix.
+    optional int32 columns = 5;                  // Number of columns in each matrix.
+}
+
+// Output configuration message.
+message OutputConfig {
+    optional int32 output_type = 1;              // Type of output, such as CSV, JSON, etc.
+    optional string output_file_name = 2;        // Name of the output file.
+    optional int32 output_or_compute = 3;        // Flag to determine if computation or output is required.
+}
+
+// Response message for the result of a computation.
+message ComputeResult {
+    optional ComputeResultStatus status = 1;     // Status of the computation (SUCCESS, FAILURE).
+    optional string failure_message = 2;         // Error message if there was an issue.
+}
+
+// Data storage: Write output request.
+message WriteOutputRequest {
+    optional string output_file_name = 1;        // Name of the output file.
+    optional string delimiter = 2;               // Delimiter to use in the output file.
+}
+
+// Data storage: Write output response.
+message WriteOutputResponse {
+    optional string message = 1;                 // Success or failure message.
+    optional bool success = 2;                   // Indicates if the write operation succeeded.
+}
+
+// Data storage: Read input file request.
+message ReadInputFileRequest {
+    optional string input_file_name = 1;         // Name of the input file.
+}
+
+// Data storage: Read input file response.
+message ReadInputFileResponse {
+    optional bool success = 1;                   // Indicates if reading succeeded.
+    repeated Matrix matrices = 2;                // List of matrices read from the input file.
+}
+
+// Matrix data structure.
+message Matrix {
+    repeated Row rows = 1;                       // Rows of matrix values.
+}
+
+// Row data structure for matrix rows.
+message Row {
+    repeated int32 values = 1;                   // List of values in a matrix row.
+}
