@@ -1,7 +1,8 @@
 package src;
 
 import datatransfer.ComputationCoordinatorServiceGrpc.ComputationCoordinatorServiceImplBase;
-import datatransfer.DataTransfer.*;
+import datatransfer.DataTransfer.ComputeResponse;
+import datatransfer.DataTransfer.OperationStatus;
 import io.grpc.stub.StreamObserver;
 
 public class ComputationCoordinatorServiceImpl extends ComputationCoordinatorServiceImplBase {
