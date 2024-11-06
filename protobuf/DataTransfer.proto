@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+package datatransfer;
+
+option java_outer_classname = "DataTransfer";
+
+// Enum to define the status of the operation.
+enum OperationStatus {
+    SUCCESS = 0;
+    FAILURE = 1;
+}
+
+
+// Service for computation coordination.
+service ComputationCoordinatorService {
+    rpc BeginComputation(ComputeRequest) returns (ComputeResponse);
+}
+
+// Service for data storage operations.
+service DataStorageService {
+    rpc WriteOutput(WriteOutputRequest) returns (WriteOutputResponse);
+    rpc ReadInputFile(ReadInputFileRequest) returns (ReadInputFileResponse);
+}
+
+// Request message for beginning a computation.
+message ComputeRequest {
+    InputConfig input_config = 1;
+    OutputConfig output_config = 2;
+    int32 amount_to_generate = 3;
+    string delimiter = 4;
+}
+
+// Response message for the computation result.
+message ComputeResponse {
+    OperationStatus status = 1;
+    string failure_message = 2;
+}
+
+// Message to define input configuration.
+message InputConfig {
+    int32 input_type = 1;
+    string input_file_name = 2;
+    int32 number_of_matrices = 3;
+    int32 rows = 4;
+    int32 columns = 5;
+}
+
+// Message to define output configuration.
+message OutputConfig {
+    int32 output_type = 1;
+    string output_file_name = 2;
+    int32 output_or_compute = 3;
+}
+
+// Data storage: Write output request.
+message WriteOutputRequest {
+    string output_file_name = 1;
+    string delimiter = 2;
+}
+
+// Data storage: Write output response.
+message WriteOutputResponse {
+    OperationStatus status = 1;
+    string message = 2;
+}
+
+// Data storage: Read input file request.
+message ReadInputFileRequest {
+    string input_file_name = 1;
+}
+
+// Data storage: Read input file response.
+message ReadInputFileResponse {
+    bool status = 1;
+    repeated Matrix matrices = 2;
+}
+
+// Matrix data structure.
+message Matrix {
+    repeated Row rows = 1;
+}
+
+// Row data structure for matrix rows.
+message Row {
+    repeated int32 values = 1;
+}

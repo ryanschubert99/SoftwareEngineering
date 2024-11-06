@@ -1,10 +1,9 @@
 package src;
 
 import io.grpc.stub.StreamObserver;
-import src.ComputationCoordinatorImp; 
-import src.ComputeRequest;
-import src.ComputationCoordinator; 
-import src.ComputeResult;
+
+
+
 import src.ComputeResult.ComputeResultStatus;
 import userinput.UserInput.ComputationResponse;
 import userinput.UserInput.UserInputRequest;
@@ -44,7 +43,6 @@ public class UserInputServiceImpl extends UserInputServiceImplBase {
             }
             response = ComputationResponse.newBuilder()
                 .setResult(status)
-                
                 .build();
         } catch (Exception e) {
   

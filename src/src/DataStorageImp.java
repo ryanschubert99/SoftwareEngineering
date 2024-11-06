@@ -20,6 +20,8 @@ public class DataStorageImp implements DataStorage{
   private boolean valid = false;
   private int input;
   private int outputOrCompute;
+  
+ // public DataStorageImp() {}
 
   public DataStorageImp(ComputeRequest compute, int outputOrComp) throws IOException {
     this.computeE = compute;
