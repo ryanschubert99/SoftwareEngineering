@@ -7,21 +7,22 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
 public class DataTransferClient {
-    public static void main(String[] args) {
-        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50052)
-                .usePlaintext()
-                .build();
 
-        DataStorageServiceGrpc.DataStorageServiceBlockingStub stub = DataStorageServiceGrpc.newBlockingStub(channel);
+  public static void main(String[] args) {
+    ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50052)
+        .usePlaintext()
+        .build();
 
-        WriteOutputRequest request = WriteOutputRequest.newBuilder()
-                .setOutputFileName("output.txt")
-                .setDelimiter(",")
-                .build();
+    DataStorageServiceGrpc.DataStorageServiceBlockingStub stub = DataStorageServiceGrpc.newBlockingStub(channel);
 
-        WriteOutputResponse response = stub.writeOutput(request);
-        System.out.println("Response: " + response.getMessage());
+    WriteOutputRequest request = WriteOutputRequest.newBuilder()
+        .setOutputFileName("output.txt")
+        .setDelimiter(",")
+        .build();
 
-        channel.shutdown();
-    }
+    WriteOutputResponse response = stub.writeOutput(request);
+    System.out.println("Response: " + response.getMessage());
+
+    channel.shutdown();
+  }
 }
