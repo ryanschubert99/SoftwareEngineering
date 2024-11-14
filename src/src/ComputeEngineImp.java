@@ -22,7 +22,12 @@ public class ComputeEngineImp implements ComputeEngine {
         // Add the generated matrix to the ArrayList
         generatedMatrices.add(matrix);
       }
+      if(data.getComputeE().getInputConfig().getMultiply() == 0) {
       data.setMatrices(generatedMatrices);
+    }
+      else {
+        data.setMatrices(matrixCalc.multiplyMatrices(generatedMatrices));
+      }
     }
   }
 
