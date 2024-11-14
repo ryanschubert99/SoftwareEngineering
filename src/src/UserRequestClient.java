@@ -23,7 +23,6 @@ public class UserRequestClient {
     }
 
     public void sendUserInputRequest(UserInputRequest request) {
-    	
         ComputationResponse response;
         try {
             response = blockingStub.createUserInput(request);
@@ -49,7 +48,7 @@ public class UserRequestClient {
             UserRequestClient client = new UserRequestClient(channel);
             Scanner scanner = new Scanner(System.in);
             boolean valid = false;
-            
+
             // Scanner 1: Input Type (User or File Input)
             while (!valid) {
                 try {
@@ -74,7 +73,7 @@ public class UserRequestClient {
                 while (!valid) {
                     try {
                         System.out.println("Enter the input file name (must end with .txt):");
-                        String inputFileName= scanner.nextLine();
+                        String inputFileName = scanner.nextLine();
                         request.setInputFileName(inputFileName);
                         if (!inputFileName.endsWith(".txt")) {
                             throw new InputMismatchException("File name must end with .txt");
@@ -92,7 +91,7 @@ public class UserRequestClient {
             while (!valid) {
                 try {
                     System.out.println("Enter the number of matrices you want to generate:");
-                    int numberOfMatrices=scanner.nextInt();
+                    int numberOfMatrices = scanner.nextInt();
                     request.setNumberOfMatrices(numberOfMatrices);
                     valid = true;
                 } catch (InputMismatchException e) {
@@ -106,7 +105,7 @@ public class UserRequestClient {
             while (!valid) {
                 try {
                     System.out.println("Enter the number of rows in each matrix:");
-                    int rows= scanner.nextInt();
+                    int rows = scanner.nextInt();
                     request.setRows(rows);
                     if (rows < 1) {
                         throw new InputMismatchException("Number of rows must be positive.");
@@ -124,7 +123,7 @@ public class UserRequestClient {
             while (!valid) {
                 try {
                     System.out.println("Enter the number of columns in each matrix:");
-                    int columns= scanner.nextInt();
+                    int columns = scanner.nextInt();
                     request.setColumns(columns);
                     if (columns < 1) {
                         throw new InputMismatchException("Number of columns must be positive.");
@@ -138,7 +137,6 @@ public class UserRequestClient {
             }
 
             // Scanner 6: Multiply the Matrices (Yes or No)
-            // not used??
             valid = false;
             while (!valid) {
                 try {
@@ -172,7 +170,7 @@ public class UserRequestClient {
                     if (outputType == 1) {
                         // File output mode: Output File Name
                         System.out.println("Enter the output file name (must end with .txt):");
-                        String outputFileName=scanner.nextLine();
+                        String outputFileName = scanner.nextLine();
                         request.setOutputFileName(outputFileName);
                         if (!outputFileName.endsWith(".txt")) {
                             throw new InputMismatchException("File name must end with .txt");
@@ -191,7 +189,7 @@ public class UserRequestClient {
             while (!valid) {
                 try {
                     System.out.println("Type 1 to Output Matrices or Type 0 to do Computations:");
-                    int outputOrCompute=scanner.nextInt();
+                    int outputOrCompute = scanner.nextInt();
                     request.setOutputOrCompute(outputOrCompute);
                     if (outputOrCompute != 0 && outputOrCompute != 1) {
                         throw new InputMismatchException();

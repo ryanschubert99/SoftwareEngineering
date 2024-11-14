@@ -13,7 +13,6 @@ import java.io.IOException;
 
 public class ComputationCoordinatorSmokeTest {
 
-
   private ComputationCoordinatorImp computationCoordinator;
   private DataStorageImp dataStore;
   private ComputeEngineImp computeEngine;
@@ -29,26 +28,41 @@ public class ComputationCoordinatorSmokeTest {
   }
 
   /**
+   * Utility method to create a ComputeRequest.
+   * 
+   * @return a ComputeRequest object with predefined values.
+   */
+  private ComputeRequest createComputeRequest() {
+    // These values simulate what a user might input through a coordinator
+    int inputType = 0; // Example: 0 for user input, 1 for file input
+    String inputFileName = "input.txt";
+    int numberOfMatrices = 3;
+    int rows = 3;
+    int columns = 3;
+    int outputFileType = 1; // 0 = console output, 1 = file output
+    String outputFileName = "output.txt";
+    int outputOrComp = 1; // 1 for output, 0 for computation
+
+    return new ComputeRequest(
+      inputType, 
+      inputFileName, 
+      numberOfMatrices, 
+      rows, 
+      columns, 
+      outputFileType, 
+      outputFileName, 
+      outputOrComp
+    );
+  }
+
+  /**
    * Tests the beginComputation method with a ComputeRequest.
    * 
    * @throws IOException if an input/output error occurs.
    */
-  private ComputeRequest createComputeRequest() {
-      // These values simulate what a user might input through a coordinator
-      int inputType = 0; // Example: 0 for user input, 1 for file input
-      String inputFileName = "input.txt";
-      int numberOfMatrices = 3;
-      int rows = 3;
-      int columns = 3;
-      int outputFileType = 1; // 0 = console output, 1 = file output
-      String outputFileName = "output.txt";
-      int outputOrComp = 1; // 1 for output, 0 for computation
-
-      return new ComputeRequest(inputType, inputFileName, numberOfMatrices, rows, columns, outputFileType, outputFileName, outputOrComp);
-  }
   @Test
   public void testBeginComputationWithRequest() throws IOException {
-    ComputeRequest request =createComputeRequest();
+    ComputeRequest request = createComputeRequest();
     computationCoordinator.beginComputation(request);
 
     assertNotNull(request);
