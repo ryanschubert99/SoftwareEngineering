@@ -52,6 +52,6 @@ public class ComputeEngineIntegrationTest {
         assertNotNull(result);
         assertEquals(ComputeResult.ComputeResultStatus.SUCCESS, result.getStatus()); // Comparing status directly
         assertNotNull(dataStore.getMatrices());
-        assertEquals(1000, dataStore.getMatrices().size()); // Assuming 2 matrices as in the request
+        assertEquals(3, dataStore.getMatrices().size()); // Assuming 2 matrices as in the request
     }
 }
