@@ -7,18 +7,18 @@ import io.grpc.ServerBuilder;
 import io.grpc.protobuf.services.ProtoReflectionService;
 
 public class DataTransferServer {
+
   private Server server;
 
-    private void start() throws IOException {
-        int port = 50052;
-        server = ServerBuilder.forPort(port)
-                .addService(new DataStorageServiceImpl())
-                .addService(new ComputationCoordinatorServiceImpl())
-                .addService(ProtoReflectionService.newInstance()) 
-                .build()
-                .start();
-        System.out.println("Server started on port " + port);
-
+  private void start() throws IOException {
+    int port = 50052;
+    server = ServerBuilder.forPort(port)
+        .addService(new DataStorageServiceImpl())
+        .addService(new ComputationCoordinatorServiceImpl())
+        .addService(ProtoReflectionService.newInstance())
+        .build()
+        .start();
+    System.out.println("Server started on port " + port);
 
     Runtime.getRuntime().addShutdownHook(new Thread(() -> {
       System.err.println("*** shutting down gRPC server since JVM is shutting down");
