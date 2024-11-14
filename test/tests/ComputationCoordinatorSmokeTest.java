@@ -21,11 +21,11 @@ public class ComputationCoordinatorSmokeTest {
   /**
    * Sets up the mock objects before each test.
    */
-  //@BeforeEach
+  @BeforeEach
   public void setUp() {
     dataStore = mock(DataStorageImp.class);
     computeEngine = mock(ComputeEngineImp.class);
-    //computationCoordinator = new ComputationCoordinatorImp(dataStore, computeEngine, 0, null, 0, 0, 0, false);
+    computationCoordinator = new ComputationCoordinatorImp();
   }
 
   /**
@@ -33,10 +33,22 @@ public class ComputationCoordinatorSmokeTest {
    * 
    * @throws IOException if an input/output error occurs.
    */
-  
-  //@Test
+  private ComputeRequest createComputeRequest() {
+      // These values simulate what a user might input through a coordinator
+      int inputType = 0; // Example: 0 for user input, 1 for file input
+      String inputFileName = "input.txt";
+      int numberOfMatrices = 3;
+      int rows = 3;
+      int columns = 3;
+      int outputFileType = 1; // 0 = console output, 1 = file output
+      String outputFileName = "output.txt";
+      int outputOrComp = 1; // 1 for output, 0 for computation
+
+      return new ComputeRequest(inputType, inputFileName, numberOfMatrices, rows, columns, outputFileType, outputFileName, outputOrComp);
+  }
+  @Test
   public void testBeginComputationWithRequest() throws IOException {
-    ComputeRequest request = new ComputeRequest(null, null);
+    ComputeRequest request =createComputeRequest();
     computationCoordinator.beginComputation(request);
 
     assertNotNull(request);
