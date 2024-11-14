@@ -77,7 +77,7 @@ public class DataStorageImp implements DataStorage{
 
     if (outputTypeValue == 0) {
       System.out.println("Outputting matrices to console:");
-      for (int[][] matrix : matrices) {
+      for (int[][] matrix : matrices) {// this is null 
         printMatrixToConsole(matrix, delimiter);
       }
     } else if (outputTypeValue == 1) {
