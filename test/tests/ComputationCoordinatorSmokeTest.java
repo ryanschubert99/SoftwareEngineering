@@ -42,6 +42,7 @@ public class ComputationCoordinatorSmokeTest {
     int outputFileType = 1; // 0 = console output, 1 = file output
     String outputFileName = "output.txt";
     int outputOrComp = 1; // 1 for output, 0 for computation
+    int multiply = 1;
 
     return new ComputeRequest(
       inputType, 
@@ -51,7 +52,8 @@ public class ComputationCoordinatorSmokeTest {
       columns, 
       outputFileType, 
       outputFileName, 
-      outputOrComp
+      outputOrComp,
+      multiply
     );
   }
 

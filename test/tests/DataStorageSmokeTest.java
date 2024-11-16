@@ -26,10 +26,10 @@ public class DataStorageSmokeTest {
 
   @Test
   public void testGetAndSetMatrices() {
-    List<int[][]> matrices = new ArrayList<>();
+    List<long[][]> matrices = new ArrayList<>();
     dataStore.setMatrices(matrices);
 
-    List<int[][]> result = dataStore.getMatrices();
+    List<long[][]> result = dataStore.getMatrices();
 
     assertNotNull(result);
   }

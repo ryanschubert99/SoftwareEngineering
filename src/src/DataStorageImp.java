@@ -16,7 +16,7 @@ public class DataStorageImp implements DataStorage{
   private String inputFileName;
   private String outputFileName;
   private int amountToGenerate;
-  private List<int[][]> matrices;
+  private List<long[][]> matrices;
   private boolean valid = false;
   private int input;
   private int outputOrCompute;
@@ -46,7 +46,7 @@ public class DataStorageImp implements DataStorage{
         writeOutput(this.outputFileName, ";");
       } else {
         ComputeEngineImp computeEng = new ComputeEngineImp(this);
-        computeEng.multiplyMatrix(matrices);
+        this.matrices = computeEng.multiplyMatrix(matrices);
         writeOutput(this.outputFileName, ";");
       }
     }
@@ -59,11 +59,11 @@ public class DataStorageImp implements DataStorage{
     System.out.println("Computation completed successfully");
   }
 
-  public List<int[][]> getMatrices() {
+  public List<long[][]> getMatrices() {
     return matrices;
   }
 
-  public void setMatrices(List<int[][]> genMatrix) {
+  public void setMatrices(List<long[][]> genMatrix) {
     this.matrices = genMatrix;
   }
 
@@ -77,13 +77,13 @@ public class DataStorageImp implements DataStorage{
 
     if (outputTypeValue == 0) {
       System.out.println("Outputting matrices to console:");
-      for (int[][] matrix : matrices) {// this is null 
+      for (long[][] matrix : matrices) {// this is null 
         printMatrixToConsole(matrix, delimiter);
       }
     } else if (outputTypeValue == 1) {
       System.out.println("Writing matrices to file: " + outputFileName);
       try (FileWriter fileWriter = new FileWriter(outputFileName)) {
-        for (int[][] matrix : matrices) {
+        for (long[][] matrix : matrices) {
           writeMatrixToFile(fileWriter, matrix, delimiter);
         }
         fileWriter.flush();
@@ -95,9 +95,9 @@ public class DataStorageImp implements DataStorage{
     }
   }
 
-  private void printMatrixToConsole(int[][] matrix, String delimiter) {
-    for (int[] row : matrix) {
-      for (int element : row) {
+  private void printMatrixToConsole(long[][] matrix, String delimiter) {
+    for (long[] row : matrix) {
+      for (long element : row) {
         System.out.print(element + delimiter);
       }
       System.out.println(); // New line after each row
@@ -105,9 +105,9 @@ public class DataStorageImp implements DataStorage{
     System.out.println(); // Blank line between matrices
   }
 
-  private void writeMatrixToFile(FileWriter fileWriter, int[][] matrix, String delimiter) throws IOException {
-    for (int[] row : matrix) {
-      for (int element : row) {
+  private void writeMatrixToFile(FileWriter fileWriter, long[][] matrix, String delimiter) throws IOException {
+    for (long[] row : matrix) {
+      for (long element : row) {
         fileWriter.write(element + delimiter);
       }
       fileWriter.write("\n"); // New line after each row
@@ -118,17 +118,17 @@ public class DataStorageImp implements DataStorage{
   @Override
   //std::pair<Value, error_code>
   // either return to throw the result or an error code 
-  public List<int[][]>readInputFile() throws IOException {
+  public List<long[][]> readInputFile() throws IOException {
     String[] splitLine = null;
     int rows = computeE.getInputConfig().getRows(); // Get predefined number of rows
     int columns = computeE.getInputConfig().getColumns(); // Get predefined number of columns
 
-    List<int[][]> matrices = new ArrayList<>(); // List to store the matrices
+    List<long[][]> matrices = new ArrayList<>(); // List to store the matrices
     try (BufferedReader br = new BufferedReader(new FileReader(inputFileName))) {
       String line;
 
       while (true) {
-        int[][] matrix = new int[rows][columns];
+        long[][] matrix = new long[rows][columns];
         int currentRow = 0;
 
         while (currentRow < rows) {

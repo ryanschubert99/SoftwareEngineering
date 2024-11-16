@@ -24,7 +24,7 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
     return ComputeResult.SUCCESS;
   }
 
-  public ComputeResult beginComputationMulti(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, int outputType, String outputFileName, int outputOrComp,int multiply) throws IOException {
+  public ComputeResult beginComputationMulti(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, int outputType, int j, String outputFileName, int outputOrComp,int multiply) throws IOException {
     // Submit fixed number of tasks to the thread pool
     for (int i = 0; i < THREAD_POOL_SIZE; i++) { // Create THREAD_POOL_SIZE threads
       final int threadIndex = i; // Capture the current index for use inside the lambda
@@ -65,7 +65,8 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
                                  request.getInputConfig().getMultiply(),
                                  request.getOutputConfig().getOutputTypeValue(),
                                  request.getOutputConfig().getOutputFileName(),
-                                 request.getOutputConfig().getOutputOrCompute());
+                                 request.getOutputConfig().getOutputOrCompute(),
+                                 request.getInputConfig().getMultiply());
   }
 
   // Helper method to generate a unique output file name

@@ -11,7 +11,8 @@ public class Main {
   public static void main(String[] args) throws IOException {
    
       
-    setUserInputAndOutputType(0,"matrixout.txt",2, 3,3,1,"matrixprintmultiply.txt",1,1);
+    setUserInputAndOutputType(0,"matrixout.txt",9, 3,3,1,"matrixprintmultiply9.txt",0,1);
+	
   }
 
   public static void setUserInputAndOutputType(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, int outputType, String outputFileName, int outputOrCompute,int multiply) throws IOException {

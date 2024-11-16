@@ -5,16 +5,16 @@ import java.util.List;
 
 public class ComputeEngineImp implements ComputeEngine {
 
-  public ComputeEngineImp(List<int[][]> matrices, DataStorageImp data) {
+  public ComputeEngineImp(List<long[][]> matrices, DataStorageImp data) {
     MatrixImplementation matrixCalc = new MatrixImplementation();
-    List<int[][]> generatedMatrices = new ArrayList<>();
+    List<long[][]> generatedMatrices = new ArrayList<>();
 
     // Check if we need to generate any matrices
     if (data.getAmountToGenerate() != 0) {
       // Generate the specified number of matrices
       for (int i = 0; i < data.getAmountToGenerate(); i++) {
         // Generate a matrix with the specified rows and columns
-        int[][] matrix = matrixCalc.generateMatrix(
+        long[][] matrix = matrixCalc.generateMatrix(
             data.getComputeE().getInputConfig().getRows(),
             data.getComputeE().getInputConfig().getColumns()
         );
@@ -23,8 +23,8 @@ public class ComputeEngineImp implements ComputeEngine {
         generatedMatrices.add(matrix);
       }
       if(data.getComputeE().getInputConfig().getMultiply() == 0) {
-      data.setMatrices(generatedMatrices);
-    }
+        data.setMatrices(generatedMatrices);
+      }
       else {
         data.setMatrices(matrixCalc.multiplyMatrices(generatedMatrices));
       }
@@ -32,30 +32,34 @@ public class ComputeEngineImp implements ComputeEngine {
   }
 
   public ComputeEngineImp(DataStorageImp data) {
-    MatrixImplementation matrixCalc = new MatrixImplementation();
-    List<int[][]> generatedMatrices = new ArrayList<>();
+	  MatrixImplementation matrixCalc = new MatrixImplementation();
+	    List<long[][]> generatedMatrices = new ArrayList<>();
 
-    // Check if we need to generate any matrices
-    if (data.getAmountToGenerate() != 0) {
-      // Generate the specified number of matrices
-      for (int i = 0; i < data.getAmountToGenerate(); i++) {
-        // Generate a matrix with the specified rows and columns
-        int[][] matrix = matrixCalc.generateMatrix(
-            data.getComputeE().getInputConfig().getRows(),
-            data.getComputeE().getInputConfig().getColumns()
-        );
+	    // Check if we need to generate any matrices
+	    if (data.getAmountToGenerate() != 0) {
+	      // Generate the specified number of matrices
+	      for (int i = 0; i < data.getAmountToGenerate(); i++) {
+	        // Generate a matrix with the specified rows and columns
+	        long[][] matrix = matrixCalc.generateMatrix(
+	            data.getComputeE().getInputConfig().getRows(),
+	            data.getComputeE().getInputConfig().getColumns()
+	        );
 
-        // Add the generated matrix to the ArrayList
-        generatedMatrices.add(matrix);
-        
-      }
-      data.setMatrices(generatedMatrices);
-    }
-    
-  }
+	        // Add the generated matrix to the ArrayList
+	        generatedMatrices.add(matrix);
+	      }
+	      if(data.getComputeE().getInputConfig().getMultiply() == 0) {
+	        data.setMatrices(generatedMatrices);
+	      }
+	      else {
+	        data.setMatrices(matrixCalc.multiplyMatrices(generatedMatrices));
+	      }
+	    }
+	  }
+
 
   @Override
-  public void finalizeAction(int[][] resultMatrix, String outputSource, String delimiter) {
+  public void finalizeAction(long[][] resultMatrix, String outputSource, String delimiter) {
     // No-op
   }
 
@@ -64,8 +68,9 @@ public class ComputeEngineImp implements ComputeEngine {
     // TODO Auto-generated method stub
   }
 
-  public void multiplyMatrix(List<int[][]> matrices) {
-    // TODO Auto-generated method stub
+  public List<long[][]> multiplyMatrix(List<long[][]> matrices) {
+	MatrixImplementation matrixCalc = new MatrixImplementation();
+    return matrixCalc.multiplyMatrices(matrices);
   }
 
   public Object performComputation(Object any, Object any2) {

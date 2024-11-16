@@ -9,7 +9,7 @@ public class InputConfigExceptionTest {
 
   @Test
   public void testInvalidInputTypeHandling() {
-    InputConfigImplementation inputConfig = new InputConfigImplementation(0, null, 0, 0, 0);
+    InputConfigImplementation inputConfig = new InputConfigImplementation(0, null, 0, 0, 0,0);
     inputConfig.setUserInputType(0, null, 3, 3, 3, 0);;
 
     // Check that only correct values were set to variables

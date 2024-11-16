@@ -48,7 +48,7 @@ public class TestUser {
         System.out.println("Out or Compute: " + outOrCompute);
 
         // Call the computation method with parsed values
-        coordinator.beginComputationSingle(inputType, inputFile, numGenerate, numRows, numCols, outputType, outputPath, outOrCompute);
+        coordinator.beginComputationSingle(inputType, inputFile, numGenerate, numRows, numCols, outputType, outputPath, outOrCompute,multiply);
       }
     } catch (IOException e) {
       e.printStackTrace();
