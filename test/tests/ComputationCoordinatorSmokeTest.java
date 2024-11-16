@@ -52,8 +52,7 @@ public class ComputationCoordinatorSmokeTest {
       columns, 
       outputFileType, 
       outputFileName, 
-      outputOrComp,
-      multiply
+      outputOrComp
     );
   }
 

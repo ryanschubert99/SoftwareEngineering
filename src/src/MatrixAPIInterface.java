@@ -7,5 +7,5 @@ public interface MatrixAPIInterface{
 
   long[][] multiplyMatrices(long[][] matrix1, long[][] matrix2);
 
-List<long[][]> multiplyMatrices(List<long[][]> generatedMatrices);
+  List<long[][]> multiplyMatrices(List<long[][]> generatedMatrices);
 }
