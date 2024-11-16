@@ -49,7 +49,7 @@ public class MatrixImplementationSlow implements MatrixAPIInterface {
   }
 
   // Helper method to multiply two matrices
-  private long[][] multiplyTwoMatrices(long[][] matrix1, long[][] matrix2) {
+  public long[][] multiplyTwoMatrices(long[][] matrix1, long[][] matrix2) {
     int rows1 = matrix1.length;
     int cols1 = matrix1[0].length;
     int cols2 = matrix2[0].length;

@@ -8,7 +8,6 @@ public class ComputeEngineImp implements ComputeEngine {
 
   public ComputeEngineImp(List<long[][]> matrices, DataStorageImp data) {
     MatrixImplementationSlow matrixCalc = new MatrixImplementationSlow();
-    //List<long[][]> generatedMatrices = new ArrayList<>();
 
     // Check if we need to generate any matrices
     if (data.getAmountToGenerate() != 0) {
@@ -28,24 +27,23 @@ public class ComputeEngineImp implements ComputeEngine {
 
   public ComputeEngineImp(DataStorageImp data) {
     MatrixImplementationSlow matrixCalc = new MatrixImplementationSlow();
-	    //List<long[][]> generatedMatrices = new ArrayList<>();
 
-	    // Check if we need to generate any matrices
-	    if (data.getAmountToGenerate() != 0) {
-	      // Generate the specified number of matrices
-	      for (int i = 0; i < data.getAmountToGenerate(); i++) {
-	        // Generate a matrix with the specified rows and columns
-	        long[][] matrix = matrixCalc.generateMatrix(
-	            data.getComputeE().getInputConfig().getRows(),
-	            data.getComputeE().getInputConfig().getColumns()
-	        );
+    // Check if we need to generate any matrices
+    if (data.getAmountToGenerate() != 0) {
+      // Generate the specified number of matrices
+      for (int i = 0; i < data.getAmountToGenerate(); i++) {
+        // Generate a matrix with the specified rows and columns
+        long[][] matrix = matrixCalc.generateMatrix(
+            data.getComputeE().getInputConfig().getRows(),
+            data.getComputeE().getInputConfig().getColumns()
+        );
 
-	        // Add the generated matrix to the ArrayList
-	        this.matrices.add(matrix);
-	      }
-	      data.setMatrices(matrices);
-	    }
-	  }
+        // Add the generated matrix to the ArrayList
+        this.matrices.add(matrix);
+      }
+      data.setMatrices(matrices);
+    }
+  }
 
   @Override
   public void finalizeAction(long[][] resultMatrix, String outputSource, String delimiter) {
@@ -63,7 +61,7 @@ public class ComputeEngineImp implements ComputeEngine {
   }
 
   public Object performComputation(Object any, Object any2) {
-	// TODO Auto-generated method stub
+    // TODO Auto-generated method stub
     return null;
   }
 }
