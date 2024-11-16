@@ -11,10 +11,10 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
 
   public ComputationCoordinatorImp() {}
 
-  public ComputeResult beginComputationSingle(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, int outputType, String outputFileName, int outputOrComp,int multiply) throws IOException {
+  public ComputeResult beginComputationSingleSlow(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, int outputType, String outputFileName, int outputOrComp) throws IOException {
     try {
       // Create a new ComputeRequest for this thread
-      ComputeRequest compute = new ComputeRequest(inputType, inputFileName, numberOfMatrices, rows, columns, outputType, outputFileName, outputOrComp, multiply);
+      ComputeRequest compute = new ComputeRequest(inputType, inputFileName, numberOfMatrices, rows, columns, outputType, outputFileName, outputOrComp);
       DataStorageImp dataStorage = new DataStorageImp(compute, outputOrComp);
       ComputeEngineImp computeEng = new ComputeEngineImp(dataStorage);
 
@@ -23,8 +23,20 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
     }
     return ComputeResult.SUCCESS;
   }
+  public ComputeResult beginComputationSingleFast(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, int outputType, String outputFileName, int outputOrComp) throws IOException {
+	    try {
+	      // Create a new ComputeRequest for this thread
+	      ComputeRequest compute = new ComputeRequest(inputType, inputFileName, numberOfMatrices, rows, columns, outputType, outputFileName, outputOrComp);
+	      DataStorageImpFaster dataStorageFast = new DataStorageImpFaster(compute, outputOrComp);
+//	      ComputeEngineImp computeEng = new ComputeEngineImp(dataStorage);
 
-  public ComputeResult beginComputationMulti(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, int outputType, int j, String outputFileName, int outputOrComp,int multiply) throws IOException {
+	    } catch (Exception e) {
+	      e.printStackTrace();
+	    }
+	    return ComputeResult.SUCCESS;
+	  }
+
+  public ComputeResult beginComputationMulti(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, int outputType, String outputFileName, int outputOrComp) throws IOException {
     // Submit fixed number of tasks to the thread pool
     for (int i = 0; i < THREAD_POOL_SIZE; i++) { // Create THREAD_POOL_SIZE threads
       final int threadIndex = i; // Capture the current index for use inside the lambda
@@ -35,7 +47,7 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
 
         try {
           // Create a new ComputeRequest for this thread
-          ComputeRequest compute = new ComputeRequest(inputType, inputFileName, numberOfMatrices, rows, columns, outputType, outputFileName, outputOrComp, multiply);
+          ComputeRequest compute = new ComputeRequest(inputType, inputFileName, numberOfMatrices, rows, columns, outputType, outputFileName, outputOrComp);
           DataStorageImp dataStorage = new DataStorageImp(compute, outputOrComp);
 
           // Generate the unique output file name for this thread
@@ -62,11 +74,9 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
                                  request.getInputConfig().getNumberOfMatrices(),
                                  request.getInputConfig().getRows(),
                                  request.getInputConfig().getColumns(),
-                                 request.getInputConfig().getMultiply(),
                                  request.getOutputConfig().getOutputTypeValue(),
                                  request.getOutputConfig().getOutputFileName(),
-                                 request.getOutputConfig().getOutputOrCompute(),
-                                 request.getInputConfig().getMultiply());
+                                 request.getOutputConfig().getOutputOrCompute());
   }
 
   // Helper method to generate a unique output file name

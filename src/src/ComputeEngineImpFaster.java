@@ -3,10 +3,10 @@ package src;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComputeEngineImp implements ComputeEngine {
+public class ComputeEngineImpFaster implements ComputeEngine {
   private List<long[][]> matrices = new ArrayList<>();
 
-  public ComputeEngineImp(List<long[][]> matrices, DataStorageImp data) {
+  public ComputeEngineImpFaster(List<long[][]> matrices, DataStorageImpFaster data) {
     MatrixImplementationSlow matrixCalc = new MatrixImplementationSlow();
     //List<long[][]> generatedMatrices = new ArrayList<>();
 
@@ -26,8 +26,8 @@ public class ComputeEngineImp implements ComputeEngine {
     }
   }
 
-  public ComputeEngineImp(DataStorageImp data) {
-    MatrixImplementationSlow matrixCalc = new MatrixImplementationSlow();
+  public ComputeEngineImpFaster(DataStorageImpFaster data) {
+    MatrixImplementationFast matrixCalc = new MatrixImplementationFast();
 	    //List<long[][]> generatedMatrices = new ArrayList<>();
 
 	    // Check if we need to generate any matrices

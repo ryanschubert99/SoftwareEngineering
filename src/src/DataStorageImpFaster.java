@@ -10,7 +10,7 @@ import java.util.List;
 import src.ComputeResult;
 import src.ComputeResult.ComputeResultStatus;
 
-public class DataStorageImp implements DataStorage{
+public class DataStorageImpFaster implements DataStorage{
 
   private ComputeRequest computeE;
   private String inputFileName;
@@ -23,7 +23,7 @@ public class DataStorageImp implements DataStorage{
   
  // public DataStorageImp() {}
 
-  public DataStorageImp(ComputeRequest compute, int outputOrComp) throws IOException {
+  public DataStorageImpFaster(ComputeRequest compute, int outputOrComp) throws IOException {
     this.computeE = compute;
     this.outputOrCompute = outputOrComp;
     this.inputFileName = computeE.getInputConfig().getInputFileName();
@@ -31,7 +31,7 @@ public class DataStorageImp implements DataStorage{
 
     if (compute.getInputConfig().getInputTypeValue() == 0) {
       this.amountToGenerate = compute.getInputConfig().getNumberOfMatrices();
-      ComputeEngineImp computeEng = new ComputeEngineImp(this);
+      ComputeEngineImpFaster computeEng = new ComputeEngineImpFaster(this);
 
       if (outputOrCompute == 1) {
         writeOutput(this.outputFileName, ";");
@@ -45,7 +45,7 @@ public class DataStorageImp implements DataStorage{
       if (outputOrCompute == 1) {
         writeOutput(this.outputFileName, ";");
       } else {
-        ComputeEngineImp computeEng = new ComputeEngineImp(this);
+        ComputeEngineImpFaster computeEng = new ComputeEngineImpFaster(this);
         this.matrices = computeEng.multiplyMatrix(matrices);
         writeOutput(this.outputFileName, ";");
       }

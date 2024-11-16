@@ -4,14 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class MatrixImplementation implements MatrixAPIInterface {
+public class MatrixImplementationSlow implements MatrixAPIInterface {
 
   public long[][] generateMatrix(int rows, int cols) {
     Random random = new Random();
     long[][] matrix = new long[rows][cols];
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
-        matrix[i][j] = random.nextInt(100);
+        matrix[i][j] = random.nextInt(9);
+        
+//        if(matrix[i][j] == 0) {
+//        	matrix[i][j] = 1;
+//        }
+        
       }
     }
     return matrix;

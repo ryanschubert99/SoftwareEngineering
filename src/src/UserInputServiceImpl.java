@@ -28,8 +28,7 @@ public class UserInputServiceImpl extends UserInputServiceImplBase {
           request.getColumns(),
           request.getOutputType(),
           request.getOutputFileName(),
-          request.getOutputOrCompute(),
-          request.getMultiply()
+          request.getOutputOrCompute()
       ));
       userinput.UserInput.ComputeResultStatus status;
       
