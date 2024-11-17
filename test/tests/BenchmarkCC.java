@@ -1,6 +1,7 @@
 package tests;
 
 import java.io.IOException;
+
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
@@ -10,7 +11,7 @@ import com.google.common.base.Stopwatch;
 
 import src.ComputationCoordinatorImp;
 
-public class Benchmark{
+public class BenchmarkCC{
 
   private static int NUM_RUNS = 1;
 
