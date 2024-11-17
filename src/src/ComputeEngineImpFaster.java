@@ -7,7 +7,7 @@ public class ComputeEngineImpFaster implements ComputeEngine {
   private List<long[][]> matrices = new ArrayList<>();
 
   public ComputeEngineImpFaster(List<long[][]> matrices, DataStorageImpFaster data) {
-    MatrixImplementationSlow matrixCalc = new MatrixImplementationSlow();
+	  MatrixImplementationFast matrixCalc = new MatrixImplementationFast();
     // Check if we need to generate any matrices
     if (data.getAmountToGenerate() != 0) {
       for (int i = 0; i < data.getAmountToGenerate(); i++) {
@@ -54,7 +54,7 @@ public class ComputeEngineImpFaster implements ComputeEngine {
   }
 
   public List<long[][]> multiplyMatrix(List<long[][]> matrices) {
-    MatrixImplementationSlow matrixCalc = new MatrixImplementationSlow();
+    MatrixImplementationFast matrixCalc = new MatrixImplementationFast();
     return matrixCalc.multiplyMatrices(matrices);
   }
 
