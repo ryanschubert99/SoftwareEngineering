@@ -31,7 +31,7 @@ public class ComputeEngineSmokeTest {
     when(dataStore.getMatrices()).thenReturn(new ArrayList<>());
 
     List<long[][]> matrices = new ArrayList<>();
-    computeEngine.multiplyMatrix(matrices);
+    computeEngine.multiplyMatrixFast(matrices);
 
     verify(dataStore).getAmountToGenerate();
     verify(dataStore).getMatrices();

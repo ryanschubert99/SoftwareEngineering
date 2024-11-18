@@ -8,7 +8,8 @@ import src.ComputeResult.ComputeResultStatus;
 public class ComputationCoordinatorImp implements ComputationCoordinator {
   private static final int THREAD_POOL_SIZE = 20; // Number of threads to use in the pool
   private final ExecutorService executorService = Executors.newFixedThreadPool(THREAD_POOL_SIZE);
-
+  private int benchmark = 0;
+  
   public ComputationCoordinatorImp() {
   }
 
@@ -17,7 +18,7 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
       // Create a new ComputeRequest for this thread
       ComputeRequest compute = new ComputeRequest(inputType, inputFileName, numberOfMatrices, rows, columns, outputType, outputFileName, outputOrComp);
       DataStorageImp dataStorage = new DataStorageImp(compute, outputOrComp);
-      ComputeEngineImp computeEng = new ComputeEngineImp(dataStorage);
+      //ComputeEngineImp computeEng = new ComputeEngineImp(dataStorage);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -27,8 +28,8 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
   public ComputeResult beginComputationSingleFast(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, int outputType, String outputFileName, int outputOrComp) throws IOException {
     try {
       // Create a new ComputeRequest for this thread
-      ComputeRequest compute = new ComputeRequest(inputType, inputFileName, numberOfMatrices, rows, columns, outputType, outputFileName, outputOrComp);
-      DataStorageImpFaster dataStorageFast = new DataStorageImpFaster(compute, outputOrComp);
+      ComputeRequest compute1 = new ComputeRequest(inputType, inputFileName, numberOfMatrices, rows, columns, outputType, outputFileName, outputOrComp);
+      DataStorageImp dataStorage = new DataStorageImp(compute1, outputOrComp, benchmark);
       // ComputeEngineImp computeEng = new ComputeEngineImp(dataStorage);
     } catch (Exception e) {
       e.printStackTrace();
@@ -55,7 +56,7 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
           ComputeEngineImp computeEng = new ComputeEngineImp(dataStorage);
 
           // Call the method to perform the computation with the unique output file name
-          computeEng.multiplyMatrix(dataStorage.getMatrices());
+          computeEng.multiplyMatrixFast(dataStorage.getMatrices());
           dataStorage.writeOutput(uniqueOutputFileName, ";"); // Write output to the unique file
         } catch (Exception e) {
           e.printStackTrace();

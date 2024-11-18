@@ -17,7 +17,7 @@ public class TestMatrixExceptionHandling {
 
 	// Expect an IllegalArgumentException due to incompatible dimensions
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-      matrixImplementationSlow.multiplyTwoMatrices(matrix1, matrix2);
+      matrixImplementationSlow.multiplyTwoMatricesFast(matrix1, matrix2);
     });
      // Verify the exception message
     Assertions.assertEquals("Matrix multiplication is not possible due to incompatible dimensions ", exception.getMessage());

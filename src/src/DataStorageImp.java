@@ -22,7 +22,7 @@ public class DataStorageImp implements DataStorage{
   private int outputOrCompute;
   
  // public DataStorageImp() {}
-
+  //MatrixAPIInterface matrixAPI
   public DataStorageImp(ComputeRequest compute, int outputOrComp) throws IOException {
     this.computeE = compute;
     this.outputOrCompute = outputOrComp;
@@ -36,7 +36,7 @@ public class DataStorageImp implements DataStorage{
       if (outputOrCompute == 1) {
         writeOutput(this.outputFileName, ";");
       } else {
-        this.matrices = computeEng.multiplyMatrix(matrices);
+        this.matrices = computeEng.multiplyMatrixSlow(matrices);
         writeOutput(this.outputFileName, ";");
       }
     } else {
@@ -46,7 +46,7 @@ public class DataStorageImp implements DataStorage{
         writeOutput(this.outputFileName, ";");
       } else {
         ComputeEngineImp computeEng = new ComputeEngineImp(this);
-        this.matrices = computeEng.multiplyMatrix(matrices);
+        this.matrices = computeEng.multiplyMatrixFast(matrices);
         writeOutput(this.outputFileName, ";");
       }
     }
@@ -54,6 +54,37 @@ public class DataStorageImp implements DataStorage{
     // Signal that computation succeeded
     signalComputationSuccess();
   }
+  public DataStorageImp(ComputeRequest compute, int outputOrComp,int benchmark) throws IOException {
+	    this.computeE = compute;
+	    this.outputOrCompute = outputOrComp;
+	    this.inputFileName = computeE.getInputConfig().getInputFileName();
+	    this.outputFileName = computeE.getOutputConfig().getOutputFileName();
+
+	    if (compute.getInputConfig().getInputTypeValue() == 0) {
+	      this.amountToGenerate = compute.getInputConfig().getNumberOfMatrices();
+	      ComputeEngineImp computeEng = new ComputeEngineImp(this);
+
+	      if (outputOrCompute == 1) {
+	        writeOutput(this.outputFileName, ";");
+	      } else {
+	        this.matrices = computeEng.multiplyMatrixFast(matrices);
+	        writeOutput(this.outputFileName, ";");
+	      }
+	    } else {
+	      this.matrices = readInputFile();
+	      
+	      if (outputOrCompute == 1) {
+	        writeOutput(this.outputFileName, ";");
+	      } else {
+	        ComputeEngineImp computeEng = new ComputeEngineImp(this);
+	        this.matrices = computeEng.multiplyMatrixFast(matrices);
+	        writeOutput(this.outputFileName, ";");
+	      }
+	    }
+
+	    // Signal that computation succeeded
+	    signalComputationSuccess();
+	  }
 
   private void signalComputationSuccess() {
     System.out.println("Computation completed successfully");

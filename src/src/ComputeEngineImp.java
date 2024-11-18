@@ -7,6 +7,7 @@ public class ComputeEngineImp implements ComputeEngine {
   private List<long[][]> matrices = new ArrayList<>();
 
   public ComputeEngineImp(List<long[][]> matrices, DataStorageImp data) {
+	  
     MatrixImplementationSlow matrixCalc = new MatrixImplementationSlow();
 
     // Check if we need to generate any matrices
@@ -24,7 +25,7 @@ public class ComputeEngineImp implements ComputeEngine {
       data.setMatrices(matrices);
     }
   }
-
+ //could add ,MatrixAPIInterface matrixAPI
   public ComputeEngineImp(DataStorageImp data) {
     MatrixImplementationSlow matrixCalc = new MatrixImplementationSlow();
 
@@ -55,10 +56,14 @@ public class ComputeEngineImp implements ComputeEngine {
     // TODO Auto-generated method stub
   }
 
-  public List<long[][]> multiplyMatrix(List<long[][]> matrices) {
+  public List<long[][]> multiplyMatrixSlow(List<long[][]> matrices) {
     MatrixImplementationSlow matrixCalc = new MatrixImplementationSlow();
-    return matrixCalc.multiplyMatrices(matrices);
+    return matrixCalc.multiplyMatricesSlow(matrices);
   }
+  public List<long[][]> multiplyMatrixFast(List<long[][]> matrices) {
+	    MatrixImplementationSlow matrixCalc = new MatrixImplementationSlow();
+	    return matrixCalc.multiplyMatricesFast(matrices);
+	  }
 
   public Object performComputation(Object any, Object any2) {
     // TODO Auto-generated method stub
