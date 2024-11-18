@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class MatrixImplementationSlow implements MatrixAPIInterface {
+public class MatrixImplementation implements MatrixAPIInterface {
 
   public long[][] generateMatrix(int rows, int cols) {
     Random random = new Random();
@@ -12,11 +12,9 @@ public class MatrixImplementationSlow implements MatrixAPIInterface {
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
         matrix[i][j] = random.nextInt(9);
-        
-//        if(matrix[i][j] == 0) {
-//        	matrix[i][j] = 1;
-//        }
-        
+        // if(matrix[i][j] == 0) {
+        //   matrix[i][j] = 1;
+        // }
       }
     }
     return matrix;
@@ -47,7 +45,7 @@ public class MatrixImplementationSlow implements MatrixAPIInterface {
     // Return the list containing the final resultant matrix
     return resultList;
   }
-  
+
   @Override
   public List<long[][]> multiplyMatricesFast(List<long[][]> generatedMatrices) {
     // Ensure that at least two matrices are provided for multiplication
@@ -98,28 +96,29 @@ public class MatrixImplementationSlow implements MatrixAPIInterface {
 
     return resultMatrix;
   }
+
   public long[][] multiplyTwoMatricesFast(long[][] matrix1, long[][] matrix2) {
-	    int rows1 = matrix1.length;
-	    int cols1 = matrix1[0].length;
-	    int cols2 = matrix2[0].length;
+    int rows1 = matrix1.length;
+    int cols1 = matrix1[0].length;
+    int cols2 = matrix2[0].length;
 
-	    if (cols1 != matrix2.length) {
-	      throw new IllegalArgumentException("Matrix multiplication is not possible due to incompatible dimensions.");
-	    }
+    if (cols1 != matrix2.length) {
+      throw new IllegalArgumentException("Matrix multiplication is not possible due to incompatible dimensions.");
+    }
 
-	    long[][] resultMatrix = new long[rows1][cols2];
+    long[][] resultMatrix = new long[rows1][cols2];
 
-	    // Optimize cache access: rearrange the loops
-	    for (int i = 0; i < rows1; i++) {
-	      for (int k = 0; k < cols1; k++) {
-	        long value = matrix1[i][k]; // cache the value for reuse
-	        for (int j = 0; j < cols2; j++) {
-	          resultMatrix[i][j] += value * matrix2[k][j];
-	        }
-	      }
-	    }
+    // Optimize cache access: rearrange the loops
+    for (int i = 0; i < rows1; i++) {
+      for (int k = 0; k < cols1; k++) {
+        long value = matrix1[i][k]; // cache the value for reuse
+        for (int j = 0; j < cols2; j++) {
+          resultMatrix[i][j] += value * matrix2[k][j];
+        }
+      }
+    }
 
-	    return resultMatrix;
+    return resultMatrix;
   }
 
   public void printMatrix(long[][] m, int rows, int cols) {
