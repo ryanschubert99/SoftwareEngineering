@@ -3,19 +3,18 @@ package src;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComputeEngineImp implements ComputeEngine {
+public class ComputeEngineImpFaster implements ComputeEngine {
   private List<long[][]> matrices = new ArrayList<>();
 
-  public ComputeEngineImp(List<long[][]> matrices, DataStorageImp data) {
-    MatrixImplementation matrixCalc = new MatrixImplementation();
-
+  public ComputeEngineImpFaster(List<long[][]> matrices, DataStorageImpFaster data) {
+    MatrixImplementationSlow matrixCalc = new MatrixImplementationSlow();
     // Check if we need to generate any matrices
     if (data.getAmountToGenerate() != 0) {
       for (int i = 0; i < data.getAmountToGenerate(); i++) {
         // Generate a matrix with the specified rows and columns
         long[][] matrix = matrixCalc.generateMatrix(
-          data.getComputeE().getInputConfig().getRows(),
-          data.getComputeE().getInputConfig().getColumns()
+            data.getComputeE().getInputConfig().getRows(),
+            data.getComputeE().getInputConfig().getColumns()
         );
 
         // Add the generated matrix to the ArrayList
@@ -25,17 +24,16 @@ public class ComputeEngineImp implements ComputeEngine {
     }
   }
 
-  public ComputeEngineImp(DataStorageImp data) {
-    MatrixImplementation matrixCalc = new MatrixImplementation();
-
+  public ComputeEngineImpFaster(DataStorageImpFaster data) {
+    MatrixImplementationFast matrixCalc = new MatrixImplementationFast();
     // Check if we need to generate any matrices
     if (data.getAmountToGenerate() != 0) {
       // Generate the specified number of matrices
       for (int i = 0; i < data.getAmountToGenerate(); i++) {
         // Generate a matrix with the specified rows and columns
         long[][] matrix = matrixCalc.generateMatrix(
-          data.getComputeE().getInputConfig().getRows(),
-          data.getComputeE().getInputConfig().getColumns()
+            data.getComputeE().getInputConfig().getRows(),
+            data.getComputeE().getInputConfig().getColumns()
         );
 
         // Add the generated matrix to the ArrayList
@@ -55,14 +53,9 @@ public class ComputeEngineImp implements ComputeEngine {
     // TODO Auto-generated method stub
   }
 
-  public List<long[][]> multiplyMatrixSlow(List<long[][]> matrices) {
-    MatrixImplementation matrixCalc = new MatrixImplementation();
-    return matrixCalc.multiplyMatricesSlow(matrices);
-  }
-
-  public List<long[][]> multiplyMatrixFast(List<long[][]> matrices) {
-    MatrixImplementation matrixCalc = new MatrixImplementation();
-    return matrixCalc.multiplyMatricesFast(matrices);
+  public List<long[][]> multiplyMatrix(List<long[][]> matrices) {
+    MatrixImplementationSlow matrixCalc = new MatrixImplementationSlow();
+    return matrixCalc.multiplyMatrices(matrices);
   }
 
   public Object performComputation(Object any, Object any2) {

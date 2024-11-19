@@ -34,7 +34,7 @@ public class DataStorageTestOnly implements DataStorage{
 
 
   @Override
-  public List<int[][]> readInputFile() throws IOException {
+  public List<long[][]> readInputFile() throws IOException {
 	// TODO Auto-generated method stub
     return null;
   }

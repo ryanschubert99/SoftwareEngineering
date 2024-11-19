@@ -9,9 +9,9 @@ public class InputConfigImplementation implements InputConfig {
   private String inputFileName;
   private int numberOfMatrices;
   private int rows;
-  private int multiply;
   private int columns;
   private boolean valid = false;
+  private int multiply = 0;
 
   public InputConfigImplementation(int inputType, String inputFileName, int numberOfMatrices,int rows, int columns) {
     this.inputType = inputType;
@@ -19,6 +19,7 @@ public class InputConfigImplementation implements InputConfig {
     this.numberOfMatrices = numberOfMatrices;
     this.rows = rows;
     this.columns = columns;
+
   }
 
   public String getInputFileName() {
@@ -350,20 +351,6 @@ public class InputConfigImplementation implements InputConfig {
 
       this.valid = false; // Reset flag for next input
 
-      // Multiply Matrices (Yes or No)
-      while (!this.valid) {
-        try {
-          if (multiply != 0 && multiply != 1) {
-            throw new InputMismatchException("Invalid Input: Please enter 0 or 1.");
-          }
-          this.multiply = multiply;
-          this.valid = true;
-        } catch (InputMismatchException e) {
-          System.out.println(e.getMessage());
-        } catch (Exception e) {
-          System.out.println("Invalid Input.");
-        }
-      }
     }
   }
 
@@ -380,11 +367,4 @@ public class InputConfigImplementation implements InputConfig {
     return this.inputType;
   }
 
-  public int getMultiply() {
-    return multiply;
-  }
-
-  public void setMultiply(int multiply) {
-    this.multiply = multiply;
-  }
 }

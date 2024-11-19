@@ -7,7 +7,7 @@ public interface DataStorage{
   
   public void writeOutput(String outputFileName, String delimiter);
 
-  List<int[][]> readInputFile() throws IOException;
+  List<long[][]> readInputFile() throws IOException;
 
 
 }

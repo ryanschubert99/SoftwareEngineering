@@ -16,6 +16,5 @@ public class InputConfigExceptionTest {
     assertTrue(inputConfig.getInputTypeValue() == 1 || inputConfig.getInputTypeValue() == 0);
     assertTrue(inputConfig.getRows() > 0);
     assertTrue(inputConfig.getColumns() > 0);
-    assertTrue(inputConfig.getMultiply() == 1 || inputConfig.getMultiply() == 0);
   }
 }

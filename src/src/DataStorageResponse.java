@@ -16,7 +16,7 @@ public interface DataStorageResponse {
     }
 
     @Override
-    public List<int[][]> getMatrix() {
+    public List<long[][]> getMatrix() {
       return new ArrayList<>();
     }
   };
@@ -24,7 +24,7 @@ public interface DataStorageResponse {
   // List[2D array list] 
   ResponseStatus getStatus();
   String getFailureMessage();
-  List<int[][]> getMatrix();
+  List<long[][]> getMatrix();
 
   public static enum ResponseStatus {
     SUCCESS(true),

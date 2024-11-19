@@ -8,9 +8,9 @@ public class DataStorageResponseImpl implements DataStorageResponse {
 
   private final ResponseStatus status;
   private String failureMessage;
-  private List<int[][]> matrix;
+  private List<long[][]> matrix;
 
-  public DataStorageResponseImpl(ResponseStatus status, String failureMessage, List<int[][]> matrix) {
+  public DataStorageResponseImpl(ResponseStatus status, String failureMessage, List<long[][]> matrix) {
     this.status = status;
     this.failureMessage = failureMessage;
     this.matrix = matrix;
@@ -27,7 +27,7 @@ public class DataStorageResponseImpl implements DataStorageResponse {
   }
 
   @Override
-  public List<int[][]> getMatrix() {
+  public List<long[][]> getMatrix() {
     return matrix;
   }
 

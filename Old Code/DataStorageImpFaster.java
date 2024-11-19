@@ -10,7 +10,7 @@ import java.util.List;
 import src.ComputeResult;
 import src.ComputeResult.ComputeResultStatus;
 
-public class DataStorageImp implements DataStorage {
+public class DataStorageImpFaster implements DataStorage{
 
   private ComputeRequest computeE;
   private String inputFileName;
@@ -20,8 +20,10 @@ public class DataStorageImp implements DataStorage {
   private boolean valid = false;
   private int input;
   private int outputOrCompute;
+  
+ // public DataStorageImp() {}
 
-  public DataStorageImp(ComputeRequest compute, int outputOrComp) throws IOException {
+  public DataStorageImpFaster(ComputeRequest compute, int outputOrComp) throws IOException {
     this.computeE = compute;
     this.outputOrCompute = outputOrComp;
     this.inputFileName = computeE.getInputConfig().getInputFileName();
@@ -29,54 +31,22 @@ public class DataStorageImp implements DataStorage {
 
     if (compute.getInputConfig().getInputTypeValue() == 0) {
       this.amountToGenerate = compute.getInputConfig().getNumberOfMatrices();
-      ComputeEngineImp computeEng = new ComputeEngineImp(this);
+      ComputeEngineImpFaster computeEng = new ComputeEngineImpFaster(this);
 
       if (outputOrCompute == 1) {
         writeOutput(this.outputFileName, ";");
       } else {
-        this.matrices = computeEng.multiplyMatrixSlow(matrices);
+        this.matrices = computeEng.multiplyMatrix(matrices);
         writeOutput(this.outputFileName, ";");
       }
     } else {
       this.matrices = readInputFile();
-
+      
       if (outputOrCompute == 1) {
         writeOutput(this.outputFileName, ";");
       } else {
-        ComputeEngineImp computeEng = new ComputeEngineImp(this);
-        this.matrices = computeEng.multiplyMatrixFast(matrices);
-        writeOutput(this.outputFileName, ";");
-      }
-    }
-
-    // Signal that computation succeeded
-    signalComputationSuccess();
-  }
-
-  public DataStorageImp(ComputeRequest compute, int outputOrComp, int benchmark) throws IOException {
-    this.computeE = compute;
-    this.outputOrCompute = outputOrComp;
-    this.inputFileName = computeE.getInputConfig().getInputFileName();
-    this.outputFileName = computeE.getOutputConfig().getOutputFileName();
-
-    if (compute.getInputConfig().getInputTypeValue() == 0) {
-      this.amountToGenerate = compute.getInputConfig().getNumberOfMatrices();
-      ComputeEngineImp computeEng = new ComputeEngineImp(this);
-
-      if (outputOrCompute == 1) {
-        writeOutput(this.outputFileName, ";");
-      } else {
-        this.matrices = computeEng.multiplyMatrixFast(matrices);
-        writeOutput(this.outputFileName, ";");
-      }
-    } else {
-      this.matrices = readInputFile();
-
-      if (outputOrCompute == 1) {
-        writeOutput(this.outputFileName, ";");
-      } else {
-        ComputeEngineImp computeEng = new ComputeEngineImp(this);
-        this.matrices = computeEng.multiplyMatrixFast(matrices);
+        ComputeEngineImpFaster computeEng = new ComputeEngineImpFaster(this);
+        this.matrices = computeEng.multiplyMatrix(matrices);
         writeOutput(this.outputFileName, ";");
       }
     }
@@ -100,14 +70,14 @@ public class DataStorageImp implements DataStorage {
   @Override
   public void writeOutput(String outputFileName, String delimiter) {
     int outputTypeValue = computeE.getOutputConfig().getOutputTypeValue();
-
+// add return type of other enum 
     if ((outputTypeValue == 1) && (this.outputFileName == null)) {
       throw new IllegalArgumentException("Output file name cannot be null");
     }
 
     if (outputTypeValue == 0) {
       System.out.println("Outputting matrices to console:");
-      for (long[][] matrix : matrices) {
+      for (long[][] matrix : matrices) {// this is null 
         printMatrixToConsole(matrix, delimiter);
       }
     } else if (outputTypeValue == 1) {
@@ -146,6 +116,8 @@ public class DataStorageImp implements DataStorage {
   }
 
   @Override
+  //std::pair<Value, error_code>
+  // either return to throw the result or an error code 
   public List<long[][]> readInputFile() throws IOException {
     String[] splitLine = null;
     int rows = computeE.getInputConfig().getRows(); // Get predefined number of rows
