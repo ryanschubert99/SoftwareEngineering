@@ -1,9 +1,11 @@
 package src;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import src.ComputeResult.ComputeResultStatus;
+import java.util.concurrent.Future;
 
 public class ComputationCoordinatorImp implements ComputationCoordinator {
   private static final int THREAD_POOL_SIZE = 20; // Number of threads to use in the pool
@@ -39,10 +41,11 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
 
   public ComputeResult beginComputationMulti(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, int outputType, String outputFileName, int outputOrComp) throws IOException {
     // Submit fixed number of tasks to the thread pool
+	List<Future<?>> futures = new ArrayList<>();
     for (int i = 0; i < THREAD_POOL_SIZE; i++) { // Create THREAD_POOL_SIZE threads
       final int threadIndex = i; // Capture the current index for use inside the lambda
 
-      executorService.submit(() -> {
+      Future<?> future = executorService.submit(() -> {
         String threadName = Thread.currentThread().getName();
         System.out.println("Executing computation on thread: " + threadName);
 
@@ -62,8 +65,15 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
           e.printStackTrace();
         }
       });
+      futures.add(future);
     }
-
+    for (Future<?> future : futures) {
+        try {
+            future.get(); // Wait for the task to complete
+        } catch (Exception e) {
+            e.printStackTrace(); // Handle exceptions appropriately
+        }
+    }
     return ComputeResult.SUCCESS; // Return immediately; actual computations will run in the background
   }
 
@@ -96,4 +106,6 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
   public void shutdown() {
     executorService.shutdown();
   }
+  
+  
 }
