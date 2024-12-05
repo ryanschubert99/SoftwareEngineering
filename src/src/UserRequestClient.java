@@ -135,6 +135,25 @@ public class UserRequestClient {
           scanner.nextLine();
         }
       }
+      
+      //  Set Delimiter
+      valid = false;
+      while (!valid) { 
+        try {
+          System.out.println("Enter the delimiter you want");
+          String delimiter = scanner.next();
+          request.setDelimiter(delimiter);
+          if (delimiter.length() > 1 || delimiter.matches("[^a-zA-Z0-9]")) {
+            throw new InputMismatchException("Cannot be alphanumeric, must only be one character");
+          }
+          request.setDelimiter(delimiter);
+          valid = true;
+        } catch (InputMismatchException e) {
+          System.out.println("Invalid Input: " + e.getMessage());
+          scanner.nextLine();
+        }
+      }
+
 
       // Scanner 6: Multiply the Matrices (Yes or No)
       valid = false;

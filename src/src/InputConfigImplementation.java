@@ -12,13 +12,15 @@ public class InputConfigImplementation implements InputConfig {
   private int columns;
   private boolean valid = false;
   private int multiply = 0;
+  private String delimiter;
 
-  public InputConfigImplementation(int inputType, String inputFileName, int numberOfMatrices,int rows, int columns) {
+  public InputConfigImplementation(int inputType, String inputFileName, int numberOfMatrices,int rows, int columns,String delimiter) {
     this.inputType = inputType;
     this.inputFileName = inputFileName;
     this.numberOfMatrices = numberOfMatrices;
     this.rows = rows;
     this.columns = columns;
+    this.delimiter=delimiter;
 
   }
 
@@ -57,6 +59,14 @@ public class InputConfigImplementation implements InputConfig {
   @Override
   public void setInputType(int input) {
     this.inputType = input;
+  }
+ 
+  public String getDelimter(String delimiter) {
+	  return this.delimiter;
+  }
+  
+  public void setDelimiter() {
+	  this.delimiter=delimiter;
   }
 
   public void setUserInputType() {
