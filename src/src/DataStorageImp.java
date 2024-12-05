@@ -20,32 +20,34 @@ public class DataStorageImp implements DataStorage {
   private boolean valid = false;
   private int input;
   private int outputOrCompute;
+  private String delimiter;
 
   public DataStorageImp(ComputeRequest compute, int outputOrComp) throws IOException {
     this.computeE = compute;
     this.outputOrCompute = outputOrComp;
     this.inputFileName = computeE.getInputConfig().getInputFileName();
     this.outputFileName = computeE.getOutputConfig().getOutputFileName();
+    this.delimiter = computeE.getInputConfig().getDelimiter();
 
     if (compute.getInputConfig().getInputTypeValue() == 0) {
       this.amountToGenerate = compute.getInputConfig().getNumberOfMatrices();
       ComputeEngineImp computeEng = new ComputeEngineImp(this);
 
       if (outputOrCompute == 1) {
-        writeOutput(this.outputFileName, ";");
+        writeOutput(this.outputFileName, delimiter);
       } else {
         this.matrices = computeEng.multiplyMatrixSlow(matrices);
-        writeOutput(this.outputFileName, ";");
+        writeOutput(this.outputFileName, delimiter);
       }
     } else {
       this.matrices = readInputFile();
 
       if (outputOrCompute == 1) {
-        writeOutput(this.outputFileName, ";");
+        writeOutput(this.outputFileName, delimiter);
       } else {
         ComputeEngineImp computeEng = new ComputeEngineImp(this);
         this.matrices = computeEng.multiplyMatrixFast(matrices);
-        writeOutput(this.outputFileName, ";");
+        writeOutput(this.outputFileName, delimiter);
       }
     }
 
@@ -64,20 +66,20 @@ public class DataStorageImp implements DataStorage {
       ComputeEngineImp computeEng = new ComputeEngineImp(this);
 
       if (outputOrCompute == 1) {
-        writeOutput(this.outputFileName, ";");
+        writeOutput(this.outputFileName, delimiter);
       } else {
         this.matrices = computeEng.multiplyMatrixFast(matrices);
-        writeOutput(this.outputFileName, ";");
+        writeOutput(this.outputFileName, delimiter);
       }
     } else {
       this.matrices = readInputFile();
 
       if (outputOrCompute == 1) {
-        writeOutput(this.outputFileName, ";");
+        writeOutput(this.outputFileName, delimiter);
       } else {
         ComputeEngineImp computeEng = new ComputeEngineImp(this);
         this.matrices = computeEng.multiplyMatrixFast(matrices);
-        writeOutput(this.outputFileName, ";");
+        writeOutput(this.outputFileName, delimiter);
       }
     }
 
@@ -208,4 +210,13 @@ public class DataStorageImp implements DataStorage {
   public void setAmountToGenerate(int amountToGenerate) {
     this.amountToGenerate = amountToGenerate;
   }
+  
+  public void setDelimiter( String delimiter) {
+	    this.delimiter = delimiter;
+	  }
+
+  public String getDelimter() {
+	   return delimiter;
+	  }
+  
 }
