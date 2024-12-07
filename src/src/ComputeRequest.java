@@ -13,8 +13,8 @@ public class ComputeRequest {
 
 	
 //  public ComputeRequest(InputConfigImplementation inputConfig, OutputConfigImplementation  outputConfig) {
-//    this(inputConfig, outputConfig,delimiter); // default delimiter: ;
-//  }
+//	  this(inputConfig, outputConfig,delimiter); // default delimiter: ;
+//  } }
 	
   public ComputeRequest(InputConfigImplementation inputConfig, OutputConfigImplementation  outputConfig, String delimiter) {
     inputConfig.setUserInputType();
@@ -45,6 +45,11 @@ public class ComputeRequest {
   public OutputConfigImplementation getOutputConfig() {
     return outputConfig;
   }
+
+public Object getDelimiter() {
+	// TODO Auto-generated method stub
+	return null;
+}
 
 
 
