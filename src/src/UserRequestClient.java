@@ -134,22 +134,29 @@ public class UserRequestClient {
           System.out.println("Invalid Input: " + e.getMessage());
           scanner.nextLine();
         }
+        finally {
+          scanner.nextLine(); // Clear the buffer after nextInt()
+      }
+     
       }
       
       //  Set Delimiter
       valid = false;
       while (!valid) { 
         try {
-          System.out.println("Enter the delimiter you want");
-          String delimiter = scanner.next();
+          System.out.println("Enter the delimiter you want. Press enter to use defult delimiter.");
+          String delimiter = scanner.nextLine();
           request.setDelimiter(delimiter);
-          if (delimiter.length() > 1 && !delimiter.matches("[^a-zA-Z0-9]")) {
-            throw new InputMismatchException("Cannot be alphanumeric, must only be one character");
+          if(delimiter.toLowerCase().equals("defult") || delimiter.isEmpty() || delimiter.equals(" ")) {
+        	  delimiter=";";
+          }
+          else if (!delimiter.matches("[^a-zA-Z0-9]")  && (delimiter.length()>1)) {
+            throw new InputMismatchException("Delimiter must be a single non-alphanumeric character.");
           }
           request.setDelimiter(delimiter);
           valid = true;
         } catch (InputMismatchException e) {
-          System.out.println("Invalid Input: " + e.getMessage());
+          System.out.println("Invalid Input:" + e.getMessage());
           scanner.nextLine();
         }
       }
