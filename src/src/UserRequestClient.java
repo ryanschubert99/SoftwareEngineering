@@ -147,7 +147,7 @@ public class UserRequestClient {
           System.out.println("Enter the delimiter you want. Press enter to use defult delimiter.");
           String delimiter = scanner.nextLine();
           request.setDelimiter(delimiter);
-          if(delimiter.toLowerCase().equals("defult") || delimiter.isEmpty() || delimiter.equals(" ")) {
+          if(delimiter.toLowerCase().equals("default") || delimiter.isEmpty() || delimiter.equals(" ")) {
         	  delimiter=";";
           }
           else if (!delimiter.matches("[^a-zA-Z0-9]")  && (delimiter.length()>1)) {
