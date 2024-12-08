@@ -17,7 +17,7 @@ public class TestMatrix {
   //@Rule 
   public MockitoRule rule = MockitoJUnit.rule();
 
- // @Test
+  //@Test
   public void testMatrixImplementation() {
     MatrixImplementation matrixImplementation = new MatrixImplementation();
 

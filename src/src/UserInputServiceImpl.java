@@ -26,6 +26,7 @@ public class UserInputServiceImpl extends UserInputServiceImplBase {
           request.getNumberOfMatrices(),
           request.getRows(),
           request.getColumns(),
+          request.getDelimiter(),
           request.getOutputType(),
           request.getOutputFileName(),
           request.getOutputOrCompute()

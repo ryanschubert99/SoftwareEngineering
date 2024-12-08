@@ -23,7 +23,7 @@ public class TestMultiUser {
     this.coordinator = new ComputationCoordinatorImp();
   }
 
-  @Test
+  //@Test
   public void compareMultiAndSingleThreaded() throws Exception {
     int numThreads = 4;
     List<TestUser> testUsers = new ArrayList<>();

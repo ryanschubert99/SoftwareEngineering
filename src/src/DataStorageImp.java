@@ -7,9 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import src.ComputeResult;
-import src.ComputeResult.ComputeResultStatus;
-
 public class DataStorageImp implements DataStorage {
 
   private ComputeRequest computeE;
@@ -20,32 +17,34 @@ public class DataStorageImp implements DataStorage {
   private boolean valid = false;
   private int input;
   private int outputOrCompute;
+  private String delimiter;
 
   public DataStorageImp(ComputeRequest compute, int outputOrComp) throws IOException {
     this.computeE = compute;
     this.outputOrCompute = outputOrComp;
     this.inputFileName = computeE.getInputConfig().getInputFileName();
     this.outputFileName = computeE.getOutputConfig().getOutputFileName();
+    this.delimiter = computeE.getInputConfig().getDelimiter();
 
     if (compute.getInputConfig().getInputTypeValue() == 0) {
       this.amountToGenerate = compute.getInputConfig().getNumberOfMatrices();
       ComputeEngineImp computeEng = new ComputeEngineImp(this);
 
       if (outputOrCompute == 1) {
-        writeOutput(this.outputFileName, ";");
+        writeOutput(this.outputFileName, delimiter);
       } else {
         this.matrices = computeEng.multiplyMatrixSlow(matrices);
-        writeOutput(this.outputFileName, ";");
+        writeOutput(this.outputFileName, delimiter);
       }
     } else {
       this.matrices = readInputFile();
 
       if (outputOrCompute == 1) {
-        writeOutput(this.outputFileName, ";");
+        writeOutput(this.outputFileName, delimiter);
       } else {
         ComputeEngineImp computeEng = new ComputeEngineImp(this);
         this.matrices = computeEng.multiplyMatrixFast(matrices);
-        writeOutput(this.outputFileName, ";");
+        writeOutput(this.outputFileName, delimiter);
       }
     }
 
@@ -64,20 +63,20 @@ public class DataStorageImp implements DataStorage {
       ComputeEngineImp computeEng = new ComputeEngineImp(this);
 
       if (outputOrCompute == 1) {
-        writeOutput(this.outputFileName, ";");
+        writeOutput(this.outputFileName, delimiter);
       } else {
         this.matrices = computeEng.multiplyMatrixFast(matrices);
-        writeOutput(this.outputFileName, ";");
+        writeOutput(this.outputFileName, delimiter);
       }
     } else {
       this.matrices = readInputFile();
 
       if (outputOrCompute == 1) {
-        writeOutput(this.outputFileName, ";");
+        writeOutput(this.outputFileName, delimiter);
       } else {
         ComputeEngineImp computeEng = new ComputeEngineImp(this);
         this.matrices = computeEng.multiplyMatrixFast(matrices);
-        writeOutput(this.outputFileName, ";");
+        writeOutput(this.outputFileName, delimiter);
       }
     }
 
@@ -144,8 +143,7 @@ public class DataStorageImp implements DataStorage {
     }
     fileWriter.write("\n"); // Blank line between matrices
   }
-
-  @Override
+//PAGING METHOD
   public List<long[][]> readInputFile() throws IOException {
     String[] splitLine = null;
     int rows = computeE.getInputConfig().getRows(); // Get predefined number of rows
@@ -154,16 +152,20 @@ public class DataStorageImp implements DataStorage {
     List<long[][]> matrices = new ArrayList<>(); // List to store the matrices
     try (BufferedReader br = new BufferedReader(new FileReader(inputFileName))) {
       String line;
+      boolean endOfFile = false;
+      int pageSize = 10; // Default page size for reading
 
-      while (true) {
+      while (!endOfFile) {
         long[][] matrix = new long[rows][columns];
         int currentRow = 0;
 
-        while (currentRow < rows) {
+        // Read up to pageSize rows
+        while (currentRow < pageSize && !endOfFile) {
           line = br.readLine(); // Read a new line
 
           if (line == null) {
-            return matrices; // If we filled the matrix, return the list
+            endOfFile = true;
+            break;
           }
 
           if (line.trim().isEmpty()) {
@@ -188,10 +190,16 @@ public class DataStorageImp implements DataStorage {
           currentRow++; // Increment to the next row after reading
         }
 
-        matrices.add(matrix);
+        if (currentRow > 0) {
+          matrices.add(matrix);
+        }
       }
     }
+
+    return matrices;
   }
+
+
 
   public ComputeRequest getComputeE() {
     return computeE;
@@ -208,4 +216,13 @@ public class DataStorageImp implements DataStorage {
   public void setAmountToGenerate(int amountToGenerate) {
     this.amountToGenerate = amountToGenerate;
   }
+  
+  public void setDelimiter( String delimiter) {
+    this.delimiter = delimiter;
+  }
+
+  public String getDelimter() {
+    return delimiter;
+  }
+  
 }
