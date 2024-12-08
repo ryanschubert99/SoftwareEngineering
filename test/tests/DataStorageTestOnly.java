@@ -1,7 +1,9 @@
 package tests;
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 import src.DataStorage;
 public class DataStorageTestOnly implements DataStorage{
@@ -9,12 +11,13 @@ public class DataStorageTestOnly implements DataStorage{
   private InputConfigTest inputConfig;
   private OutputConfigTest outputConfig;
   private ArrayList<int[][]> arrays;
+  
 
   public DataStorageTestOnly(InputConfigTest inputConfig, OutputConfigTest outputConfig) {
     this.inputConfig = inputConfig;
     this.outputConfig = outputConfig;
   }
-
+  
   public DataStorageTestOnly() {
     this.inputConfig = inputConfig;
     this.outputConfig = outputConfig;

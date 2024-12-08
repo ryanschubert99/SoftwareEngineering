@@ -12,9 +12,11 @@ message UserInputRequest{
 	optional int32 numberOfMatrices=3;
 	optional int32 rows=4;
 	optional int32 columns=5;
+	optional string delimiter=14;
 	optional int32 outputType=6;
 	optional string outputFileName=7;
 	optional int32 outputOrCompute=8;
+	
 	
 }
 

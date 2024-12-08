@@ -43,6 +43,7 @@ public class ComputationCoordinatorSmokeTest {
     String outputFileName = "output.txt";
     int outputOrComp = 1; // 1 for output, 0 for computation
     int multiply = 1;
+    String delimiter= ";";
 
     return new ComputeRequest(
       inputType, 
@@ -50,6 +51,7 @@ public class ComputationCoordinatorSmokeTest {
       numberOfMatrices, 
       rows, 
       columns, 
+      delimiter, 
       outputFileType, 
       outputFileName, 
       outputOrComp

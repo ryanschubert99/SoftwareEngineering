@@ -19,13 +19,13 @@ public class ComputeRequestTest {
 
 
   public void setUp() {
-    inputConfig = new InputConfigImplementation(0, null, 0, 0, 0);
+    inputConfig = new InputConfigImplementation(0, null, 0, 0, 0, ";");
     outputConfig = new OutputConfigImplementation(0, null, 0);
   }
   //@Test
   public void testDefaultConstructor() {
 
-    ComputeRequest request = new ComputeRequest(inputConfig, outputConfig);
+    ComputeRequest request = new ComputeRequest(inputConfig, outputConfig,";");
 
     assertNotNull("InputConfig should not be null", request.getInputConfig());
     assertNotNull("OutputConfig should not be null", request.getOutputConfig());
@@ -34,7 +34,7 @@ public class ComputeRequestTest {
 
   //@Test
   public void testParameterizedConstructorWithDefaultDelimiter() {
-    ComputeRequest request = new ComputeRequest(inputConfig, outputConfig);
+    ComputeRequest request = new ComputeRequest(inputConfig, outputConfig, ";");
 
     assertEquals("InputConfig should match the one passed", inputConfig, request.getInputConfig());
     assertEquals("OutputConfig should match the one passed", outputConfig, request.getOutputConfig());
@@ -46,7 +46,7 @@ public class ComputeRequestTest {
 	  
     char customDelimiter = ',';
 
-    ComputeRequest request = new ComputeRequest(inputConfig, outputConfig, customDelimiter);
+    ComputeRequest request = new ComputeRequest(inputConfig, outputConfig, ";");
 
     assertEquals("InputConfig should match the one passed", inputConfig, request.getInputConfig());
     assertEquals("OutputConfig should match the one passed", outputConfig, request.getOutputConfig());
@@ -56,7 +56,7 @@ public class ComputeRequestTest {
   //@Test
   public void testInputConfigAndOutputConfigSetCorrectly() {
 	  
-    ComputeRequest request = new ComputeRequest(inputConfig, outputConfig);
+    ComputeRequest request = new ComputeRequest(inputConfig, outputConfig,";");
 
     InputConfigImplementation resultInputConfig = request.getInputConfig();
     OutputConfigImplementation resultOutputConfig = request.getOutputConfig();
