@@ -133,8 +133,32 @@ public class UserRequestClient {
         } catch (InputMismatchException e) {
           System.out.println("Invalid Input: " + e.getMessage());
           scanner.nextLine();
+        } finally {
+          scanner.nextLine(); // Clear the buffer after nextInt()
+        }
+     
+      }
+      
+      //  Set Delimiter
+      valid = false;
+      while (!valid) { 
+        try {
+          System.out.println("Enter the delimiter you want. Press enter to use defult delimiter.");
+          String delimiter = scanner.nextLine();
+          request.setDelimiter(delimiter);
+          if(delimiter.toLowerCase().equals("default") || delimiter.isEmpty() || delimiter.equals(" ")) {
+            delimiter=";";
+          } else if (!delimiter.matches("[^a-zA-Z0-9]")  && (delimiter.length()>1)) {
+            throw new InputMismatchException("Delimiter must be a single non-alphanumeric character.");
+          }
+          request.setDelimiter(delimiter);
+          valid = true;
+        } catch (InputMismatchException e) {
+          System.out.println("Invalid Input:" + e.getMessage());
+          scanner.nextLine();
         }
       }
+
 
       // Scanner 6: Multiply the Matrices (Yes or No)
       valid = false;

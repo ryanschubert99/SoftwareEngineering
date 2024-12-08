@@ -30,6 +30,7 @@ public class ComputeEngineIntegrationTest {
     String outputFileName = "output.txt";
     int outputOrComp = 1; // 1 for output, 0 for computation
     int multiply =1;
+    String delimiter= ";";
 
     return new ComputeRequest(
         inputType, 
@@ -37,6 +38,7 @@ public class ComputeEngineIntegrationTest {
         numberOfMatrices, 
         rows, 
         columns, 
+        delimiter,
         outputFileType, 
         outputFileName, 
         outputOrComp

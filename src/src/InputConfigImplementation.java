@@ -10,15 +10,19 @@ public class InputConfigImplementation implements InputConfig {
   private int numberOfMatrices;
   private int rows;
   private int columns;
+  private String delimiter;
   private boolean valid = false;
   private int multiply = 0;
+  
 
-  public InputConfigImplementation(int inputType, String inputFileName, int numberOfMatrices,int rows, int columns) {
+
+  public InputConfigImplementation(int inputType, String inputFileName, int numberOfMatrices,int rows, int columns,String delimiter) {
     this.inputType = inputType;
     this.inputFileName = inputFileName;
     this.numberOfMatrices = numberOfMatrices;
     this.rows = rows;
     this.columns = columns;
+    this.delimiter=delimiter;
 
   }
 
@@ -54,10 +58,19 @@ public class InputConfigImplementation implements InputConfig {
     this.columns = columns;
   }
 
+  public String getDelimiter() {
+    return this.delimiter;
+  }
+  
+  public void setDelimiter(String delimiter) {
+    this.delimiter=delimiter;
+  }
   @Override
   public void setInputType(int input) {
     this.inputType = input;
   }
+ 
+ 
 
   public void setUserInputType() {
     Scanner scanner = new Scanner(System.in);

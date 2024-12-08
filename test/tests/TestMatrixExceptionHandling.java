@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import src.MatrixImplementation;
 
 public class TestMatrixExceptionHandling {
- // @Test
+  //@Test
   public void testMultiplyMatrices_ThrowsExceptionForIncompatibleDimensions() {
     MatrixImplementation matrixImplementation = new MatrixImplementation();
     

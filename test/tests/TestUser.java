@@ -17,7 +17,7 @@ public class TestUser {
   public void run(String outputPath) throws Exception {
     // Correct the path to match where your CSV file is located
     String configPath = "test" + File.separatorChar + "tests" + File.separatorChar + "testInputFile.csv"; // Updated path
-    char delimiter = ';';
+    String delimiter = ";" ;
 
     // Read configuration values from the CSV file
     try (BufferedReader br = new BufferedReader(new FileReader(configPath))) {
@@ -48,7 +48,8 @@ public class TestUser {
         System.out.println("Out or Compute: " + outOrCompute);
 
         // Call the computation method with parsed values
-        coordinator.beginComputationSingleSlow(inputType, inputFile, numGenerate, numRows, numCols, outputType, outputPath, outOrCompute);
+        coordinator.beginComputationSingleSlow(inputType, inputFile, numGenerate, numRows, numCols, delimiter, outputType, outputPath, outOrCompute);
+        //int inputType, String inputFileName, int numberOfMatrices, int rows, int columns,String delimiter, int outputType, String outputFileName, int outputOrComp
       }
     } catch (IOException e) {
       e.printStackTrace();

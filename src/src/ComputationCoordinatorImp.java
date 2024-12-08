@@ -13,10 +13,10 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
   public ComputationCoordinatorImp() {
   }
 
-  public ComputeResult beginComputationSingleSlow(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, int outputType, String outputFileName, int outputOrComp) throws IOException {
+  public ComputeResult beginComputationSingleSlow(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns,String delimiter, int outputType, String outputFileName, int outputOrComp) throws IOException {
     try {
       // Create a new ComputeRequest for this thread
-      ComputeRequest compute = new ComputeRequest(inputType, inputFileName, numberOfMatrices, rows, columns, outputType, outputFileName, outputOrComp);
+      ComputeRequest compute = new ComputeRequest(inputType, inputFileName, numberOfMatrices, rows, columns,delimiter, outputType, outputFileName, outputOrComp);
       DataStorageImp dataStorage = new DataStorageImp(compute, outputOrComp);
       //ComputeEngineImp computeEng = new ComputeEngineImp(dataStorage);
     } catch (Exception e) {
@@ -25,10 +25,10 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
     return ComputeResult.SUCCESS;
   }
 
-  public ComputeResult beginComputationSingleFast(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, int outputType, String outputFileName, int outputOrComp) throws IOException {
+  public ComputeResult beginComputationSingleFast(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, String delimiter,int outputType, String outputFileName, int outputOrComp) throws IOException {
     try {
       // Create a new ComputeRequest for this thread
-      ComputeRequest compute1 = new ComputeRequest(inputType, inputFileName, numberOfMatrices, rows, columns, outputType, outputFileName, outputOrComp);
+      ComputeRequest compute1 = new ComputeRequest(inputType, inputFileName, numberOfMatrices, rows, columns,delimiter, outputType, outputFileName, outputOrComp);
       DataStorageImp dataStorage = new DataStorageImp(compute1, outputOrComp, benchmark);
       // ComputeEngineImp computeEng = new ComputeEngineImp(dataStorage);
     } catch (Exception e) {
@@ -37,7 +37,7 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
     return ComputeResult.SUCCESS;
   }
 
-  public ComputeResult beginComputationMulti(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, int outputType, String outputFileName, int outputOrComp) throws IOException {
+  public ComputeResult beginComputationMulti(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns,String delimiter, int outputType, String outputFileName, int outputOrComp) throws IOException {
     // Submit fixed number of tasks to the thread pool
     for (int i = 0; i < THREAD_POOL_SIZE; i++) { // Create THREAD_POOL_SIZE threads
       final int threadIndex = i; // Capture the current index for use inside the lambda
@@ -48,7 +48,7 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
 
         try {
           // Create a new ComputeRequest for this thread
-          ComputeRequest compute = new ComputeRequest(inputType, inputFileName, numberOfMatrices, rows, columns, outputType, outputFileName, outputOrComp);
+          ComputeRequest compute = new ComputeRequest(inputType, inputFileName, numberOfMatrices, rows, columns, delimiter,outputType, outputFileName, outputOrComp);
           DataStorageImp dataStorage = new DataStorageImp(compute, outputOrComp);
 
           // Generate the unique output file name for this thread
@@ -57,7 +57,7 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
 
           // Call the method to perform the computation with the unique output file name
           computeEng.multiplyMatrixFast(dataStorage.getMatrices());
-          dataStorage.writeOutput(uniqueOutputFileName, ";"); // Write output to the unique file
+          dataStorage.writeOutput(uniqueOutputFileName, delimiter); // Write output to the unique file
         } catch (Exception e) {
           e.printStackTrace();
         }
@@ -74,6 +74,7 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
                                  request.getInputConfig().getNumberOfMatrices(),
                                  request.getInputConfig().getRows(),
                                  request.getInputConfig().getColumns(),
+                                 request.getInputConfig().getDelimiter(),
                                  request.getOutputConfig().getOutputTypeValue(),
                                  request.getOutputConfig().getOutputFileName(),
                                  request.getOutputConfig().getOutputOrCompute());
