@@ -59,11 +59,11 @@ public class InputConfigImplementation implements InputConfig {
   }
 
   public String getDelimiter() {
-	  return this.delimiter;
+    return this.delimiter;
   }
   
   public void setDelimiter(String delimiter) {
-	  this.delimiter=delimiter;
+    this.delimiter=delimiter;
   }
   @Override
   public void setInputType(int input) {

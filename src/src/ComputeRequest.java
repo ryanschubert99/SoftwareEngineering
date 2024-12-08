@@ -46,10 +46,10 @@ public class ComputeRequest {
     return outputConfig;
   }
 
-public Object getDelimiter() {
+  public Object getDelimiter() {
 	// TODO Auto-generated method stub
-	return null;
-}
+    return null;
+  }
 
 
 
