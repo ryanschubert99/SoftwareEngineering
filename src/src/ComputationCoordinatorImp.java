@@ -41,7 +41,7 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
 
   public ComputeResult beginComputationMulti(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns,String delimiter, int outputType, String outputFileName, int outputOrComp) throws IOException {
     // Submit fixed number of tasks to the thread pool
-	List<Future<?>> futures = new ArrayList<>();
+    List<Future<?>> futures = new ArrayList<>();
     for (int i = 0; i < THREAD_POOL_SIZE; i++) { // Create THREAD_POOL_SIZE threads
       final int threadIndex = i; // Capture the current index for use inside the lambda
 
@@ -68,11 +68,11 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
       futures.add(future);
     }
     for (Future<?> future : futures) {
-        try {
-            future.get(); // Wait for the task to complete
-        } catch (Exception e) {
-            e.printStackTrace(); // Handle exceptions appropriately
-        }
+      try {
+        future.get(); // Wait for the task to complete
+      } catch (Exception e) {
+        e.printStackTrace(); // Handle exceptions appropriately
+      }
     }
     return ComputeResult.SUCCESS; // Return immediately; actual computations will run in the background
   }
