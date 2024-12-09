@@ -1,5 +1,7 @@
 package src;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -13,16 +15,20 @@ public class InputConfigImplementation implements InputConfig {
   private String delimiter;
   private boolean valid = false;
   private int multiply = 0;
+  private int configType = 0;
+
   
 
 
   public InputConfigImplementation(int inputType, String inputFileName, int numberOfMatrices,int rows, int columns,String delimiter) {
-    this.inputType = inputType;
+    this.configType = configType;
+	this.inputType = inputType;
     this.inputFileName = inputFileName;
     this.numberOfMatrices = numberOfMatrices;
     this.rows = rows;
     this.columns = columns;
     this.delimiter=delimiter;
+    
 
   }
 
@@ -73,6 +79,7 @@ public class InputConfigImplementation implements InputConfig {
  
 
   public void setUserInputType() {
+
     Scanner scanner = new Scanner(System.in);
 
     // Input Type (User or File Input)

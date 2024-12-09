@@ -1,0 +1,2 @@
+﻿inputType,inputFileName,numOfMatrices,rows,columns,delimiter,outputType,outputFileName,outputorCompute,,
+0,matrixout.txt,15,3,3,*,0,matrixmult.txt,0,,
