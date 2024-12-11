@@ -1,5 +1,8 @@
 package src;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -40,7 +43,7 @@ public class UserRequestClient {
 
   public static void main(String[] args) throws Exception {
     String target = "localhost:50051";
-
+    int configType = 0;
     ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
         .build();
     try {
@@ -48,7 +51,69 @@ public class UserRequestClient {
       UserRequestClient client = new UserRequestClient(channel);
       Scanner scanner = new Scanner(System.in);
       boolean valid = false;
+      while (!valid) {
+          try {
+            System.out.println("Input 0 to input User Config, or 1 for Config from a File");
+            configType = scanner.nextInt();
+            request.setInputType(configType);
+            if (configType != 0 && configType != 1) {
+              throw new InputMismatchException();
+            }
+            request.setInputType(configType);
+            valid = true;
+          } catch (InputMismatchException e) {
+            System.out.println("Invalid Input: Please enter 0 or 1.");
+            scanner.nextLine();
+          }
+        }
+      
+    	  int inputType = 0; // 0 is User Input, and 1 is File Input
+    	  String inputFileName;
+    	  int numberOfMatrices;
+    	  int rows;
+    	  int columns;
+    	  String delimiter;
+    	  int multiply = 0;
+    	  String configFile;
+    	  int outputType; // 0 = Output to User Console, 1 = Output to File
+    	  String outputFileName;
+    	  int outputOrCompute;
+      
+    	  if(configType == 1) {
+    		  String configPath = "src" + File.separatorChar + "src" + File.separatorChar + configFile; // Updated path
+    		//They want to use an config file
+    		  try (BufferedReader br = new BufferedReader(new FileReader(configPath))) {
+    		      br.readLine(); // Skip header row if there is one
+    		      String line;
+    		      if ((line = br.readLine()) != null) {
+    		        String[] config = line.split(",");
 
+    		        // Parse values from CSV line
+    		        inputType = Integer.parseInt(config[0].trim());
+    		        inputFileName = config[1].trim();
+    		        numberOfMatrices = Integer.parseInt(config[2].trim());
+    		        rows = Integer.parseInt(config[3].trim());
+    		        columns = Integer.parseInt(config[4].trim());
+    		        delimiter = config[5].trim();
+    		        outputType = Integer.parseInt(config[6].trim());
+    		        outputFileName = config[7].trim();
+    		        outputOrCompute = Integer.parseInt(config[8].trim());
+
+    		        // Print parsed values to console for verification
+    		        System.out.println("Parsed Configuration Values:");
+    		        System.out.println("Input Type: " + inputType);
+    		        System.out.println("Output File: " + inputFileName);
+    		        System.out.println("Number to Generate: " + numberOfMatrices);
+    		        System.out.println("Number of Rows: " + rows);
+    		        System.out.println("Number of Columns: " + columns);
+    		        System.out.println("Number of Columns: " + delimiter);
+    		        System.out.println("Output Type: " + outputType);
+    		        System.out.println("Output File Name: " + outputFileName);
+    		        System.out.println("Out or Compute: " + outputOrCompute); 
+    		     
+    	
+    		      }}}
+      else {
       // Scanner 1: Input Type (User or File Input)
       while (!valid) {
         try {

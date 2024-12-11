@@ -71,6 +71,7 @@ public class ComputationCoordinatorImp implements ComputationCoordinator {
   @Override
   public ComputeResult beginComputation(ComputeRequest request) throws IOException {
     return beginComputationMulti(request.getInputConfig().getInputTypeValue(),
+    							 null, request.getInputConfig().getInputTypeValue(),
                                  request.getInputConfig().getInputFileName(),
                                  request.getInputConfig().getNumberOfMatrices(),
                                  request.getInputConfig().getRows(),

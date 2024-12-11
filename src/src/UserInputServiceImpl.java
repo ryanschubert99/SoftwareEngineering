@@ -21,6 +21,8 @@ public class UserInputServiceImpl extends UserInputServiceImplBase {
     try {
       // Call beginComputation on the coordinator directly
       ComputeResult result = computationCoordinator.beginComputation(new ComputeRequest(
+    	  request.getConfigType(),
+    	  request.getConfigFile(),
           request.getInputType(),
           request.getInputFileName(),
           request.getNumberOfMatrices(),

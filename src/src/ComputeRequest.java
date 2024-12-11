@@ -87,8 +87,12 @@ public class ComputeRequest {
 	  }
   }
   
-	
- 
+  public int getConfigType() {
+	    return configType;
+	  }
+  public String getConfigFile() {
+	    return configFile;
+	  }
 
   public InputConfigImplementation getInputConfig() {
     return inputConfig;
