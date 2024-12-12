@@ -27,7 +27,7 @@ public class TestUser {
         String[] config = line.split(",");
 
         // Parse values from CSV line
-        int inputType = Integer.parseInt(config[0].trim());
+        int inputType = Integer.parseInt(config[2].trim());
         String inputFile = config[1].trim();
         int numGenerate = Integer.parseInt(config[2].trim());
         int numRows = Integer.parseInt(config[3].trim());
@@ -48,7 +48,7 @@ public class TestUser {
         System.out.println("Out or Compute: " + outOrCompute);
 
         // Call the computation method with parsed values
-        coordinator.beginComputationSingleSlow(inputType, inputFile, numGenerate, numRows, numCols, delimiter, outputType, outputPath, outOrCompute);
+        coordinator.beginComputationSingleSlow(0,"",inputType, inputFile, numGenerate, numRows, numCols, delimiter, outputType, outputPath, outOrCompute);
         //int inputType, String inputFileName, int numberOfMatrices, int rows, int columns,String delimiter, int outputType, String outputFileName, int outputOrComp
       }
     } catch (IOException e) {

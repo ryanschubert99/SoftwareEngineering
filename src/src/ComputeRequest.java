@@ -32,11 +32,11 @@ public class ComputeRequest {
 //  } }
 	
   public ComputeRequest(InputConfigImplementation inputConfig, OutputConfigImplementation  outputConfig, String delimiter) {
-    inputConfig.setUserInputType();
-    outputConfig.setUserOutputType();
-	
-    this.inputConfig = inputConfig;
-    this.outputConfig = outputConfig;
+	  InputConfigImplementation inputConfig1 = new InputConfigImplementation(inputConfig.getInputTypeValue(),inputConfig.getInputFileName(),inputConfig.getNumberOfMatrices(), inputConfig.getRows(), inputConfig.getColumns(),delimiter );
+      OutputConfigImplementation  outputConfig1 = new OutputConfigImplementation(outputConfig.getOutputTypeValue(),outputConfig.getOutputFileName(),outputConfig.getOutputOrCompute());
+	this.delimiter = delimiter;
+    this.inputConfig = inputConfig1;
+    this.outputConfig = outputConfig1;
   }
 
   public ComputeRequest(int configType,String configFile,int inputType, String inputFileName, int numberOfMatrices,int rows, int columns,String delimiter, int outputFileType, String outputFileName,int outputOrComp ) throws IOException {
@@ -103,8 +103,8 @@ public class ComputeRequest {
   }
 
   public Object getDelimiter() {
-	// TODO Auto-generated method stub
-    return null;
+	
+    return this.delimiter;
   }
 
 

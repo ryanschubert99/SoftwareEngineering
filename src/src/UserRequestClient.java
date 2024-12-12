@@ -44,6 +44,7 @@ public class UserRequestClient {
   public static void main(String[] args) throws Exception {
     String target = "localhost:50051";
     int configType = 0;
+    String configFile = "";
     ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
         .build();
     try {
@@ -55,18 +56,35 @@ public class UserRequestClient {
           try {
             System.out.println("Input 0 to input User Config, or 1 for Config from a File");
             configType = scanner.nextInt();
-            request.setInputType(configType);
+            //request.setInputType(configType);
             if (configType != 0 && configType != 1) {
               throw new InputMismatchException();
             }
-            request.setInputType(configType);
+            //request.setInputType(configType);
             valid = true;
           } catch (InputMismatchException e) {
             System.out.println("Invalid Input: Please enter 0 or 1.");
             scanner.nextLine();
           }
         }
-      
+      valid = false;
+      scanner.nextLine(); // Clear the buffer
+      if (configType == 1) {
+        while (!valid) {
+          try {
+            System.out.println("Enter the input file name (must end with .csv):");
+            configFile = scanner.nextLine();
+            //request.setInputFileName(configFile);
+            if (!configFile.endsWith(".csv")) {
+              throw new InputMismatchException("File name must end with .csv");
+            }
+            //request.setInputFileName(configFile);
+            valid = true;
+          } catch (InputMismatchException e) {
+            System.out.println("Invalid Input: " + e.getMessage());
+          }
+        }
+      }
     	  int inputType = 0; // 0 is User Input, and 1 is File Input
     	  String inputFileName;
     	  int numberOfMatrices;
@@ -74,7 +92,7 @@ public class UserRequestClient {
     	  int columns;
     	  String delimiter;
     	  int multiply = 0;
-    	  String configFile;
+    	  
     	  int outputType; // 0 = Output to User Console, 1 = Output to File
     	  String outputFileName;
     	  int outputOrCompute;
@@ -98,7 +116,17 @@ public class UserRequestClient {
     		        outputType = Integer.parseInt(config[6].trim());
     		        outputFileName = config[7].trim();
     		        outputOrCompute = Integer.parseInt(config[8].trim());
-
+    		        
+    		        request.setInputType(inputType);
+    		        request.setInputFileName(inputFileName);
+    		        request.setNumberOfMatrices(numberOfMatrices);
+    		        request.setRows(rows);
+    		        request.setColumns(columns);
+    		        request.setDelimiter(delimiter);
+    		        request.setOutputType(outputType);
+    		        request.setOutputFileName(outputFileName);
+    		        request.setOutputOrCompute(outputOrCompute);
+    		        
     		        // Print parsed values to console for verification
     		        System.out.println("Parsed Configuration Values:");
     		        System.out.println("Input Type: " + inputType);
@@ -111,14 +139,14 @@ public class UserRequestClient {
     		        System.out.println("Output File Name: " + outputFileName);
     		        System.out.println("Out or Compute: " + outputOrCompute); 
     		     
-    	
+    		        client.sendUserInputRequest(request.build());
     		      }}}
       else {
       // Scanner 1: Input Type (User or File Input)
       while (!valid) {
         try {
           System.out.println("Input 0 for User input, or 1 for File Input:");
-          int inputType = scanner.nextInt();
+          inputType = scanner.nextInt();
           request.setInputType(inputType);
           if (inputType != 0 && inputType != 1) {
             throw new InputMismatchException();
@@ -138,7 +166,7 @@ public class UserRequestClient {
         while (!valid) {
           try {
             System.out.println("Enter the input file name (must end with .txt):");
-            String inputFileName = scanner.nextLine();
+            inputFileName = scanner.nextLine();
             request.setInputFileName(inputFileName);
             if (!inputFileName.endsWith(".txt")) {
               throw new InputMismatchException("File name must end with .txt");
@@ -156,7 +184,7 @@ public class UserRequestClient {
       while (!valid) {
         try {
           System.out.println("Enter the number of matrices you want to generate:");
-          int numberOfMatrices = scanner.nextInt();
+          numberOfMatrices = scanner.nextInt();
           request.setNumberOfMatrices(numberOfMatrices);
           valid = true;
         } catch (InputMismatchException e) {
@@ -170,7 +198,7 @@ public class UserRequestClient {
       while (!valid) {
         try {
           System.out.println("Enter the number of rows in each matrix:");
-          int rows = scanner.nextInt();
+          rows = scanner.nextInt();
           request.setRows(rows);
           if (rows < 1) {
             throw new InputMismatchException("Number of rows must be positive.");
@@ -188,7 +216,7 @@ public class UserRequestClient {
       while (!valid) {
         try {
           System.out.println("Enter the number of columns in each matrix:");
-          int columns = scanner.nextInt();
+          columns = scanner.nextInt();
           request.setColumns(columns);
           if (columns < 1) {
             throw new InputMismatchException("Number of columns must be positive.");
@@ -209,7 +237,7 @@ public class UserRequestClient {
       while (!valid) { 
         try {
           System.out.println("Enter the delimiter you want. Press enter to use defult delimiter.");
-          String delimiter = scanner.nextLine();
+          delimiter = scanner.nextLine();
           request.setDelimiter(delimiter);
           if(delimiter.toLowerCase().equals("default") || delimiter.isEmpty() || delimiter.equals(" ")) {
             delimiter=";";
@@ -230,7 +258,7 @@ public class UserRequestClient {
       while (!valid) {
         try {
           System.out.println("Do you want to multiply the matrices? If yes, type 1; if no, type 0:");
-          int multiply = scanner.nextInt();
+          multiply = scanner.nextInt();
           if (multiply != 0 && multiply != 1) {
             throw new InputMismatchException();
           }
@@ -247,7 +275,7 @@ public class UserRequestClient {
       while (!valid) {
         try {
           System.out.println("Input 0 for Console Output, or 1 for File Output:");
-          int outputType = scanner.nextInt();
+          outputType = scanner.nextInt();
           request.setOutputType(outputType);
           if (outputType != 0 && outputType != 1) {
             throw new InputMismatchException("Output type must be 0 or 1.");
@@ -259,7 +287,7 @@ public class UserRequestClient {
           if (outputType == 1) {
             // File output mode: Output File Name
             System.out.println("Enter the output file name (must end with .txt):");
-            String outputFileName = scanner.nextLine();
+            outputFileName = scanner.nextLine();
             request.setOutputFileName(outputFileName);
             if (!outputFileName.endsWith(".txt")) {
               throw new InputMismatchException("File name must end with .txt");
@@ -278,7 +306,7 @@ public class UserRequestClient {
       while (!valid) {
         try {
           System.out.println("Type 1 to Output Matrices or Type 0 to do Computations:");
-          int outputOrCompute = scanner.nextInt();
+          outputOrCompute = scanner.nextInt();
           request.setOutputOrCompute(outputOrCompute);
           if (outputOrCompute != 0 && outputOrCompute != 1) {
             throw new InputMismatchException();
@@ -294,7 +322,7 @@ public class UserRequestClient {
 
       // Send the request
       client.sendUserInputRequest(request.build());
-    } finally {
+    }} finally {
       channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
     }
   }
