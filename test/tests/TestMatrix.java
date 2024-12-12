@@ -14,22 +14,22 @@ import src.MatrixImplementation;
 
 public class TestMatrix {
 
-  //@Rule 
+  @Rule 
   public MockitoRule rule = MockitoJUnit.rule();
 
-  //@Test
+  @Test
   public void testMatrixImplementation() {
     MatrixImplementation matrixImplementation = new MatrixImplementation();
 
     long[][] matrix1 = {{1, 2}, {3, 4}};
     long[][] matrix2 = {{5, 6}, {7, 8}};
 
-    long[][] resultantMatrix = matrixImplementation.multiplyMatrices(matrix1, matrix2);
-
+    long[][] resultantMatrix = matrixImplementation.multiplyTwoMatricesFast(matrix1, matrix2);
+    System.out.println(resultantMatrix[0][0]);
+    System.out.println(resultantMatrix[1][1]);
     assertNotNull(resultantMatrix);
     assertEquals(19, resultantMatrix[0][0]);
     assertEquals(50, resultantMatrix[1][1]);
 
-    verify(matrixImplementation).multiplyMatrices(matrix1, matrix2);
   }
 }

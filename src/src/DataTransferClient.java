@@ -16,7 +16,7 @@ public class DataTransferClient {
     DataStorageServiceGrpc.DataStorageServiceBlockingStub stub = DataStorageServiceGrpc.newBlockingStub(channel);
 
     WriteOutputRequest request = WriteOutputRequest.newBuilder()
-        .setOutputFileName()
+        .setOutputFileName("output.txt")
         .setDelimiter(",")
         .build();
 
