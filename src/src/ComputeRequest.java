@@ -44,17 +44,17 @@ public class ComputeRequest {
   }
 
   public ComputeRequest(
-    int configType, 
-    String configFile, 
-    int inputType, 
-    String inputFileName, 
-    int numberOfMatrices, 
-    int rows, 
-    int columns, 
-    String delimiter, 
-    int outputFileType, 
-    String outputFileName, 
-    int outputOrComp
+      int configType, 
+      String configFile, 
+      int inputType, 
+      String inputFileName, 
+      int numberOfMatrices, 
+      int rows, 
+      int columns, 
+      String delimiter, 
+      int outputFileType, 
+      String outputFileName, 
+      int outputOrComp
   ) throws IOException {
     if (configType == 1) {
       String configPath = "src" + File.separatorChar + "src" + File.separatorChar + configFile; // Updated path
