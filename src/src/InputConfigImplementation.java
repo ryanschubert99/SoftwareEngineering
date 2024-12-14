@@ -3,6 +3,7 @@ package src;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.InputMismatchException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class InputConfigImplementation implements InputConfig {
@@ -31,7 +32,26 @@ public class InputConfigImplementation implements InputConfig {
     
 
   }
+  @Override
+  public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      InputConfigImplementation that = (InputConfigImplementation) o;
+      return inputType == that.inputType &&
+             numberOfMatrices == that.numberOfMatrices &&
+             rows == that.rows &&
+             columns == that.columns &&
+             valid == that.valid &&
+             multiply == that.multiply &&
+             configType == that.configType &&
+             Objects.equals(inputFileName, that.inputFileName) &&
+             Objects.equals(delimiter, that.delimiter);
+  }
 
+  @Override
+  public int hashCode() {
+      return Objects.hash(inputType, inputFileName, numberOfMatrices, rows, columns, delimiter, valid, multiply, configType);
+  }
   public String getInputFileName() {
     return inputFileName;
   }

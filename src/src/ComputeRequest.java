@@ -55,10 +55,10 @@ public class ComputeRequest {
 		        this.numberOfMatrices = Integer.parseInt(config[2].trim());
 		        this.rows = Integer.parseInt(config[3].trim());
 		        this.columns = Integer.parseInt(config[4].trim());
-		        this.delimiter = config[5].trim();
-		        this.outputType = Integer.parseInt(config[6].trim());
-		        this.outputFileName = config[7].trim();
-		        this.outputOrCompute = Integer.parseInt(config[8].trim());
+		        this.outputType = Integer.parseInt(config[5].trim());
+		        this.outputFileName = config[6].trim();
+		        this.outputOrCompute = Integer.parseInt(config[7].trim());
+		        this.delimiter = config[8].trim();
 
 		        // Print parsed values to console for verification
 		        System.out.println("Parsed Configuration Values:");
@@ -102,7 +102,7 @@ public class ComputeRequest {
     return outputConfig;
   }
 
-  public Object getDelimiter() {
+  public String getDelimiter() {
 	
     return this.delimiter;
   }

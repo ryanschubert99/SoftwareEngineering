@@ -27,7 +27,7 @@ public class TestUser {
         String[] config = line.split(",");
 
         // Parse values from CSV line
-        int inputType = Integer.parseInt(config[2].trim());
+        int inputType = Integer.parseInt(config[0].trim());
         String inputFile = config[1].trim();
         int numGenerate = Integer.parseInt(config[2].trim());
         int numRows = Integer.parseInt(config[3].trim());
@@ -35,7 +35,7 @@ public class TestUser {
         int outputType = Integer.parseInt(config[5].trim());
         String outputFileName = config[6].trim();
         int outOrCompute = Integer.parseInt(config[7].trim());
-
+        delimiter = config[8].trim();
         // Print parsed values to console for verification
         System.out.println("Parsed Configuration Values:");
         System.out.println("Input Type: " + inputType);
@@ -46,6 +46,7 @@ public class TestUser {
         System.out.println("Output Type: " + outputType);
         System.out.println("Output File Name: " + outputFileName);
         System.out.println("Out or Compute: " + outOrCompute);
+        System.out.println("delimiter: " + delimiter);
 
         // Call the computation method with parsed values
         coordinator.beginComputationSingleSlow(0,"",inputType, inputFile, numGenerate, numRows, numCols, delimiter, outputType, outputPath, outOrCompute);

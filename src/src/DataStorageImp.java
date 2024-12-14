@@ -160,7 +160,7 @@ public class DataStorageImp implements DataStorage {
         int currentRow = 0;
 
         // Read up to pageSize rows
-        while (currentRow < pageSize && !endOfFile) {
+        while (currentRow < pageSize && currentRow < rows && !endOfFile) {
           line = br.readLine(); // Read a new line
 
           if (line == null) {

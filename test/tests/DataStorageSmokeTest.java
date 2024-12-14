@@ -1,31 +1,27 @@
 package tests;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.junit.Assert.assertNotNull;
-
-import org.junit.Before;
-import org.junit.Test;
 
 import src.DataStorageImp;
 import src.ComputeRequest;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.verify;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
 public class DataStorageSmokeTest {
 
   private DataStorageImp dataStore;
 
-  @Before
-  public void setUp() throws IOException {
+  
+  @Test
+  public void testGetAndSetMatrices() throws IOException {
     dataStore = new DataStorageImp(new ComputeRequest(null, null, null), 0);
-  }
-
-  //@Test
-  public void testGetAndSetMatrices() {
     List<long[][]> matrices = new ArrayList<>();
     dataStore.setMatrices(matrices);
 
@@ -34,15 +30,17 @@ public class DataStorageSmokeTest {
     assertNotNull(result);
   }
 
-  //@Test
+  @Test
   public void testReadData() throws IOException {
+	dataStore = new DataStorageImp(new ComputeRequest(null, null, null), 0);
     dataStore.readInputFile();
 
     verify(dataStore).readInputFile();
   }
 
-  //@Test
+  @Test
   public void testWriteData() throws IOException {
+	dataStore = new DataStorageImp(new ComputeRequest(null, null, null), 0);
     dataStore.readInputFile();
 
     verify(dataStore).readInputFile();
