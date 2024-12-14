@@ -18,10 +18,14 @@ public class OutputConfigImplementation implements OutputConfig {
   }
   @Override
   public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      OutputConfigImplementation that = (OutputConfigImplementation) o;
-      return outputType == that.outputType &&
+    if (this == o) {
+      return true;
+	}
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+	}
+    OutputConfigImplementation that = (OutputConfigImplementation) o;
+    return outputType == that.outputType &&
              valid == that.valid &&
              outputOrCompute == that.outputOrCompute &&
              Objects.equals(outputFileName, that.outputFileName);
@@ -29,7 +33,7 @@ public class OutputConfigImplementation implements OutputConfig {
 
   @Override
   public int hashCode() {
-      return Objects.hash(outputType, outputFileName, valid, outputOrCompute);
+    return Objects.hash(outputType, outputFileName, valid, outputOrCompute);
   }
 
   @Override

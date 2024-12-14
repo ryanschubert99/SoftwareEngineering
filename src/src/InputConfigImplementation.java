@@ -18,40 +18,37 @@ public class InputConfigImplementation implements InputConfig {
   private int multiply = 0;
   private int configType = 0;
 
-  
-
-
-  public InputConfigImplementation(int inputType, String inputFileName, int numberOfMatrices,int rows, int columns,String delimiter) {
+  public InputConfigImplementation(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns, String delimiter) {
     this.configType = configType;
-	this.inputType = inputType;
+    this.inputType = inputType;
     this.inputFileName = inputFileName;
     this.numberOfMatrices = numberOfMatrices;
     this.rows = rows;
     this.columns = columns;
-    this.delimiter=delimiter;
-    
-
+    this.delimiter = delimiter;
   }
+
   @Override
   public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      InputConfigImplementation that = (InputConfigImplementation) o;
-      return inputType == that.inputType &&
-             numberOfMatrices == that.numberOfMatrices &&
-             rows == that.rows &&
-             columns == that.columns &&
-             valid == that.valid &&
-             multiply == that.multiply &&
-             configType == that.configType &&
-             Objects.equals(inputFileName, that.inputFileName) &&
-             Objects.equals(delimiter, that.delimiter);
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    InputConfigImplementation that = (InputConfigImplementation) o;
+    return inputType == that.inputType &&
+           numberOfMatrices == that.numberOfMatrices &&
+           rows == that.rows &&
+           columns == that.columns &&
+           valid == that.valid &&
+           multiply == that.multiply &&
+           configType == that.configType &&
+           Objects.equals(inputFileName, that.inputFileName) &&
+           Objects.equals(delimiter, that.delimiter);
   }
 
   @Override
   public int hashCode() {
-      return Objects.hash(inputType, inputFileName, numberOfMatrices, rows, columns, delimiter, valid, multiply, configType);
+    return Objects.hash(inputType, inputFileName, numberOfMatrices, rows, columns, delimiter, valid, multiply, configType);
   }
+
   public String getInputFileName() {
     return inputFileName;
   }
@@ -87,19 +84,17 @@ public class InputConfigImplementation implements InputConfig {
   public String getDelimiter() {
     return this.delimiter;
   }
-  
+
   public void setDelimiter(String delimiter) {
-    this.delimiter=delimiter;
+    this.delimiter = delimiter;
   }
+
   @Override
   public void setInputType(int input) {
     this.inputType = input;
   }
- 
- 
 
   public void setUserInputType() {
-
     Scanner scanner = new Scanner(System.in);
 
     // Input Type (User or File Input)
@@ -406,5 +401,4 @@ public class InputConfigImplementation implements InputConfig {
   public int getInputTypeValue() {
     return this.inputType;
   }
-
 }

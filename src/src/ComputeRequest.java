@@ -90,34 +90,34 @@ public class ComputeRequest {
         }
 
         InputConfigImplementation inputConfig = new InputConfigImplementation(
-          this.inputType,
-          this.inputFileName,
-          this.numberOfMatrices,
-          this.rows,
-          this.columns,
-          this.delimiter
+            this.inputType,
+            this.inputFileName,
+            this.numberOfMatrices,
+            this.rows,
+            this.columns,
+            this.delimiter
         );
         OutputConfigImplementation outputConfig = new OutputConfigImplementation(
-          this.outputType,
-          this.outputFileName,
-          this.outputOrCompute
+            this.outputType,
+            this.outputFileName,
+            this.outputOrCompute
         );
         this.inputConfig = inputConfig;
         this.outputConfig = outputConfig;
       }
     } else {
       InputConfigImplementation inputConfig = new InputConfigImplementation(
-        inputType,
-        inputFileName,
-        numberOfMatrices,
-        rows,
-        columns,
-        delimiter
+          inputType,
+          inputFileName,
+          numberOfMatrices,
+          rows,
+          columns,
+          delimiter
       );
       OutputConfigImplementation outputConfig = new OutputConfigImplementation(
-        outputFileType,
-        outputFileName,
-        outputOrComp
+          outputFileType,
+          outputFileName,
+          outputOrComp
       );
 
       this.inputConfig = inputConfig;
