@@ -20,10 +20,10 @@ public class OutputConfigImplementation implements OutputConfig {
   public boolean equals(Object o) {
     if (this == o) {
       return true;
-	}
+    }
     if (o == null || getClass() != o.getClass()) {
       return false;
-	}
+    }
     OutputConfigImplementation that = (OutputConfigImplementation) o;
     return outputType == that.outputType &&
              valid == that.valid &&
