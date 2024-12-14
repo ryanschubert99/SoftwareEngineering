@@ -26,17 +26,17 @@ public class ComputeRequest {
 
   public ComputeRequest(InputConfigImplementation inputConfig, OutputConfigImplementation outputConfig, String delimiter) {
     InputConfigImplementation inputConfig1 = new InputConfigImplementation(
-      inputConfig.getInputTypeValue(),
-      inputConfig.getInputFileName(),
-      inputConfig.getNumberOfMatrices(),
-      inputConfig.getRows(),
-      inputConfig.getColumns(),
-      delimiter
+        inputConfig.getInputTypeValue(),
+        inputConfig.getInputFileName(),
+        inputConfig.getNumberOfMatrices(),
+        inputConfig.getRows(),
+        inputConfig.getColumns(),
+        delimiter
     );
     OutputConfigImplementation outputConfig1 = new OutputConfigImplementation(
-      outputConfig.getOutputTypeValue(),
-      outputConfig.getOutputFileName(),
-      outputConfig.getOutputOrCompute()
+        outputConfig.getOutputTypeValue(),
+        outputConfig.getOutputFileName(),
+        outputConfig.getOutputOrCompute()
     );
     this.delimiter = delimiter;
     this.inputConfig = inputConfig1;
