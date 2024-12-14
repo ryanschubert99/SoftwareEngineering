@@ -30,8 +30,12 @@ public class InputConfigImplementation implements InputConfig {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
     InputConfigImplementation that = (InputConfigImplementation) o;
     return inputType == that.inputType &&
            numberOfMatrices == that.numberOfMatrices &&
