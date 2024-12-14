@@ -35,8 +35,8 @@ public class ComputationCoordinatorSmokeTest {
    */
   private ComputeRequest createComputeRequest() throws IOException {
     // These values simulate what a user might input through a coordinator
-	int configType = 0;
-	String configFileName = "";
+    int configType = 0;
+    String configFileName = "";
     int inputType = 0; // Example: 0 for user input, 1 for file input
     String inputFileName = "input.txt";
     int numberOfMatrices = 3;

@@ -1,49 +1,62 @@
 package tests;
 
-
 import src.ComputeEngineImp;
 import src.DataStorageImp;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class ComputeEngineSmokeTest {
 
-	  private ComputeEngineImp computeEngine;
-	  private DataStorageImp dataStore;
+  private ComputeEngineImp computeEngine;
+  private DataStorageImp dataStore;
 
-	  @Test
-	  public void testMatrixGeneration() {
-		  dataStore = mock(DataStorageImp.class);
-		    computeEngine = new ComputeEngineImp(dataStore);
-	    when(dataStore.getAmountToGenerate()).thenReturn(2);
-	    when(dataStore.getMatrices()).thenReturn(new ArrayList<>());
+  @Test
+  public void testMatrixGeneration() {
+    // Mock DataStorageImp
+    dataStore = mock(DataStorageImp.class);
 
-	    List<long[][]> matrices = new ArrayList<>();
-	    computeEngine.multiplyMatrixFast(matrices);
+    // Initialize ComputeEngineImp with the mocked DataStorageImp
+    computeEngine = new ComputeEngineImp(dataStore);
 
-	    verify(dataStore).getAmountToGenerate();
-	    verify(dataStore).getMatrices();
-	  }
+    // Mock the responses
+    when(dataStore.getAmountToGenerate()).thenReturn(2);
 
-	  @Test
-	  public void testPerformComputation() {
-		  dataStore = mock(DataStorageImp.class);
-		    computeEngine = new ComputeEngineImp(dataStore);
-	    when(dataStore.getMatrices()).thenReturn(new ArrayList<>());
+    // Create mock matrices for testing
+    List<long[][]> mockMatrices = new ArrayList<>();
+    mockMatrices.add(new long[][]{{1, 2}, {3, 4}});  // Add a 2x2 matrix
+    mockMatrices.add(new long[][]{{5, 6}, {7, 8}});  // Add another 2x2 matrix
+    when(dataStore.getMatrices()).thenReturn(mockMatrices);
 
-	    Object result = computeEngine.performComputation(new Object(), new Object());
+    // Call the method you want to test on ComputeEngineImp
+    List<long[][]> matrices = dataStore.getMatrices();
+    computeEngine.multiplyMatrixFast(matrices);
 
-	    assertNull(result);
-	  }
-	}
+    // Verify that the mocked methods were called
+    verify(dataStore).getAmountToGenerate();
+    verify(dataStore).getMatrices();
+  }
+
+  @Test
+  public void testPerformComputation() {
+    // Mock DataStorageImp
+    dataStore = mock(DataStorageImp.class);
+    computeEngine = new ComputeEngineImp(dataStore);
+
+    // Mock the response for getMatrices method
+    when(dataStore.getMatrices()).thenReturn(new ArrayList<>());
+
+    // Perform computation with mocked data
+    Object result = computeEngine.performComputation(new Object(), new Object());
+
+    // Assert that the result is null
+    assertNull(result);
+  }
+}

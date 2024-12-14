@@ -134,7 +134,7 @@ public class DataStorageImp implements DataStorage {
     System.out.println(); // Blank line between matrices
   }
 
-  private void writeMatrixToFile(FileWriter fileWriter, long[][] matrix, String delimiter) throws IOException {
+  public void writeMatrixToFile(FileWriter fileWriter, long[][] matrix, String delimiter) throws IOException {
     for (long[] row : matrix) {
       for (long element : row) {
         fileWriter.write(element + delimiter);
