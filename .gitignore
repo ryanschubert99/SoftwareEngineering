@@ -13,3 +13,4 @@ gradlew
 .project
 .settings/org.eclipse.jdt.core.prefs
 matrixprint.txt
+gradle.properties
