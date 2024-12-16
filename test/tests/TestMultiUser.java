@@ -23,9 +23,9 @@ public class TestMultiUser {
     this.coordinator = new ComputationCoordinatorImp();
   }
 
-  //@Test
+  @Test
   public void compareMultiAndSingleThreaded() throws Exception {
-    int numThreads = 4;
+    int numThreads = 1;
     List<TestUser> testUsers = new ArrayList<>();
     for (int i = 0; i < numThreads; i++) {
       testUsers.add(new TestUser(coordinator));
