@@ -7,29 +7,31 @@ service UserInputService {
     rpc CreateUserInput (UserInputRequest) returns (ComputationResponse);
 }
 message UserInputRequest{
-	optional int32 inputType=1;
-	optional string inputFileName=2;
-	optional int32 numberOfMatrices=3;
-	optional int32 rows=4;
-	optional int32 columns=5;
-	optional string delimiter=14;
-	optional int32 outputType=6;
-	optional string outputFileName=7;
-	optional int32 outputOrCompute=8;
+	optional int32 configType = 1;
+	optional string configFile = 2;
+	optional int32 inputType=3;
+	optional string inputFileName=4;
+	optional int32 numberOfMatrices=5;
+	optional int32 rows=6;
+	optional int32 columns=7;
+	optional string delimiter=16;
+	optional int32 outputType=8;
+	optional string outputFileName=9;
+	optional int32 outputOrCompute=10;
 	
 	
 }
 
 message ComputationResponse{
-	optional ComputeResultStatus result=9;
-	optional string error_message=10;
+	optional ComputeResultStatus result=11;
+	optional string error_message=12;
 
 }
 
 
  enum ComputeResultStatus {
-    SUCCESS=11;
-    INVALID_REQUEST=12;
-    FAILURE=13;
+    SUCCESS=13;
+    INVALID_REQUEST=14;
+    FAILURE=15;
     }
 

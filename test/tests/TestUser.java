@@ -35,7 +35,7 @@ public class TestUser {
         int outputType = Integer.parseInt(config[5].trim());
         String outputFileName = config[6].trim();
         int outOrCompute = Integer.parseInt(config[7].trim());
-
+        delimiter = config[8].trim();
         // Print parsed values to console for verification
         System.out.println("Parsed Configuration Values:");
         System.out.println("Input Type: " + inputType);
@@ -46,9 +46,10 @@ public class TestUser {
         System.out.println("Output Type: " + outputType);
         System.out.println("Output File Name: " + outputFileName);
         System.out.println("Out or Compute: " + outOrCompute);
+        System.out.println("delimiter: " + delimiter);
 
         // Call the computation method with parsed values
-        coordinator.beginComputationSingleSlow(inputType, inputFile, numGenerate, numRows, numCols, delimiter, outputType, outputPath, outOrCompute);
+        coordinator.beginComputationSingleSlow(0,"",inputType, inputFile, numGenerate, numRows, numCols, delimiter, outputType, outputPath, outOrCompute);
         //int inputType, String inputFileName, int numberOfMatrices, int rows, int columns,String delimiter, int outputType, String outputFileName, int outputOrComp
       }
     } catch (IOException e) {

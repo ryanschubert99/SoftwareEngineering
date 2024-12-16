@@ -1,6 +1,7 @@
 package src;
 
 import java.util.InputMismatchException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class OutputConfigImplementation implements OutputConfig {
@@ -14,6 +15,25 @@ public class OutputConfigImplementation implements OutputConfig {
     this.outputType = outputFileType;
     this.outputFileName = outputFileName;
     this.outputOrCompute = outputOrComp;
+  }
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    OutputConfigImplementation that = (OutputConfigImplementation) o;
+    return outputType == that.outputType &&
+             valid == that.valid &&
+             outputOrCompute == that.outputOrCompute &&
+             Objects.equals(outputFileName, that.outputFileName);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(outputType, outputFileName, valid, outputOrCompute);
   }
 
   @Override

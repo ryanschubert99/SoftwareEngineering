@@ -24,7 +24,7 @@ public class Benchmark{
 
     Stopwatch timer = Stopwatch.createStarted();
     for (int i = 0; i < NUM_RUNS; i++){
-      slow.beginComputationSingleSlow(0, "matrixout.txt", 99999, 10, 10, ";", 1, "matrixprintmultiply9.txt", 0);
+      slow.beginComputationSingleSlow(0,"",0, "matrixout.txt", 99999, 10, 10, ";", 1, "matrixprintmultiply9.txt", 0);
       
     }
     timer.stop();
@@ -35,7 +35,7 @@ public class Benchmark{
     
     Stopwatch timer1 = Stopwatch.createStarted();
     for (int i = 0; i < NUM_RUNS; i++){
-      faster.beginComputationSingleFast(0, "matrixout.txt", 99999, 10, 10, ";", 1, "matrixprintmultiply9.txt", 0);
+      faster.beginComputationSingleFast(0,"",0, "matrixout.txt", 99999, 10, 10, ";", 1, "matrixprintmultiply9.txt", 0);
     }
     timer1.stop();
 

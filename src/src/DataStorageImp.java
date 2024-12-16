@@ -134,7 +134,7 @@ public class DataStorageImp implements DataStorage {
     System.out.println(); // Blank line between matrices
   }
 
-  private void writeMatrixToFile(FileWriter fileWriter, long[][] matrix, String delimiter) throws IOException {
+  public void writeMatrixToFile(FileWriter fileWriter, long[][] matrix, String delimiter) throws IOException {
     for (long[] row : matrix) {
       for (long element : row) {
         fileWriter.write(element + delimiter);
@@ -160,7 +160,7 @@ public class DataStorageImp implements DataStorage {
         int currentRow = 0;
 
         // Read up to pageSize rows
-        while (currentRow < pageSize && !endOfFile) {
+        while (currentRow < pageSize && currentRow < rows && !endOfFile) {
           line = br.readLine(); // Read a new line
 
           if (line == null) {

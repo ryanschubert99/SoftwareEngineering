@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import src.MatrixImplementation;
 
 public class TestMatrixExceptionHandling {
-  //@Test
+  @Test
   public void testMultiplyMatrices_ThrowsExceptionForIncompatibleDimensions() {
     MatrixImplementation matrixImplementation = new MatrixImplementation();
     
@@ -20,9 +20,10 @@ public class TestMatrixExceptionHandling {
       matrixImplementation.multiplyTwoMatricesFast(matrix1, matrix2);
     });
      // Verify the exception message
-    Assertions.assertEquals("Matrix multiplication is not possible due to incompatible dimensions ", exception.getMessage());
+    
+    Assertions.assertEquals("Matrix multiplication is not possible due to incompatible dimensions.", exception.getMessage());
   }
-  //@Test
+  @Test
   public void testPrintMatrix_ThrowsExceptionForMismatchedDimensions() {
     MatrixImplementation matrixImplementation = new MatrixImplementation();
 		    

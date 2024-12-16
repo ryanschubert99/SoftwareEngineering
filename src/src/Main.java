@@ -11,13 +11,13 @@ public class Main {
   public static void main(String[] args) throws IOException {
    
       
-    setUserInputAndOutputType(0,"matrixout.txt",15, 3,3,";",0,"matrixprintmultiply9.txt",0);
+    setUserInputAndOutputType(1,"testInputFile.csv", 0,"matrixout.txt",15, 3,3,";",0,"matrixprintmultiply9.txt",0);
 	
   }
 
-  public static void setUserInputAndOutputType(int inputType, String inputFileName, int numberOfMatrices, int rows, int columns,String delimiter, int outputType, String outputFileName, int outputOrCompute) throws IOException {
+  public static void setUserInputAndOutputType(int configType, String configFile,int inputType, String inputFileName, int numberOfMatrices, int rows, int columns,String delimiter, int outputType, String outputFileName, int outputOrCompute) throws IOException {
     ComputationCoordinatorImp compC = new ComputationCoordinatorImp();
-    compC.beginComputationSingleSlow(inputType,inputFileName,numberOfMatrices, rows, columns,delimiter, outputType,outputFileName, outputOrCompute);
+    compC.beginComputationSingleSlow(configType, configFile, inputType,inputFileName,numberOfMatrices, rows, columns,delimiter, outputType,outputFileName, outputOrCompute);
   }
 
   public static void setUserInputAndOutputType() throws IOException {
@@ -32,6 +32,8 @@ public class Main {
     String outputFileName = null;
     int outputOrCompute = 0;
     int multiply = 0;
+    int configType =0;
+    String configFile = "";
 
     Scanner scanner = new Scanner(System.in);
 
@@ -264,7 +266,7 @@ public class Main {
       }
     }
     ComputationCoordinatorImp compC = new ComputationCoordinatorImp();
-    compC.beginComputationSingleSlow(inputType,inputFileName,numberOfMatrices, rows, columns, delimiter, outputType,outputFileName, outputOrCompute);
+    compC.beginComputationSingleSlow(configType, configFile,inputType,inputFileName,numberOfMatrices, rows, columns, delimiter, outputType,outputFileName, outputOrCompute);
    
   }
 }

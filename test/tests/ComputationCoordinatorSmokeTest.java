@@ -31,9 +31,12 @@ public class ComputationCoordinatorSmokeTest {
    * Utility method to create a ComputeRequest.
    * 
    * @return a ComputeRequest object with predefined values.
+ * @throws IOException 
    */
-  private ComputeRequest createComputeRequest() {
+  private ComputeRequest createComputeRequest() throws IOException {
     // These values simulate what a user might input through a coordinator
+    int configType = 0;
+    String configFileName = "";
     int inputType = 0; // Example: 0 for user input, 1 for file input
     String inputFileName = "input.txt";
     int numberOfMatrices = 3;
@@ -46,6 +49,8 @@ public class ComputationCoordinatorSmokeTest {
     String delimiter= ";";
 
     return new ComputeRequest(
+      configType,
+      configFileName,
       inputType, 
       inputFileName, 
       numberOfMatrices, 
