@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
           "delimiter:"+ delimiter.value || ";"+
           "multiply:"+ parseInt(multiply.value) || 0
         ;
-		const response = await fetch("http://localhost:8080/userinput.UserInputService/CreateUserInput", {
+		const response = await fetch("http://localhost:50051/userinput.UserInputService/CreateUserInput", {
 		  method: "POST",
 		  headers: {
 		    "Content-Type": "application/grpc-web+proto",
