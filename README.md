@@ -14,9 +14,8 @@ A system to take in user input to generate and multipy matrices.
 1. [Features](#features)  
 2. [Benchmark test](#benchmark-test)  
 3. [Tech Stack](#tech-stack)  
-4. [Installation](#installation)  
-5. [Usage](#usage)   
-6. [Contact](#contact)  
+4. [Installation](#installation)   
+5. [Contact](#contact)  
 
 ---
 
@@ -87,15 +86,6 @@ Follow these steps to set up the project locally.
    Open frontend.html in your browser or run UserRequestClient
     
 
----
-
-## **Usage**  
-Describe how to use the project.  
-
-Example:  
-1. Register an account.  
-2. Log in using your credentials.  
-3. Create and manage tasks using the dashboard.  
 
 ---
 
