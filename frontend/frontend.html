@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Input Form</title>
+  <script src="./UserInput.js" defer></script>
+</head>
+<body>
+  <h1>Input Form</h1>
+  <form id="inputForm">
+    <!-- Input Type -->
+    <label for="inputType">Input Type:</label>
+    <select id="inputType" name="inputType" required>
+      <option value="" disabled selected>Select Input Type</option>
+      <option value="0">User Input</option>
+      <option value="1">File Input</option>
+    </select>
+    <span id="inputTypeError" style="color: red;"></span>
+    <br><br>
+
+    <!-- File Input -->
+    <div id="fileInputDiv">
+      <label for="inputFileName">Input File Name (must end with .txt):</label>
+      <input type="text" id="inputFileName" name="inputFileName">
+      <span id="fileNameError" style="color: red;"></span>
+      <br><br>
+    </div>
+
+    <!-- Other Inputs -->
+    <div id="otherInputs">
+      <!-- Number of Matrices -->
+      <label for="numberOfMatrices">Number of Matrices:</label>
+      <input type="number" id="numberOfMatrices" name="numberOfMatrices" min="1">
+      <span id="matricesError" style="color: red;"></span>
+      <br><br>
+
+      <!-- Square Matrix Dimensions -->
+      <label for="dimensions">Matrix Dimensions (e.g., 3x3):</label>
+      <input type="text" id="dimensions" name="dimensions">
+      <span id="dimensionsError" style="color: red;"></span>
+      <br><br>
+
+      <!-- Delimiter -->
+      <label for="delimiter">Delimiter (default is ';'):</label>
+      <input type="text" id="delimiter" name="delimiter">
+      <span id="delimiterError" style="color: red;"></span>
+      <br><br>
+
+      <!-- Multiply Matrices -->
+      <label for="multiply">Multiply the Matrices?</label>
+      <select id="multiply" name="multiply">
+        <option value="" disabled selected>Choose Option</option>
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+      </select>
+      <span id="multiplyError" style="color: red;"></span>
+      <br><br>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <p id="outputMessage" style="color: green;"></p>
+</body>
+</html>
