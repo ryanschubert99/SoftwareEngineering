@@ -12,10 +12,11 @@ A system to take in user input to generate and multipy matrices.
 
 ## **Table of Contents**  
 1. [Features](#features)  
-2. [Benchmark test](#benchmark-test)  
-3. [Tech Stack](#tech-stack)  
-4. [Installation](#installation)   
-5. [Contact](#contact)  
+2. [Benchmark test](#benchmark-test)
+3. [System Diagram](#system-diagram) 
+4. [Tech Stack](#tech-stack)  
+5. [Installation](#installation)   
+6. [Contact](#contact)  
 
 ---
 
@@ -38,11 +39,24 @@ Benchmark Tests:
 
 We optimized the loop to improve cache efficiency by reusing values from matrix1[i][k] across multiple operations, 
 reducing memory accesses and speeding up matrix multiplication.
+
+
+
+
+
 ![image](https://github.com/user-attachments/assets/ceae436e-dfc8-4443-933a-713284a60a0b)
 
 link to Benchmark test:
 https://github.com/ryanschubert99/SoftwareEngineering/blob/main/test/tests/Benchmark.java 
 ---
+**System Diagram**
+
+
+![image](https://github.com/user-attachments/assets/014f0322-a7d7-4c22-9c0b-9096d3b7d14d)
+
+
+
+
 
 ## **Tech Stack**  
 ### **Frontend**   
